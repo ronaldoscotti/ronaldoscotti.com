@@ -1,29 +1,47 @@
 ---
 const navLinks = [
-  { href: '#trajetoria', label: 'Trajetória' },
-  { href: '#projetos', label: 'Projetos' },
-  { href: '#ajuda', label: 'Como posso ajudar' },
+  { href: "#trajetoria", label: "Trajetória" },
+  { href: "#projetos", label: "Projetos" },
+  { href: "#ajuda", label: "Soluções" },
 ];
 ---
 
-<header id="navbar" class="sticky top-0 z-50 bg-white/80 backdrop-blur-md transition-all duration-300">
-  <nav class="flex h-16 items-center justify-center px-4 sm:px-8 md:px-16 lg:px-24 xl:px-40">
-    <div class="flex w-full max-w-[960px] items-center justify-between">
+<header
+  id="navbar"
+  class="sticky top-0 z-50 bg-white/80 backdrop-blur-md transition-all duration-300"
+>
+  <nav
+    class="flex h-16 items-center justify-center px-4 sm:px-8 md:px-16 lg:px-24 xl:px-40"
+  >
+    <div
+      class="relative flex w-full max-w-[960px] items-center justify-between"
+    >
       <!-- Logo -->
-      <a href="#" class="text-lg font-bold text-zinc-900">
-        Ronaldo Scotti
+      <a
+        href="#"
+        class="flex items-center"
+      >
+        <img
+          src="/logo-ronaldo-scotti.png"
+          alt="Ronaldo Scotti"
+          class="h-5 md:h-6"
+        />
       </a>
 
-      <!-- Navigation Links -->
-      <div class="hidden items-center gap-6 md:flex">
-        {navLinks.map((link) => (
-          <a
-            href={link.href}
-            class="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors"
-          >
-            {link.label}
-          </a>
-        ))}
+      <!-- Navigation Links - Centralized -->
+      <div
+        class="absolute left-1/2 -translate-x-1/2 hidden items-center gap-6 md:flex"
+      >
+        {
+          navLinks.map((link) => (
+            <a
+              href={link.href}
+              class="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors"
+            >
+              {link.label}
+            </a>
+          ))
+        }
       </div>
 
       <!-- CTA Button -->
@@ -38,18 +56,22 @@ const navLinks = [
 </header>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const navbar = document.getElementById('navbar');
+  document.addEventListener("DOMContentLoaded", () => {
+    const navbar = document.getElementById("navbar");
     if (!navbar) return;
 
-    window.addEventListener('scroll', () => {
-      const currentScroll = window.scrollY;
+    window.addEventListener(
+      "scroll",
+      () => {
+        const currentScroll = window.scrollY;
 
-      if (currentScroll > 50) {
-        navbar.classList.add('shadow-sm');
-      } else {
-        navbar.classList.remove('shadow-sm');
-      }
-    }, { passive: true });
+        if (currentScroll > 50) {
+          navbar.classList.add("shadow-sm");
+        } else {
+          navbar.classList.remove("shadow-sm");
+        }
+      },
+      { passive: true }
+    );
   });
 </script>
