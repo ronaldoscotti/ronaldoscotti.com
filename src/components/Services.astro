@@ -1,0 +1,67 @@
+---
+const services = [
+  {
+    number: '1',
+    title: 'Validar sua ideia antes de gastar meses codando',
+    description: 'Aqueles 8 meses que passei codando sozinho? Podia ter validado em 2 semanas com um MVP de verdade. Te ajudo a testar se alguém pagaria pela sua ideia antes de construir tudo.',
+  },
+  {
+    number: '2',
+    title: 'Automatizar processos que estão drenando seu time',
+    description: 'Se você tem alguém copiando dados entre sistemas, processando planilhas manualmente, ou fazendo trabalho repetitivo — dá pra automatizar. Construo automações e agentes de IA que resolvem problemas específicos do seu negócio.',
+  },
+  {
+    number: '3',
+    title: 'Destravar decisões técnicas do seu SaaS',
+    description: 'Arquitetura, stack, como escalar sem quebrar, MVP vs produto completo. Se você está travado em decisões técnicas ou não sabe qual próximo passo dar — vamos conversar.',
+  },
+];
+---
+
+<section id="servicos" class="py-24 px-6 bg-black text-white">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="font-display font-bold text-3xl md:text-5xl mb-8 animate-on-scroll">
+      Posso te ajudar com 3 coisas
+    </h2>
+
+    <p class="text-lg leading-relaxed text-gray-300 mb-16 animate-on-scroll">
+      Passei anos construindo, quebrando e consertando um SaaS até vendê-lo. Aprendi do jeito mais caro. Hoje uso essa experiência pra ajudar quem tá onde eu já estive:
+    </p>
+
+    <div class="space-y-12 mb-16">
+      {services.map((service) => (
+        <div class="animate-on-scroll">
+          <div class="flex gap-6">
+            <div class="flex-shrink-0">
+              <span class="font-display font-bold text-5xl text-gray-600">
+                {service.number}.
+              </span>
+            </div>
+            <div>
+              <h3 class="font-display font-bold text-2xl mb-4">
+                {service.title}
+              </h3>
+              <p class="text-lg leading-relaxed text-gray-300">
+                {service.description}
+              </p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="animate-on-scroll">
+      <p class="text-lg mb-6 text-gray-300">
+        Trabalho em projetos pontuais como consultor técnico/estratégico.
+      </p>
+      <a
+        href="https://wa.me/5548991164957"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block font-display font-bold text-xl bg-white text-black px-8 py-4 rounded-lg hover:bg-gray-200 transition-colors duration-300"
+      >
+        → Me chama no WhatsApp e vamos conversar
+      </a>
+    </div>
+  </div>
+</section>

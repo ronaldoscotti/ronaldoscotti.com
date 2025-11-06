@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scroll margin for anchor links (navbar offset) */
+section {
+  scroll-margin-top: 5rem;
+}
+
+/* Animation for scroll-triggered elements */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.6s ease-out forwards;
+}
+
+.animate-on-scroll {
+  opacity: 0;
+}
+
+.animate-on-scroll.is-visible {
+  animation: fadeUp 0.6s ease-out forwards;
+}

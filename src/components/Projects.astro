@@ -1,0 +1,51 @@
+---
+const projects = [
+  {
+    name: 'Meu Feed Católico',
+    url: 'https://www.meufeedcatolico.com.br',
+    description: 'App que substitui tempo perdido no Instagram por conteúdo católico formativo. Feed diário, liturgia, orações, vidas de santos. Fiz primeiro pra mim, usei por meses, depois compartilhei.',
+  },
+  {
+    name: 'Nova Aba Católica',
+    url: 'https://nova-aba-catolica.ronaldoscotti.com',
+    description: 'Extensão para o navegador que transforma cada nova aba em momento de paz. Porque se você abre 50 abas por dia, que algumas te lembrem de respirar.',
+  },
+  {
+    name: 'Jornada SaaS',
+    url: 'https://jornadasaas.com',
+    description: '50 edições contando a história real do Orbit. Os R$ 437 da primeira venda após 8 meses. O investimento. As demissões. O burnout. A venda. Sem filtro.',
+  },
+];
+---
+
+<section id="projetos" class="py-24 px-6">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="font-display font-bold text-3xl md:text-5xl mb-8 animate-on-scroll">
+      Projetos pessoais (quando trabalho deixa de ser só trabalho)
+    </h2>
+
+    <p class="text-lg leading-relaxed text-gray-700 mb-16 animate-on-scroll">
+      Depois de vender o Orbit, meus objetivos mudaram. Não quero mais milhões na conta ou aposentadoria precoce. Quero usar o que sei fazer pra deixar algo bom no mundo.
+    </p>
+
+    <div class="space-y-12">
+      {projects.map((project) => (
+        <div class="animate-on-scroll border-l-4 border-black pl-6 hover:border-gray-600 transition-colors duration-300">
+          <h3 class="font-display font-bold text-2xl mb-3">
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-gray-600 transition-colors"
+            >
+              {project.name}
+            </a>
+          </h3>
+          <p class="text-lg leading-relaxed text-gray-700">
+            {project.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

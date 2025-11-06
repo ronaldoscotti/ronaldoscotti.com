@@ -1,0 +1,21 @@
+---
+---
+
+<section id="clientes" class="py-24 px-6 bg-gray-50">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="font-display font-bold text-3xl md:text-4xl mb-16 text-center animate-on-scroll">
+      Empresas com quem trabalhei
+    </h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-12 items-center">
+      {[1, 2, 3, 4, 5].map((i) => (
+        <div class="flex items-center justify-center p-6 animate-on-scroll grayscale hover:grayscale-0 transition-all duration-300">
+          <!-- Placeholder logo - replace with actual client logos -->
+          <div class="w-full h-20 bg-gray-200 rounded-lg flex items-center justify-center">
+            <span class="text-gray-400 font-display font-semibold">Logo {i}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ronaldo Scotti - Construtor de Produtos Digitais</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 24px;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-background font-display antialiased text-zinc-900">
+<div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md">
+<nav class="flex h-16 items-center justify-center sm:px-8 md:px-16 lg:px-24 xl:px-40">
+<div class="flex w-full max-w-[960px] items-center justify-between px-4">
+<a class="text-lg font-bold" href="#">Ronaldo Scotti</a>
+<div class="hidden items-center gap-6 md:flex">
+<a class="text-sm font-medium text-zinc-600 hover:text-zinc-900" href="#trajetoria">Trajetória</a>
+<a class="text-sm font-medium text-zinc-600 hover:text-zinc-900" href="#projetos">Projetos</a>
+<a class="text-sm font-medium text-zinc-600 hover:text-zinc-900" href="#ajuda">Como posso ajudar</a>
+</div>
+<a class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-zinc-900 text-white text-sm font-bold leading-normal tracking-[0.015em]" href="#contato">
+<span class="truncate">Contato</span>
+</a>
+</div>
+</nav>
+</header>
+<div class="layout-container flex h-full grow flex-col">
+<main class="flex flex-1 justify-center py-5 sm:px-8 md:px-16 lg:px-24 xl:px-40">
+<div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+<section class="py-10 sm:py-16 @container" id="inicio">
+<div class="flex flex-col gap-6 px-4 @[480px]:gap-8 @[864px]:flex-row-reverse @[864px]:items-center">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-full @[480px]:h-auto @[480px]:min-w-[240px] @[480px]:w-60 @[864px]:w-1/3 mx-auto" data-alt="A portrait of Ronaldo Scotti, smiling." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDlPaOmjnpXbIJp5MqZaxmEtdZnfqp0ihWqlBpuFiQ7eDJGi5p5vkVefppOP5U_rzm4wkf3YnN9ipiqnOGIzbAXRq3otaMgGNpLXZznLRQq7KbDiN1Ca83nXHGY-DZfnymbEIvXwCtSPZu99lljXBgyIkBmLUoem9B-mcWI7TEDcoVCcFjEOTLlLdudw6UHPawYn4sUPlDK-lO5-j6kJFMsCAncczj1jhu27FkgqegeddXv_qaBrwA34TbpMH7gfbywTIdUxnn4pYG0");'></div>
+<div class="flex flex-col gap-6 text-center @[480px]:text-left @[864px]:justify-center @[864px]:w-2/3">
+<div class="flex flex-col gap-2">
+<h1 class="text-zinc-900 text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl">12 anos construindo produtos digitais que resolvem problemas reais</h1>
+<h2 class="text-zinc-600 text-base font-normal leading-normal @[480px]:text-lg">
+                                        Casado com a Poli, pai do Bento. Às vezes ajudo empresas a construir SaaS e automações do jeito certo.
+                                    </h2>
+</div>
+</div>
+</div>
+</section>
+<section class="flex flex-col gap-10 px-4 py-10 sm:py-16">
+<div class="bg-zinc-900 text-white rounded-xl p-8 sm:p-10 text-center">
+<h2 class="text-white text-[32px] font-bold leading-tight tracking-[-0.033em] @[480px]:text-4xl max-w-[720px] mx-auto">Você já deve ter visto isso antes</h2>
+<p class="text-zinc-300 text-lg font-normal leading-normal max-w-[720px] mx-auto mt-6">
+                            Fundador técnico que passa meses codando sozinho sem falar com cliente. Lança o produto, ninguém compra. Fica perdido tentando entender o que fazer agora.<br/><br/>
+                            Ou: empresa crescendo mas afogada em processos manuais. Time não aguenta mais copiar dados entre planilhas. Quer automatizar mas não sabe por onde começar.<br/><br/>
+                            Ou ainda: tem uma ideia de SaaS mas não sabe se alguém pagaria por isso. Medo de gastar meses construindo algo que ninguém quer.
+                        </p>
+<p class="text-white text-lg font-bold leading-normal max-w-[720px] mx-auto mt-6">Passei por isso tudo. Do lado mais difícil.</p>
+</div>
+</section>
+<section class="px-4 py-10 sm:py-16" id="trajetoria">
+<h2 class="text-zinc-900 text-2xl sm:text-3xl font-bold leading-tight tracking-[-0.015em] pb-8">A trajetória (ou: como aprendi do jeito mais caro)</h2>
+<div class="grid grid-cols-[40px_1fr] gap-x-2">
+<div class="flex flex-col items-center gap-2 pt-3">
+<span class="material-symbols-outlined text-zinc-500">code</span>
+<div class="w-[1.5px] bg-zinc-200 h-full grow"></div>
+</div>
+<div class="flex flex-1 flex-col pb-8">
+<p class="text-zinc-500 text-sm font-medium leading-normal">2013-2015</p>
+<p class="text-zinc-900 text-lg font-bold leading-normal">Aprendendo o ofício</p>
+<p class="text-zinc-700 text-base font-normal leading-normal mt-1">Comecei transformando layouts em código por uma merreca. Absorvi tudo que pude. Em 2015 larguei a agência e abri minha "eugência" — eu sozinho fazendo freela no quarto.</p>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-[1.5px] bg-zinc-200 h-2 grow"></div>
+<span class="material-symbols-outlined text-zinc-500">laptop_chromebook</span>
+<div class="w-[1.5px] bg-zinc-200 h-full grow"></div>
+</div>
+<div class="flex flex-1 flex-col pb-8">
+<p class="text-zinc-500 text-sm font-medium leading-normal">2015-2019</p>
+<p class="text-zinc-900 text-lg font-bold leading-normal">4 anos construindo pra todo mundo</p>
+<p class="text-zinc-700 text-base font-normal leading-normal mt-1">Landing pages, e-commerces, áreas de membros. WordPress, Laravel, React, Node. Aprendi que linguagem é ferramenta — o que importa é resolver o problema do jeito mais simples possível.</p>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-[1.5px] bg-zinc-200 h-2 grow"></div>
+<span class="material-symbols-outlined text-zinc-500">rocket_launch</span>
+<div class="w-[1.5px] bg-zinc-200 h-full grow"></div>
+</div>
+<div class="flex flex-1 flex-col pb-8">
+<p class="text-zinc-500 text-sm font-medium leading-normal">2019-2023</p>
+<p class="text-zinc-900 text-lg font-bold leading-normal">O Orbit (a escola mais cara que tive)</p>
+<p class="text-zinc-700 text-base font-normal leading-normal mt-1">Criei o Orbit Pages — plataforma onde qualquer um montava páginas sem código. Construí features que ninguém pediu. Pivotamos 3 vezes. Conseguimos investimento. O dinheiro secou em 2022 — quase quebramos. Mas reconstruímos. Em 2023, vendi a empresa pra Eduzz.</p>
+</div>
+<div class="flex flex-col items-center gap-2 pb-3">
+<div class="w-[1.5px] bg-zinc-200 h-2 grow"></div>
+<span class="material-symbols-outlined text-zinc-500">psychology</span>
+</div>
+<div class="flex flex-1 flex-col">
+<p class="text-zinc-500 text-sm font-medium leading-normal">2023-hoje</p>
+<p class="text-zinc-900 text-lg font-bold leading-normal">Aplicando o que aprendi</p>
+<p class="text-zinc-700 text-base font-normal leading-normal mt-1">Hoje trabalho na Eduzz como Arquiteto de Automações. Automatizo processos críticos, construo agentes de IA e faço sistemas que não foram feitos pra conversar se entenderem. Entrego valor rápido, depois itero. Tecnologia é meio, não fim.</p>
+</div>
+</div>
+</section>
+<section class="px-4 py-10 sm:py-16">
+<h3 class="text-zinc-900 text-2xl font-bold leading-tight tracking-[-0.015em] text-center mb-8">Marcas com as quais já trabalhei</h3>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-8 items-center">
+<img class="grayscale opacity-60 hover:opacity-100 transition-opacity mx-auto" data-alt="Eduzz logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIH2OX51PK9eKOs2RaW6bn7DKdzUqe6PueT956X9jqiHLUlLMISWVon2Y74C8lufytT0-dGBQ6xJqMTzS_Mcyt3bpkacIw7Dgda-_-6THzvhhQbBRz1ehT9-oMeN0l2UxTRjA0HoN75ho9BjzWLniUbU-rnXrAe_EC6-eNWN8YWFesbCO9tKA009FKA4JIDlm0_VibljdVjs4JiYA_2RfpHu9KsZ8-EW5mUdOQjDoH6CTJV2xG23UoZGYpXKzFaWuCx8SDDP7dLwZZ"/>
+<img class="grayscale opacity-60 hover:opacity-100 transition-opacity mx-auto" data-alt="Orbit logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlND3d2oHYzSR3EGjnun73raO2Rb-5Tk8IUR-nFHh6nlE2Id1BDsO37hPot5ko8x-flSgLmJmqRgsuchROb0j-y39e4AcEf9oV23h9KBS9uEM4Y8FfRrb6heZsfeye3_4lxUKJ5US8jVdezzZ4d-CTmyVV3tx3M1q7lD05R6_2dFZKZafbRsuSfapyb4JfBvEK_6vIBe0eZvU_Ajx7HqqYDRxEOMGi6Z_Im732mKaWNJLY6pamEU_oV5yINzKX6c-hH0nuA9m65gBs"/>
+<img class="grayscale opacity-60 hover:opacity-100 transition-opacity mx-auto" data-alt="Client A logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxTvj-3tRcVxRknRd73UCLc5s-qm_E3RpW6hIezBpwd5BqlimM9Sz8Nd0eCWMFxzKTkysU7Q6fisYiFJ3nDdJoeJVVx3KNjw35CXtdSO8A2InG-vfoCpJLciUb2k0G3lh1bptwO8E8ZaOvTXts1LbSZkdMlkZvnZJxUGh4OCsuvWjl0QGagviIE0m6GEGpeyFL1kpQAo89fMx5kqaV9a_t7KYsLt0N9B7RZ25FWvwPf_mFr1KxIw15ZDAxkbbnvOsoZoQk9K09fGf9"/>
+<img class="grayscale opacity-60 hover:opacity-100 transition-opacity mx-auto" data-alt="Client B logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaTkfyo4XP-BxYq4EIHooI1pHuVakLGMpoRYVL6LabUEcKjVPBY8PeqEcxN6IKMVhwb6vBO83EoQNg6K4WwWEOMF6evrN9DHaxsOTcSZA4xIngl9rTURo01ib-U_PAorjwd3cYP7A4oeDzFmq4w6S6uGCqRGsEXB2gv2DJLjQq96cpF34U8IYXZtUVpOMZ9NiZ70t6fTpxLyRunQFJi2gRIIBrc5xXMlABpXCBl5U0U3ROnTzQWboIoJutOgq8IxiyWbjpZag8iVNq"/>
+</div>
+</section>
+<section class="flex flex-col gap-10 px-4 py-10 sm:py-16 @container" id="projetos">
+<div class="flex flex-col gap-4 text-center">
+<h2 class="text-zinc-900 text-[32px] font-bold leading-tight tracking-[-0.033em] @[480px]:text-4xl max-w-[720px] mx-auto">Projetos pessoais</h2>
+<p class="text-zinc-600 text-lg font-normal leading-normal max-w-[720px] mx-auto">Não quero mais milhões na conta ou aposentadoria precoce. Quero usar o que sei fazer pra deixar algo bom no mundo.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+<a class="flex flex-col gap-4 rounded-xl border border-zinc-200 bg-white p-4 hover:border-zinc-400/50 transition-colors group" href="https://www.meufeedcatolico.com.br" target="_blank">
+<div class="w-full h-auto rounded-lg overflow-hidden flex justify-center items-center"><img alt="Mockup do app Meu Feed Católico" class="w-4/5 h-auto border border-zinc-200 rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDi0Y4JNqYh1PRkeu36LYJ_XQ0sFzBSp0e99VcmwEtLrZONCraLxP53lVxjqAUHTUwMzE0sR_7IeCySVDyLbGjgT_wkJx7RwF6LYdV9Q1pzUY5U9q1c5zEj6F_5bYvx2fJpGT03FmmpszYOM2w_hG3ImwawcKgszHb2ndIINkwO3bGejtC0KBd9nnTprDcPTs9NCiUrAJfN25JkGEk3-O95O53cbbA7eRtm7JS6xPioSASmiY2ofvnU0V9Vj-V5og95QVY-OFDRle8U"/></div>
+<div class="flex flex-col gap-1 flex-1">
+<h3 class="text-zinc-900 text-base font-bold leading-tight group-hover:underline">Meu Feed Católico</h3>
+<p class="text-zinc-600 text-sm font-normal leading-normal">App que substitui tempo perdido no Instagram por conteúdo católico formativo.</p>
+</div>
+</a>
+<a class="flex flex-col gap-4 rounded-xl border border-zinc-200 bg-white p-4 hover:border-zinc-400/50 transition-colors group" href="https://nova-aba-catolica.ronaldoscotti.com" target="_blank">
+<div class="w-full h-auto rounded-lg overflow-hidden flex justify-center items-center"><img alt="Mockup da extensão Nova Aba Católica" class="w-4/5 h-auto border border-zinc-200 rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrhYJxvGc5HEnYpwZK2POpvcrZrpaZrRqRRLLrNwKyQrPJSOUXfc2gBSzU0smHYh9V8g_cuT7ZPrmT0HUJQC3ORhFqqn-uqrP7BHLbWOORvAVcIfpAecrzCWqV-kuKDhXLThSZ-n5kwMJoOUpCnNqokd_eQHINv6tvdV2Jc7juxks1chGfEC44vEAhkVxbhZBYOW4fLLCyOKWIQbQ6mIzK5rTULC3TlvIRcZfaxbPK4OkS7pGC8NqPIIUz4cGs5aGI9B7yMv4Ha5r2"/></div>
+<div class="flex flex-col gap-1 flex-1">
+<h3 class="text-zinc-900 text-base font-bold leading-tight group-hover:underline">Nova Aba Católica</h3>
+<p class="text-zinc-600 text-sm font-normal leading-normal">Extensão para o navegador que transforma cada nova aba em momento de paz.</p>
+</div>
+</a>
+<a class="flex flex-col gap-4 rounded-xl border border-zinc-200 bg-white p-4 hover:border-zinc-400/50 transition-colors group" href="https://jornadasaas.com" target="_blank">
+<div class="w-full h-auto rounded-lg overflow-hidden flex justify-center items-center"><img alt="Mockup do site Jornada SaaS" class="w-4/5 h-auto border border-zinc-200 rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALP9bI2Tb3hISCKCYfSdbe9LeWCHvpkR1pqy2buzqg4shRockqLdLzh5DNP-RCp_4hRsSk67isbhKY01e6r5aXGaN77DUB7kECuMxWcLLuDUcIim5UcH96XuHkucnbFcxr0bGW5m0G-nVDdhrzZCISyVBXsI8mNd1Kv4f7UvjZTjOy7FO-070ydyhVDs65010EANAVD3qyD0n_XQ-T__ZEyKDVMz_bxEXVbPKI29F4petyGFF2rAvSAgm_EATdp-rExNic01e_ZzR0"/></div>
+<div class="flex flex-col gap-1 flex-1">
+<h3 class="text-zinc-900 text-base font-bold leading-tight group-hover:underline">Jornada SaaS</h3>
+<p class="text-zinc-600 text-sm font-normal leading-normal">50 edições contando a história real do Orbit. A primeira venda, o burnout, a venda.</p>
+</div>
+</a>
+<a class="flex flex-col gap-4 rounded-xl border border-zinc-200 bg-white p-4 hover:border-zinc-400/50 transition-colors group" href="#">
+<div class="w-full h-auto rounded-lg overflow-hidden flex justify-center items-center"><img alt="Mockup da plataforma Orbit Pages" class="w-4/5 h-auto border border-zinc-200 rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE-EQF_Z_9X0f10GY8bYpHLyhg3IWQE2WjuYV6Y4lTePYyqznfPKi50wW3DivHoj9rDZLQ2QvBoqY0msrcrQE3hRVob7-Ko1Hvulb_SR-gO0DuZCQ9zcPQKMMMA_hI9aZs077vWPL2n5CAKVpftKXkYTQxEQ22JPEp1ipr5oDSttokxmFLVb3pg7qXDAw7w3K6QJ9ZZhtN0fcMQVNZMcge2vQuPPhGTpvOYEtRNBogVuCJypIQOkn7S5qgUYqChf0NzrcYXSuf4GzG"/></div>
+<div class="flex flex-col gap-1 flex-1">
+<h3 class="text-zinc-900 text-base font-bold leading-tight">Orbit Pages</h3>
+<p class="text-zinc-600 text-sm font-normal leading-normal">Plataforma No-Code para criar landing pages que vendi em 2023 para a Eduzz.</p>
+</div>
+</a>
+</div>
+</section>
+<section class="flex flex-col gap-10 px-4 py-10 sm:py-16 @container" id="ajuda">
+<div class="flex flex-col gap-4 text-center">
+<h2 class="text-zinc-900 text-[32px] font-bold leading-tight tracking-[-0.033em] @[480px]:text-4xl max-w-[720px] mx-auto">Posso te ajudar com 3 coisas</h2>
+<p class="text-zinc-600 text-lg font-normal leading-normal max-w-[720px] mx-auto">Passei anos construindo, quebrando e consertando um SaaS até vendê-lo. Aprendi do jeito mais caro. Hoje uso essa experiência pra ajudar quem tá onde eu já estive.</p>
+</div>
+<div class="flex flex-col gap-8">
+<div class="flex items-start gap-4">
+<div class="text-2xl font-bold text-zinc-400">1.</div>
+<div>
+<h3 class="text-zinc-900 text-lg font-bold">Validar sua ideia antes de gastar meses codando</h3>
+<p class="text-zinc-700 mt-1">Aqueles 8 meses que passei codando sozinho? Podia ter validado em 2 semanas com um MVP de verdade. Te ajudo a testar se alguém pagaria pela sua ideia antes de construir tudo.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="text-2xl font-bold text-zinc-400">2.</div>
+<div>
+<h3 class="text-zinc-900 text-lg font-bold">Automatizar processos que estão drenando seu time</h3>
+<p class="text-zinc-700 mt-1">Se você tem alguém copiando dados entre sistemas ou fazendo trabalho repetitivo — dá pra automatizar. Construo automações e agentes de IA que resolvem problemas específicos do seu negócio.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="text-2xl font-bold text-zinc-400">3.</div>
+<div>
+<h3 class="text-zinc-900 text-lg font-bold">Destravar decisões técnicas do seu SaaS</h3>
+<p class="text-zinc-700 mt-1">Arquitetura, stack, como escalar sem quebrar. Se você está travado em decisões técnicas ou não sabe qual próximo passo dar — vamos conversar. Trabalho em projetos pontuais como consultor técnico/estratégico.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="px-4 py-10 sm:py-16" id="contato">
+<div class="bg-zinc-900 text-white rounded-xl p-8 sm:p-10 text-center flex flex-col items-center gap-6">
+<div class="flex flex-col gap-2">
+<h3 class="text-white text-2xl sm:text-3xl font-bold leading-tight tracking-[-0.015em]">Se identificou com algum desses pontos?</h3>
+<p class="text-zinc-300 text-lg">Vamos conversar sobre como posso te ajudar no seu projeto.</p>
+</div>
+<a class="inline-flex items-center justify-center rounded-lg h-10 px-6 bg-white text-zinc-900 text-base font-bold leading-normal transition-colors hover:bg-zinc-200" href="https://wa.me/5548991164957" target="_blank">
+<span>Me chama no WhatsApp</span>
+</a>
+</div>
+</section>
+<footer class="px-4 py-10 sm:pt-16 sm:pb-10 text-center">
+<div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center text-sm">
+<a class="text-zinc-600 hover:text-zinc-900" href="https://wa.me/5548991164957" target="_blank">WhatsApp: (48) 99116-4957</a>
+<a class="text-zinc-600 hover:text-zinc-900" href="https://www.linkedin.com/in/ronaldoscottis/" target="_blank">LinkedIn</a>
+</div>
+<p class="text-zinc-500 text-sm mt-8 italic">Ora et labora</p>
+</footer>
+</div>
+</main>
+</div>
+</div>
+
+</body></html>
