@@ -2,49 +2,71 @@
 const projects = [
   {
     name: 'Meu Feed Católico',
-    url: 'https://www.meufeedcatolico.com.br',
+    url: 'https://use.meufeedcatolico.com.br',
     description: 'App que substitui tempo perdido no Instagram por conteúdo católico formativo. Feed diário, liturgia, orações, vidas de santos. Fiz primeiro pra mim, usei por meses, depois compartilhei.',
+    image: '/products/meu-feed-catolico.webp'
   },
   {
     name: 'Nova Aba Católica',
     url: 'https://nova-aba-catolica.ronaldoscotti.com',
     description: 'Extensão para o navegador que transforma cada nova aba em momento de paz. Porque se você abre 50 abas por dia, que algumas te lembrem de respirar.',
+    image: '/products/nova-aba-catolica.webp'
   },
   {
     name: 'Jornada SaaS',
     url: 'https://jornadasaas.com',
     description: '50 edições contando a história real do Orbit. Os R$ 437 da primeira venda após 8 meses. O investimento. As demissões. O burnout. A venda. Sem filtro.',
+    image: '/products/jornada-saas.webp'
+  },
+  {
+    name: 'Orbit Pages',
+    url: '#',
+    description: 'SaaS de construção de landing pages e funis de venda que construí e vendi em 2023 para a Eduzz (criei em 2019 e continua de pé até hoje)',
+    image: '/products/orbit-pages.webp'
   },
 ];
 ---
 
-<section id="projetos" class="py-24 px-6">
-  <div class="max-w-4xl mx-auto">
-    <h2 class="font-display font-bold text-3xl md:text-5xl mb-8 animate-on-scroll">
-      Projetos pessoais (quando trabalho deixa de ser só trabalho)
-    </h2>
+<section id="projetos" class="py-10 sm:py-16 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-40">
+  <div class="max-w-[960px] mx-auto">
+    <div class="flex flex-col gap-4 text-center mb-10">
+      <h2 class="text-zinc-900 text-[32px] md:text-4xl font-bold leading-tight tracking-[-0.033em] max-w-[720px] mx-auto">
+        Projetos pessoais
+        <br />
+        <small class="text-zinc-600 font-normal">(quando trabalho deixa de ser só trabalho)</small>
+      </h2>
+      <p class="text-zinc-600 text-lg font-normal leading-normal max-w-[720px] mx-auto">
+        Quero usar o que sei fazer pra deixar algo bom no mundo.
+      </p>
+    </div>
 
-    <p class="text-lg leading-relaxed text-gray-700 mb-16 animate-on-scroll">
-      Depois de vender o Orbit, meus objetivos mudaram. Não quero mais milhões na conta ou aposentadoria precoce. Quero usar o que sei fazer pra deixar algo bom no mundo.
-    </p>
-
-    <div class="space-y-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
       {projects.map((project) => (
-        <div class="animate-on-scroll border-l-4 border-black pl-6 hover:border-gray-600 transition-colors duration-300">
-          <h3 class="font-display font-bold text-2xl mb-3">
-            <a
-              href={project.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="hover:text-gray-600 transition-colors"
-            >
+        <a
+          class="flex flex-row gap-4 items-center rounded-xl border border-zinc-200 bg-white p-4 transition-all duration-300 group hover:shadow-lg hover:shadow-zinc-200/50 hover:border-zinc-300 hover:-translate-y-1"
+          href={project.url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <!-- Image Column -->
+          <div class="w-32 h-32 flex-shrink-0 overflow-hidden flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+            <img
+              alt={`Mockup do ${project.name}`}
+              class="w-full h-full object-cover"
+              src={project.image}
+            />
+          </div>
+
+          <!-- Text Column -->
+          <div class="flex flex-col gap-1 flex-1 justify-center">
+            <h3 class="text-zinc-900 text-lg font-bold leading-tight transition-colors duration-300 group-hover:text-zinc-700">
               {project.name}
-            </a>
-          </h3>
-          <p class="text-lg leading-relaxed text-gray-700">
-            {project.description}
-          </p>
-        </div>
+            </h3>
+            <p class="text-zinc-600 text-base font-normal leading-normal transition-colors duration-300 group-hover:text-zinc-700">
+              {project.description}
+            </p>
+          </div>
+        </a>
       ))}
     </div>
   </div>

@@ -1,70 +1,67 @@
 ---
+const timelineItems = [
+  {
+    period: '2013-2015',
+    title: 'Aprendendo o ofício',
+    description: 'Comecei transformando layouts em código por uma merreca. Absorvi tudo que pude. Em 2015 larguei a agência e abri minha "eugência" — eu sozinho fazendo freela no quarto.',
+    icon: 'code'
+  },
+  {
+    period: '2015-2019',
+    title: '4 anos construindo pra todo mundo',
+    description: 'Landing pages, e-commerces, áreas de membros. WordPress, Laravel, React, Node. Aprendi que linguagem é ferramenta — o que importa é resolver o problema do jeito mais simples possível.',
+    icon: 'laptop_chromebook'
+  },
+  {
+    period: '2019-2023',
+    title: 'O Orbit (a escola mais cara que tive)',
+    description: 'Criei o Orbit Pages — plataforma onde qualquer um montava páginas sem código. Construí features que ninguém pediu. Pivotamos 3 vezes. Conseguimos investimento. O dinheiro secou em 2022 — quase quebramos. Mas reconstruímos. Em 2023, vendi a empresa pra Eduzz.',
+    icon: 'rocket_launch'
+  },
+  {
+    period: '2023-hoje',
+    title: 'Aplicando o que aprendi',
+    description: 'Hoje trabalho na Eduzz como Arquiteto de Automações. Automatizo processos críticos, construo agentes de IA e faço sistemas que não foram feitos pra conversar se entenderem. Entrego valor rápido, depois itero. Tecnologia é meio, não fim.',
+    icon: 'psychology'
+  }
+];
 ---
 
-<section id="trajetoria" class="py-24 px-6">
-  <div class="max-w-4xl mx-auto">
-    <h2 class="font-display font-bold text-3xl md:text-5xl mb-16 animate-on-scroll">
+<section id="trajetoria" class="py-10 sm:py-16 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-40">
+  <div class="max-w-[960px] mx-auto">
+    <h2 class="text-zinc-900 text-2xl sm:text-3xl font-bold leading-tight tracking-[-0.015em] pb-8">
       A trajetória (ou: como aprendi do jeito mais caro)
     </h2>
 
-    <div class="space-y-16">
-      <!-- 2013-2015 -->
-      <div class="animate-on-scroll">
-        <h3 class="font-display font-bold text-2xl mb-4">
-          2013-2015: Aprendendo o ofício
-        </h3>
-        <p class="text-lg leading-relaxed text-gray-700">
-          Comecei transformando layouts em código por uma merreca. Absorvi tudo que pude. Em 2015 larguei a agência e abri minha "eugência" — eu sozinho fazendo freela no quarto.
-        </p>
-      </div>
+    <div class="grid grid-cols-[40px_1fr] gap-x-2">
+      {timelineItems.map((item, index) => (
+        <>
+          {/* Icon column */}
+          <div class="flex flex-col items-center gap-2 pt-3">
+            <span class="material-symbols-outlined text-zinc-500">{item.icon}</span>
+            {index < timelineItems.length - 1 && (
+              <div class="w-[1.5px] bg-zinc-200 h-full grow"></div>
+            )}
+          </div>
 
-      <!-- 2015-2019 -->
-      <div class="animate-on-scroll">
-        <h3 class="font-display font-bold text-2xl mb-4">
-          2015-2019: 4 anos construindo pra todo mundo
-        </h3>
-        <p class="text-lg leading-relaxed text-gray-700 mb-4">
-          Landing pages, e-commerces, áreas de membros. WordPress, Laravel, React, Node. Aprendi que linguagem é ferramenta — o que importa é resolver o problema do jeito mais simples possível.
-        </p>
-        <p class="text-lg leading-relaxed text-gray-700 italic">
-          Repeti tanto os mesmos projetos que tive a ideia: por que as pessoas precisam me contratar toda vez?
-        </p>
-      </div>
+          {/* Content column */}
+          <div class={`flex flex-1 flex-col ${index < timelineItems.length - 1 ? 'pb-8' : ''}`}>
+            <p class="text-zinc-500 text-sm font-medium leading-normal">{item.period}</p>
+            <p class="text-zinc-900 text-lg font-bold leading-normal">{item.title}</p>
+            <p class="text-zinc-700 text-base font-normal leading-normal mt-1">{item.description}</p>
+          </div>
 
-      <!-- 2019-2023 -->
-      <div class="animate-on-scroll">
-        <h3 class="font-display font-bold text-2xl mb-4">
-          2019-2023: O Orbit (a escola mais cara que tive)
-        </h3>
-        <p class="text-lg leading-relaxed text-gray-700 mb-4">
-          Criei o Orbit Pages — plataforma onde qualquer um montava páginas sem código. Passei <strong>5 meses codando sozinho</strong>, consegui um sócio, mais 3 meses batendo cabeça até a primeira venda.
-        </p>
-        <p class="text-lg leading-relaxed text-gray-700 mb-4">
-          Construí features que ninguém pediu. Pivotamos 3 vezes. Conseguimos investimento. Contratamos mais do que precisava. O dinheiro secou em 2022 — quase quebramos.
-        </p>
-        <p class="text-lg leading-relaxed text-gray-700 mb-4">
-          Mas reconstruímos. Em 2023, vendi a empresa pra Eduzz.
-        </p>
-        <p class="font-bold text-xl">
-          Aprendi tudo que não fazer. E algumas coisas que funcionam.
-        </p>
-      </div>
-
-      <!-- 2023-hoje -->
-      <div class="animate-on-scroll">
-        <h3 class="font-display font-bold text-2xl mb-4">
-          2023-hoje: Aplicando o que aprendi
-        </h3>
-        <p class="text-lg leading-relaxed text-gray-700 mb-4">
-          Hoje trabalho na Eduzz como Arquiteto de Automações. Automatizo processos críticos que drenavam horas do time. Construo agentes de IA que resolvem problemas específicos de negócio. Faço sistemas que não foram feitos pra conversar se entenderem.
-        </p>
-        <p class="text-lg leading-relaxed text-gray-700 mb-4">
-          Penso em arquitetura antes de escrever código. Entrego valor rápido, depois itero.
-        </p>
-        <p class="text-lg leading-relaxed text-gray-700">
-          12 anos construindo produtos me ensinaram: tecnologia é meio, não fim.
-        </p>
-      </div>
+          {/* Spacing between items (except last) */}
+          {index < timelineItems.length - 1 && (
+            <>
+              <div class="flex flex-col items-center gap-2">
+                <div class="w-[1.5px] bg-zinc-200 h-2 grow"></div>
+              </div>
+              <div></div>
+            </>
+          )}
+        </>
+      ))}
     </div>
   </div>
 </section>
