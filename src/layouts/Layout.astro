@@ -1,5 +1,5 @@
 ---
-import '../styles/global.css';
+import "../styles/global.css";
 
 interface Props {
   title: string;
@@ -7,24 +7,106 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
+const siteUrl = "https://ronaldoscotti.com";
+const ogImage = `${siteUrl}/og-image.png`;
 ---
 
 <!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
-    <meta name="author" content="Ronaldo Scotti" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=5"
+    />
 
-    <!-- Open Graph / Social Media -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta
+      name="description"
+      content={description}
+    />
+    <meta
+      name="keywords"
+      content="desenvolvedor saas, consultor automações, agentes ia, arquiteto saas, mvp validação, ronaldo scotti, orbit pages, automações inteligentes, eduzz"
+    />
+    <meta
+      name="author"
+      content="Ronaldo Scotti"
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta
+      property="og:type"
+      content="website"
+    />
+    <meta
+      property="og:url"
+      content={siteUrl}
+    />
+    <meta
+      property="og:title"
+      content="Ronaldo Scotti - Desenvolvedor SaaS e Automações IA"
+    />
+    <meta
+      property="og:description"
+      content="12 anos construindo produtos digitais. Fundei e vendi o Orbit Pages. Hoje ajudo empresas com SaaS e automações inteligentes."
+    />
+    <meta
+      property="og:image"
+      content={ogImage}
+    />
+    <meta
+      property="og:locale"
+      content="pt_BR"
+    />
+
+    <!-- Twitter Card -->
+    <meta
+      name="twitter:card"
+      content="summary_large_image"
+    />
+    <meta
+      name="twitter:title"
+      content="Ronaldo Scotti - Desenvolvedor SaaS"
+    />
+    <meta
+      name="twitter:description"
+      content="Especialista em SaaS, automações e agentes de IA. Consultoria para startups."
+    />
+    <meta
+      name="twitter:image"
+      content={ogImage}
+    />
+
+    <!-- Canonical -->
+    <link
+      rel="canonical"
+      href={siteUrl}
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="/ronaldo-scotti.jpeg" />
+    <link rel="apple-touch-icon" href="/ronaldo-scotti.jpeg" />
+
+    <!-- Preload Critical Resources -->
+    <link
+      rel="preload"
+      as="image"
+      href="/ronaldo-scotti.jpeg"
+      fetchpriority="high"
+    />
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap"
       rel="stylesheet"
@@ -34,30 +116,130 @@ const { title, description } = Astro.props;
       rel="stylesheet"
     />
 
-    <title>{title}</title>
+    <!-- Schema Markup - Person -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Ronaldo Scotti",
+        "alternateName": "Ronaldo Scottis",
+        "url": "https://ronaldoscotti.com",
+        "image": "https://ronaldoscotti.com/ronaldo-scotti.jpeg",
+        "sameAs": [
+          "https://www.linkedin.com/in/ronaldoscottis/",
+          "https://github.com/ronaldoscotti",
+          "https://jornadasaas.com"
+        ],
+        "jobTitle": "Arquiteto de Automações",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Eduzz"
+        },
+        "knowsAbout": [
+          "SaaS Development",
+          "Automations",
+          "AI Agents",
+          "JavaScript",
+          "React",
+          "Node.js",
+          "PHP",
+          "Laravel",
+          "MVP Validation"
+        ],
+        "hasOccupation": {
+          "@type": "Occupation",
+          "name": "Software Developer and Consultant",
+          "occupationLocation": {
+            "@type": "City",
+            "name": "Santa Catarina, Brazil"
+          }
+        },
+        "description": "Desenvolvedor com 12 anos de experiência construindo produtos digitais. Fundou e vendeu o Orbit Pages. Especialista em SaaS, automações inteligentes e agentes de IA."
+      }
+    </script>
+
+    <!-- Schema Markup - WebSite -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Ronaldo Scotti",
+        "url": "https://ronaldoscotti.com",
+        "description": "Desenvolvedor SaaS e especialista em automações com IA. Consultoria para startups.",
+        "author": {
+          "@type": "Person",
+          "name": "Ronaldo Scotti"
+        }
+      }
+    </script>
+
+    <!-- Schema Markup - ProfessionalService -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Consultoria SaaS - Ronaldo Scotti",
+        "description": "Consultoria técnica e estratégica para desenvolvimento de SaaS, automações inteligentes e agentes de IA.",
+        "provider": {
+          "@type": "Person",
+          "name": "Ronaldo Scotti"
+        },
+        "areaServed": "BR",
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Serviços de Consultoria",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Validação de MVP",
+                "description": "Ajudo a testar se alguém pagaria pela sua ideia antes de construir tudo"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Automações Inteligentes",
+                "description": "Construo automações e agentes de IA que resolvem problemas específicos do seu negócio"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Arquitetura de SaaS",
+                "description": "Decisões técnicas certas na hora certa - escalar sem quebrar"
+              }
+            }
+          ]
+        }
+      }
+    </script>
   </head>
   <body class="bg-white text-zinc-900 antialiased">
     <slot />
 
     <!-- Scroll Animation Script -->
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
+      document.addEventListener("DOMContentLoaded", () => {
         // Intersection Observer for scroll animations
         const observerOptions = {
           threshold: 0.1,
-          rootMargin: '0px 0px -50px 0px'
+          rootMargin: "0px 0px -50px 0px",
         };
 
         const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
+          entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
+              entry.target.classList.add("is-visible");
             }
           });
         }, observerOptions);
 
         // Observe all elements with animate-on-scroll class
-        document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+        document.querySelectorAll(".animate-on-scroll").forEach((el) => {
           observer.observe(el);
         });
       });
