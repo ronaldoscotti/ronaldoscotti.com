@@ -8,20 +8,19 @@ import Clients from '../components/Clients.astro';
 import Projects from '../components/Projects.astro';
 import Services from '../components/Services.astro';
 import Contact from '../components/Contact.astro';
+
+const lang = 'pt-BR';
 ---
 
-<Layout
-  title="Ronaldo Scotti - Desenvolvedor SaaS e Automações com IA | Consultor"
-  description="Desenvolvedor com 12 anos construindo produtos digitais. Especialista em SaaS, automações inteligentes e agentes de IA. Fundei e vendi o Orbit Pages. Consultoria para startups."
->
-  <Navbar />
+<Layout lang={lang}>
+  <Navbar lang={lang} />
   <main>
-    <Hero />
-    <Problems />
-    <Journey />
-    <Clients />
-    <Projects />
-    <Services />
-    <Contact />
+    <Hero lang={lang} />
+    <Problems lang={lang} />
+    <Journey lang={lang} />
+    <Clients lang={lang} />
+    <Projects lang={lang} />
+    <Services lang={lang} />
+    <Contact lang={lang} />
   </main>
 </Layout>

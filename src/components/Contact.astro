@@ -1,4 +1,13 @@
 ---
+import type { Language } from '../i18n/types';
+import { getTranslations } from '../i18n/utils';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = getTranslations(lang);
 ---
 
 <section id="contato" class="py-10 sm:py-16 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-40">
@@ -7,10 +16,10 @@
     <div class="bg-zinc-900 text-white rounded-xl p-8 sm:p-10 text-center flex flex-col items-center gap-6">
       <div class="flex flex-col gap-2">
         <h3 class="text-white text-2xl sm:text-3xl font-bold leading-tight tracking-[-0.015em]">
-          Se identificou com algum desses pontos?
+          {t.contact.heading}
         </h3>
         <p class="text-zinc-300 text-lg">
-          Vamos conversar sobre como posso te ajudar no seu projeto.
+          {t.contact.description}
         </p>
       </div>
       <a
@@ -19,7 +28,7 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        <span>Me chama no WhatsApp</span>
+        <span>{t.contact.whatsappButton}</span>
       </a>
     </div>
   </div>
@@ -46,6 +55,6 @@
         LinkedIn
       </a>
     </div>
-    <p class="text-zinc-500 text-sm mt-8 italic">Ora et labora</p>
+    <p class="text-zinc-500 text-sm mt-8 italic">{t.contact.motto}</p>
   </div>
 </footer>

@@ -1,18 +1,31 @@
 ---
 import "../styles/global.css";
+import type { Language } from "../i18n/types";
+import { getTranslations, getAlternateLanguage, getLanguagePath } from "../i18n/utils";
 
 interface Props {
-  title: string;
-  description: string;
+  lang: Language;
 }
 
-const { title, description } = Astro.props;
+const { lang } = Astro.props;
+const t = getTranslations(lang);
 const siteUrl = "https://ronaldoscotti.com";
 const ogImage = `${siteUrl}/og-image.png`;
+
+// Language-specific URLs
+const currentPath = getLanguagePath(lang);
+const currentUrl = `${siteUrl}${currentPath === '/' ? '' : currentPath}`;
+const alternateLang = getAlternateLanguage(lang);
+const alternatePath = getLanguagePath(alternateLang);
+const alternateUrl = `${siteUrl}${alternatePath === '/' ? '' : alternatePath}`;
+
+// Language codes for meta tags
+const htmlLang = lang === 'pt-BR' ? 'pt-BR' : 'en';
+const ogLocale = lang === 'pt-BR' ? 'pt_BR' : 'en_US';
 ---
 
 <!doctype html>
-<html lang="pt-BR">
+<html lang={htmlLang}>
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -21,14 +34,14 @@ const ogImage = `${siteUrl}/og-image.png`;
     />
 
     <!-- SEO Meta Tags -->
-    <title>{title}</title>
+    <title>{t.seo.title}</title>
     <meta
       name="description"
-      content={description}
+      content={t.seo.description}
     />
     <meta
       name="keywords"
-      content="desenvolvedor saas, consultor automações, agentes ia, arquiteto saas, mvp validação, ronaldo scotti, orbit pages, automações inteligentes, eduzz"
+      content={t.seo.keywords}
     />
     <meta
       name="author"
@@ -42,15 +55,15 @@ const ogImage = `${siteUrl}/og-image.png`;
     />
     <meta
       property="og:url"
-      content={siteUrl}
+      content={currentUrl}
     />
     <meta
       property="og:title"
-      content="Ronaldo Scotti - Desenvolvedor SaaS e Automações IA"
+      content={t.seo.ogTitle}
     />
     <meta
       property="og:description"
-      content="12 anos construindo produtos digitais. Fundei e vendi o Orbit Pages. Hoje ajudo empresas com SaaS e automações inteligentes."
+      content={t.seo.ogDescription}
     />
     <meta
       property="og:image"
@@ -58,7 +71,7 @@ const ogImage = `${siteUrl}/og-image.png`;
     />
     <meta
       property="og:locale"
-      content="pt_BR"
+      content={ogLocale}
     />
 
     <!-- Twitter Card -->
@@ -68,11 +81,11 @@ const ogImage = `${siteUrl}/og-image.png`;
     />
     <meta
       name="twitter:title"
-      content="Ronaldo Scotti - Desenvolvedor SaaS"
+      content={t.seo.twitterTitle}
     />
     <meta
       name="twitter:description"
-      content="Especialista em SaaS, automações e agentes de IA. Consultoria para startups."
+      content={t.seo.twitterDescription}
     />
     <meta
       name="twitter:image"
@@ -89,10 +102,15 @@ const ogImage = `${siteUrl}/og-image.png`;
       gtag('config', 'G-9L0PMZX1P3');
     </script>
 
+    <!-- hreflang tags for bilingual SEO -->
+    <link rel="alternate" hreflang="pt-BR" href={siteUrl} />
+    <link rel="alternate" hreflang="en" href={`${siteUrl}/en`} />
+    <link rel="alternate" hreflang="x-default" href={siteUrl} />
+
     <!-- Canonical -->
     <link
       rel="canonical"
-      href={siteUrl}
+      href={currentUrl}
     />
 
     <!-- Favicon -->
@@ -127,109 +145,93 @@ const ogImage = `${siteUrl}/og-image.png`;
     />
 
     <!-- Schema Markup - Person -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Ronaldo Scotti",
-        "alternateName": "Ronaldo Scottis",
-        "url": "https://ronaldoscotti.com",
-        "image": "https://ronaldoscotti.com/ronaldo-scotti.jpeg",
-        "sameAs": [
-          "https://www.linkedin.com/in/ronaldoscottis/",
-          "https://github.com/ronaldoscotti",
-          "https://jornadasaas.com"
-        ],
-        "jobTitle": "Arquiteto de Automações",
-        "worksFor": {
-          "@type": "Organization",
-          "name": "Eduzz"
-        },
-        "knowsAbout": [
-          "SaaS Development",
-          "Automations",
-          "AI Agents",
-          "JavaScript",
-          "React",
-          "Node.js",
-          "PHP",
-          "Laravel",
-          "MVP Validation"
-        ],
-        "hasOccupation": {
-          "@type": "Occupation",
-          "name": "Software Developer and Consultant",
-          "occupationLocation": {
-            "@type": "City",
-            "name": "Santa Catarina, Brazil"
-          }
-        },
-        "description": "Desenvolvedor com 12 anos de experiência construindo produtos digitais. Fundou e vendeu o Orbit Pages. Especialista em SaaS, automações inteligentes e agentes de IA."
-      }
-    </script>
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Ronaldo Scotti",
+      "alternateName": "Ronaldo Scottis",
+      "url": "https://ronaldoscotti.com",
+      "image": "https://ronaldoscotti.com/ronaldo-scotti.jpeg",
+      "sameAs": [
+        "https://www.linkedin.com/in/ronaldoscottis/",
+        "https://github.com/ronaldoscotti",
+        "https://jornadasaas.com"
+      ],
+      "jobTitle": t.schema.person.jobTitle,
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Eduzz"
+      },
+      "knowsAbout": [
+        "SaaS Development",
+        "Automations",
+        "AI Agents",
+        "JavaScript",
+        "React",
+        "Node.js",
+        "PHP",
+        "Laravel",
+        "MVP Validation"
+      ],
+      "hasOccupation": {
+        "@type": "Occupation",
+        "name": "Software Developer and Consultant",
+        "occupationLocation": {
+          "@type": "City",
+          "name": "Santa Catarina, Brazil"
+        }
+      },
+      "description": t.schema.person.description,
+      "inLanguage": htmlLang
+    })} />
 
     <!-- Schema Markup - WebSite -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Ronaldo Scotti",
-        "url": "https://ronaldoscotti.com",
-        "description": "Desenvolvedor SaaS e especialista em automações com IA. Consultoria para startups.",
-        "author": {
-          "@type": "Person",
-          "name": "Ronaldo Scotti"
-        }
-      }
-    </script>
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": t.schema.website.name,
+      "url": "https://ronaldoscotti.com",
+      "description": t.schema.website.description,
+      "author": {
+        "@type": "Person",
+        "name": "Ronaldo Scotti"
+      },
+      "inLanguage": htmlLang
+    })} />
 
     <!-- Schema Markup - ProfessionalService -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "Consultoria SaaS - Ronaldo Scotti",
-        "description": "Consultoria técnica e estratégica para desenvolvimento de SaaS, automações inteligentes e agentes de IA.",
-        "provider": {
-          "@type": "Person",
-          "name": "Ronaldo Scotti"
-        },
-        "areaServed": "BR",
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "Serviços de Consultoria",
-          "itemListElement": [
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Validação de MVP",
-                "description": "Ajudo a testar se alguém pagaria pela sua ideia antes de construir tudo"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Automações Inteligentes",
-                "description": "Construo automações e agentes de IA que resolvem problemas específicos do seu negócio"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Arquitetura de SaaS",
-                "description": "Decisões técnicas certas na hora certa - escalar sem quebrar"
-              }
-            }
-          ]
-        }
-      }
-    </script>
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": t.schema.professionalService.name,
+      "description": t.schema.professionalService.description,
+      "provider": {
+        "@type": "Person",
+        "name": "Ronaldo Scotti"
+      },
+      "areaServed": "BR",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": t.schema.professionalService.catalogName,
+        "itemListElement": t.schema.professionalService.offers.map((offer) => ({
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": offer.name,
+            "description": offer.description
+          }
+        }))
+      },
+      "inLanguage": htmlLang
+    })} />
   </head>
   <body class="bg-white text-zinc-900 antialiased">
     <slot />
+
+    <!-- Language Switcher Script -->
+    <script>
+      import '../scripts/languageSwitcher';
+    </script>
 
     <!-- Scroll Animation Script -->
     <script>

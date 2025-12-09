@@ -1,58 +1,41 @@
 ---
-const timelineItems = [
-  {
-    period: '2013-2015',
-    title: 'Aprendendo o ofício',
-    description: 'Comecei transformando layouts em código por uma merreca. Absorvi tudo que pude. Em 2015 larguei a agência e abri minha "eugência" — eu sozinho fazendo freela no quarto.',
-    icon: 'code'
-  },
-  {
-    period: '2015-2019',
-    title: '4 anos construindo pra todo mundo',
-    description: 'Landing pages, e-commerces, áreas de membros. WordPress, Laravel, React, Node. Aprendi que linguagem é ferramenta — o que importa é resolver o problema do jeito mais simples possível.',
-    icon: 'laptop_chromebook'
-  },
-  {
-    period: '2019-2023',
-    title: 'O Orbit (a escola mais cara que tive)',
-    description: 'Criei o Orbit Pages — plataforma onde qualquer um montava páginas sem código. Construí features que ninguém pediu. Pivotamos 3 vezes. Conseguimos investimento. O dinheiro secou em 2022 — quase quebramos. Mas reconstruímos. Em 2023, vendi a empresa pra Eduzz.',
-    icon: 'rocket_launch'
-  },
-  {
-    period: '2023-hoje',
-    title: 'Aplicando o que aprendi',
-    description: 'Hoje trabalho na Eduzz como Arquiteto de Automações. Automatizo processos críticos, construo agentes de IA e faço sistemas que não foram feitos pra conversar se entenderem. Entrego valor rápido, depois itero. Tecnologia é meio, não fim.',
-    icon: 'psychology'
-  }
-];
+import type { Language } from '../i18n/types';
+import { getTranslations } from '../i18n/utils';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = getTranslations(lang);
 ---
 
 <section id="trajetoria" class="py-10 sm:py-16 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-40">
   <div class="max-w-[960px] mx-auto">
     <h2 class="text-zinc-900 text-2xl sm:text-3xl font-bold leading-tight tracking-[-0.015em] pb-8">
-      A trajetória (ou: como aprendi do jeito mais caro)
+      {t.journey.heading}
     </h2>
 
     <div class="grid grid-cols-[40px_1fr] gap-x-2">
-      {timelineItems.map((item, index) => (
+      {t.journey.timeline.map((item, index) => (
         <>
           {/* Icon column */}
           <div class="flex flex-col items-center gap-2 pt-3">
             <span class="material-symbols-outlined text-zinc-500">{item.icon}</span>
-            {index < timelineItems.length - 1 && (
+            {index < t.journey.timeline.length - 1 && (
               <div class="w-[1.5px] bg-zinc-200 h-full grow"></div>
             )}
           </div>
 
           {/* Content column */}
-          <div class={`flex flex-1 flex-col ${index < timelineItems.length - 1 ? 'pb-8' : ''}`}>
+          <div class={`flex flex-1 flex-col ${index < t.journey.timeline.length - 1 ? 'pb-8' : ''}`}>
             <p class="text-zinc-500 text-sm font-medium leading-normal">{item.period}</p>
             <p class="text-zinc-900 text-lg font-bold leading-normal">{item.title}</p>
             <p class="text-zinc-700 text-base font-normal leading-normal mt-1">{item.description}</p>
           </div>
 
           {/* Spacing between items (except last) */}
-          {index < timelineItems.length - 1 && (
+          {index < t.journey.timeline.length - 1 && (
             <>
               <div class="flex flex-col items-center gap-2">
                 <div class="w-[1.5px] bg-zinc-200 h-2 grow"></div>

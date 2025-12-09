@@ -1,4 +1,13 @@
 ---
+import type { Language } from '../i18n/types';
+import { getTranslations } from '../i18n/utils';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = getTranslations(lang);
 ---
 
 <section id="sobre" class="py-10 sm:py-16 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-40">
@@ -12,10 +21,10 @@
       <div class="flex flex-col gap-6 text-center md:text-left md:justify-center md:flex-1">
         <div class="flex flex-col gap-2">
           <h1 class="text-zinc-900 text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em]">
-            12 anos construindo produtos digitais que resolvem problemas reais
+            {t.hero.heading}
           </h1>
           <h2 class="text-zinc-600 text-base md:text-lg font-normal leading-normal">
-            Casado com a Poli, pai do Bento. Às vezes ajudo empresas a construir SaaS e automações do jeito certo.
+            {t.hero.subheading}
           </h2>
         </div>
       </div>

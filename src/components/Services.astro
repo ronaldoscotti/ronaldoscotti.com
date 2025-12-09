@@ -1,24 +1,13 @@
 ---
-const services = [
-  {
-    number: "1",
-    title: "Validar sua ideia antes de gastar meses codando",
-    description:
-      "Aqueles vários meses que passei programando sozinho? Podia ter validado em 2 semanas com um MVP de verdade. Te ajudo a testar se alguém pagaria pela sua ideia antes de construir tudo.",
-  },
-  {
-    number: "2",
-    title: "Automatizar processos que estão drenando seu time",
-    description:
-      "Se você tem alguém copiando dados entre sistemas ou fazendo trabalho repetitivo — dá pra automatizar. Construo automações e agentes de IA que resolvem problemas específicos do seu negócio.",
-  },
-  {
-    number: "3",
-    title: "Destravar decisões técnicas do seu SaaS",
-    description:
-      "Arquitetura, stack, como escalar sem quebrar. Se você está travado em decisões técnicas ou não sabe qual próximo passo dar — vamos conversar. Trabalho em projetos pontuais como consultor técnico/estratégico.",
-  },
-];
+import type { Language } from '../i18n/types';
+import { getTranslations } from '../i18n/utils';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = getTranslations(lang);
 ---
 
 <section
@@ -30,20 +19,18 @@ const services = [
       <h2
         class="text-zinc-900 text-[32px] md:text-4xl font-bold leading-tight tracking-[-0.033em] max-w-[720px] mx-auto"
       >
-        Posso te ajudar com 3 coisas
+        {t.services.heading}
       </h2>
       <p
         class="text-zinc-600 text-lg font-normal leading-normal max-w-[720px] mx-auto"
       >
-        Passei anos construindo, quebrando e consertando um SaaS até vendê-lo.
-        Aprendi do jeito mais caro. Hoje uso essa experiência pra ajudar quem tá
-        onde eu já estive.
+        {t.services.intro}
       </p>
     </div>
 
     <div class="flex flex-col gap-8">
       {
-        services.map((service) => (
+        t.services.items.map((service) => (
           <div class="flex items-start gap-4">
             <div class="text-2xl font-bold text-zinc-400">
               {service.number}.
