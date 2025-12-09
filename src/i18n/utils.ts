@@ -10,7 +10,9 @@ export function getAlternateLanguage(lang: Language): Language {
 }
 
 export function getLanguagePath(lang: Language): string {
-  return lang === 'pt-BR' ? '/' : '/en';
+  if (lang === 'pt-BR') return '/';
+  if (lang === 'en') return '/en';
+  return '/es';
 }
 
 export function detectBrowserLanguage(): Language {
@@ -20,6 +22,9 @@ export function detectBrowserLanguage(): Language {
 
   // Check for English
   if (browserLang.startsWith('en')) return 'en';
+
+  // Check for Spanish
+  if (browserLang.startsWith('es')) return 'es';
 
   // Default to Portuguese
   return 'pt-BR';

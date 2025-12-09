@@ -1,4 +1,4 @@
-export type Language = 'pt-BR' | 'en';
+export type Language = 'pt-BR' | 'en' | 'es';
 
 export interface NavLink {
   href: string;

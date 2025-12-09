@@ -20,8 +20,8 @@ const alternatePath = getLanguagePath(alternateLang);
 const alternateUrl = `${siteUrl}${alternatePath === '/' ? '' : alternatePath}`;
 
 // Language codes for meta tags
-const htmlLang = lang === 'pt-BR' ? 'pt-BR' : 'en';
-const ogLocale = lang === 'pt-BR' ? 'pt_BR' : 'en_US';
+const htmlLang = lang === 'pt-BR' ? 'pt-BR' : lang === 'en' ? 'en' : 'es';
+const ogLocale = lang === 'pt-BR' ? 'pt_BR' : lang === 'en' ? 'en_US' : 'es_ES';
 ---
 
 <!doctype html>
@@ -102,9 +102,10 @@ const ogLocale = lang === 'pt-BR' ? 'pt_BR' : 'en_US';
       gtag('config', 'G-9L0PMZX1P3');
     </script>
 
-    <!-- hreflang tags for bilingual SEO -->
+    <!-- hreflang tags for multilingual SEO -->
     <link rel="alternate" hreflang="pt-BR" href={siteUrl} />
     <link rel="alternate" hreflang="en" href={`${siteUrl}/en`} />
+    <link rel="alternate" hreflang="es" href={`${siteUrl}/es`} />
     <link rel="alternate" hreflang="x-default" href={siteUrl} />
 
     <!-- Canonical -->

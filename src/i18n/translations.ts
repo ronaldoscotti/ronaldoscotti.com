@@ -332,4 +332,170 @@ export const translations: Record<Language, Translations> = {
       },
     },
   },
+
+  es: {
+    seo: {
+      title: 'Ronaldo Scotti - Desarrollador SaaS y Especialista en Automatización IA | Consultor',
+      description: '12 años construyendo productos digitales. Experto en SaaS, automatizaciones inteligentes y agentes de IA. Fundé y vendí Orbit Pages. Consultoría para startups.',
+      keywords: 'desarrollador saas, consultor automatizaciones, agentes ia, arquitecto saas, validación mvp, ronaldo scotti, orbit pages, automatizaciones inteligentes, eduzz',
+      ogTitle: 'Ronaldo Scotti - Desarrollador SaaS y Automatizaciones IA',
+      ogDescription: '12 años construyendo productos digitales. Fundé y vendí Orbit Pages. Ahora ayudo a empresas con SaaS y automatizaciones inteligentes.',
+      twitterTitle: 'Ronaldo Scotti - Desarrollador SaaS',
+      twitterDescription: 'Experto en SaaS, automatizaciones y agentes de IA. Consultoría para startups.',
+    },
+
+    nav: {
+      links: [
+        { href: '#trajetoria', label: 'Trayectoria' },
+        { href: '#projetos', label: 'Proyectos' },
+        { href: '#ajuda', label: 'Soluciones' },
+      ],
+      contactButton: 'Contacto',
+      contactHref: '#contato',
+    },
+
+    hero: {
+      heading: '12 años construyendo productos digitales que resuelven problemas reales',
+      subheading: 'Casado con Poli, padre de Bento. A veces ayudo a empresas a construir SaaS y automatizaciones de la manera correcta.',
+    },
+
+    problems: {
+      heading: '¿Te has encontrado con esto?',
+      description: 'Yo también. Y aprendí algunas cosas en el camino.',
+      closingStatement: 'Si alguno de estos escenarios te resulta familiar, tal vez pueda ayudarte.',
+      scenarios: [
+        'Pasaste meses construyendo algo que nadie quiere pagar',
+        'Tienes una idea pero no sabes si vale la pena tu tiempo y dinero',
+        'Tu equipo pasa horas en tareas manuales que podrían automatizarse',
+        'Estás estancado en decisiones técnicas y no sabes qué camino tomar',
+        'Tu SaaS comenzó a escalar y ahora todo se está rompiendo',
+      ],
+    },
+
+    journey: {
+      heading: 'La trayectoria (o: cómo aprendí por las malas)',
+      timeline: [
+        {
+          period: '2013-2015',
+          title: 'Aprendiendo el oficio',
+          description: 'Empecé convirtiendo diseños en código por muy poco. Absorbí todo lo que pude. En 2015 dejé la agencia y abrí mi "yo-agencia" — yo solo haciendo freelance en mi habitación.',
+          icon: 'code',
+        },
+        {
+          period: '2015-2019',
+          title: '4 años construyendo para todos',
+          description: 'Landing pages, e-commerces, áreas de miembros. WordPress, Laravel, React, Node. Aprendí que el lenguaje es solo una herramienta — lo que importa es resolver el problema de la manera más simple posible.',
+          icon: 'laptop_chromebook',
+        },
+        {
+          period: '2019-2023',
+          title: 'Orbit (la escuela más cara que tuve)',
+          description: 'Creé Orbit Pages — una plataforma donde cualquiera podía crear páginas sin código. Construí funcionalidades que nadie pidió. Pivotamos 3 veces. Conseguimos inversión. El dinero se acabó en 2022 — casi quebramos. Pero reconstruimos. En 2023, vendí la empresa a Eduzz.',
+          icon: 'rocket_launch',
+        },
+        {
+          period: '2023-hoy',
+          title: 'Aplicando lo aprendido',
+          description: 'Hoy trabajo en Eduzz como Arquitecto de Automatizaciones. Automatizo procesos críticos, construyo agentes de IA y hago que sistemas que no fueron diseñados para comunicarse se entiendan. Entrego valor rápido, luego itero. La tecnología es un medio, no un fin.',
+          icon: 'psychology',
+        },
+      ],
+    },
+
+    clients: {
+      heading: 'He trabajado con',
+    },
+
+    projects: {
+      heading: 'Proyectos personales',
+      subtitle: '(cuando el trabajo deja de ser solo trabajo)',
+      intro: 'Quiero usar lo que sé hacer para dejar algo bueno en el mundo.',
+      items: [
+        {
+          name: 'Meu Feed Católico',
+          url: 'https://use.meufeedcatolico.com.br',
+          description: 'App que reemplaza el tiempo perdido en Instagram con contenido católico formativo. Feed diario, liturgia, oraciones, vidas de santos. Lo hice primero para mí, lo usé durante meses, luego lo compartí.',
+          image: '/products/meu-feed-catolico.webp',
+        },
+        {
+          name: 'Nova Aba Católica',
+          url: 'https://nova-aba-catolica.ronaldoscotti.com',
+          description: 'Extensión del navegador que convierte cada nueva pestaña en un momento de paz. Porque si abres 50 pestañas al día, que algunas te recuerden respirar.',
+          image: '/products/nova-aba-catolica.webp',
+        },
+        {
+          name: 'Jornada SaaS',
+          url: 'https://jornadasaas.com',
+          description: '50 ediciones contando la historia real de Orbit. Los $80 de la primera venta después de 8 meses. La inversión. Los despidos. El burnout. La venta. Sin filtros.',
+          image: '/products/jornada-saas.webp',
+        },
+        {
+          name: 'Orbit Pages',
+          url: 'https://www.orbitpages.com',
+          description: 'SaaS de construcción de landing pages y embudos de venta que construí y vendí en 2023 a Eduzz (creado en 2019 y aún funcionando hoy)',
+          image: '/products/orbit-pages.webp',
+        },
+      ],
+    },
+
+    services: {
+      heading: 'Puedo ayudarte con 3 cosas',
+      intro: 'Pasé años construyendo, rompiendo y arreglando un SaaS hasta venderlo. Aprendí por las malas. Hoy uso esa experiencia para ayudar a quienes están donde yo estuve.',
+      items: [
+        {
+          number: '1',
+          title: 'Validar tu idea antes de gastar meses programando',
+          description: '¿Esos varios meses que pasé programando solo? Podría haberlo validado en 2 semanas con un MVP real. Te ayudo a probar si alguien pagaría por tu idea antes de construir todo.',
+        },
+        {
+          number: '2',
+          title: 'Automatizar procesos que están agotando a tu equipo',
+          description: 'Si tienes a alguien copiando datos entre sistemas o haciendo trabajo repetitivo — se puede automatizar. Construyo automatizaciones y agentes de IA que resuelven los problemas específicos de tu negocio.',
+        },
+        {
+          number: '3',
+          title: 'Desbloquear las decisiones técnicas de tu SaaS',
+          description: 'Arquitectura, stack, cómo escalar sin romper. Si estás atascado en decisiones técnicas o no sabes cuál es el siguiente paso — hablemos. Trabajo en proyectos específicos como consultor técnico/estratégico.',
+        },
+      ],
+    },
+
+    contact: {
+      heading: '¿Hablamos?',
+      description: 'Envía un hola. Respondo todo personalmente.',
+      whatsappButton: 'Mensaje en WhatsApp',
+      contactInfo: 'Florianópolis, SC • Disponible para proyectos remotos',
+      motto: 'Ora et labora',
+    },
+
+    schema: {
+      person: {
+        jobTitle: 'Arquitecto de Automatizaciones',
+        description: 'Desarrollador con 12 años de experiencia construyendo productos digitales. Fundó y vendió Orbit Pages. Experto en SaaS, automatizaciones inteligentes y agentes de IA.',
+      },
+      website: {
+        name: 'Ronaldo Scotti',
+        description: 'Desarrollador SaaS y especialista en automatización IA. Consultoría para startups.',
+      },
+      professionalService: {
+        name: 'Consultoría SaaS - Ronaldo Scotti',
+        description: 'Consultoría técnica y estratégica para desarrollo de SaaS, automatizaciones inteligentes y agentes de IA.',
+        catalogName: 'Servicios de Consultoría',
+        offers: [
+          {
+            name: 'Validación de MVP',
+            description: 'Te ayudo a probar si alguien pagaría por tu idea antes de construir todo',
+          },
+          {
+            name: 'Automatizaciones Inteligentes',
+            description: 'Construyo automatizaciones y agentes de IA que resuelven los problemas específicos de tu negocio',
+          },
+          {
+            name: 'Arquitectura de SaaS',
+            description: 'Decisiones técnicas correctas en el momento correcto - escalar sin romper',
+          },
+        ],
+      },
+    },
+  },
 };
