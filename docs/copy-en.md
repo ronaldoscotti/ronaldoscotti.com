@@ -1,6 +1,6 @@
-# COPY-SITE-EN.md
+# Copy (EN)
 
-English copy for `ronaldoscotti.com`. Same structure as `COPY-SITE.md`. The English is pulled
+English copy for `ronaldoscotti.com`. Same structure as `copy-pt.md`. The English is pulled
 from `cv-nagringa.md` and `linkedin.md`, which were written natively for the US reader, not
 translated from the Portuguese.
 
@@ -183,16 +183,15 @@ I write to think. 50+ issues telling the Orbit story from the inside, no filter,
 writing again.
 ```
 
-**Recent posts** (date, title, one line). Five per page, paginated, each opening at
-`/writing/[slug]`. The link at the bottom goes to `/writing`, the full archive.
+**Post list.** Four visible, a button reveals the remaining six. Each item opens the article on
+Substack, with cover, date, the newsletter badge, and a `PT` tag: the archive is in Portuguese.
 
 ```
-[date]   [title]
+[cover]  [date]   JORNADA SAAS   PT
+         [title]
          [one line]
 
-← prev   1 2 3   next →
-
-→ See all posts
+[ Show more +6 ]      See the full archive
 ```
 
 ---

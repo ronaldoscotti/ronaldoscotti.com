@@ -1,4 +1,4 @@
-# OPERACAO.md
+# Operação
 
 Como o site se mantém sozinho, o que roda onde, e o que fazer quando alguma coisa quebra ou você
 troca de máquina.

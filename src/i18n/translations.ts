@@ -1,6 +1,6 @@
 import type { Language, Translations } from "./types";
 
-// Copy source: COPY-SITE.md (PT) and COPY-SITE-EN.md (EN).
+// Copy source: docs/copy-pt.md and docs/copy-en.md.
 // EN is not a translation of PT; both derive from the CV.
 
 export const translations: Record<Language, Translations> = {

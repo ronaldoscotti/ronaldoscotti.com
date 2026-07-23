@@ -1,4 +1,4 @@
-# COPY-SITE.md
+# Copy (pt-BR)
 
 Copy do `ronaldoscotti.com`. Página única, curta, no formato do `yuriytkach.com`: currículo em
 forma de site, não carta de vendas. Os fatos saem do `cv-nagringa.md`. As frases são escritas na
@@ -184,17 +184,38 @@ Escrevo pra pensar. Já foram 50 edições contando a construção do Orbit por 
 nenhum, e agora estou voltando a escrever.
 ```
 
-**Lista dos textos recentes** (data, título, uma linha). Cinco por página, com paginação, cada item
-abrindo em `/escrita/[slug]`. O link no fim leva pra `/escrita`, com o arquivo inteiro.
+**Lista dos textos.** Quatro visíveis, e um botão revela os seis restantes. Cada item abre o
+artigo no Substack, com capa, data e o selo da newsletter.
 
 ```
-[data]   [título]
+[capa]   [data]   JORNADA SAAS
+         [título]
          [uma linha]
 
-← anterior   1 2 3   próxima →
-
-→ Ver todos os textos
+[ Ver mais +6 ]      Ver o arquivo completo
 ```
+
+### Os 10 escolhidos, e por quê
+
+O critério foi aberturas do export da newsletter (proxy de views), densidade de primeira pessoa e
+o que prova entrega. Os itens 9 e 10 têm poucas aberturas porque a lista ainda era pequena em
+ago/2024: entraram por conteúdo, não por número.
+
+| # | slug | Ed. | Aberturas | Por que entrou |
+|---|---|---|---|---|
+| 1 | `primeira-venda` | 44 | 328 | Maior alcance da newsletter inteira e a história da primeira venda de R$437 depois de 8 meses |
+| 2 | `burnout` | 43 | 223 | Maior densidade de primeira pessoa (26,6 por mil palavras). O celular na parede |
+| 3 | `desapego` | 49 | 276 | Segundo maior alcance. Saber a hora de largar uma ideia |
+| 4 | `fim` | 50 | 273 | Fechamento da temporada, reflexão pessoal |
+| 5 | `5-licoes-2025` | 34 | 218 | Da ideia ao exit, as lições que vendem julgamento |
+| 6 | `risco-de-plataforma` | 48 | 222 | O mais técnico dos de alto alcance, julgamento de arquitetura |
+| 7 | `equity` | 24 | 202 | Mais menções a exit e Eduzz de todos, cabeça de negócio |
+| 8 | `pontos-cegos` | 21 | 188 | Alto alcance com narrativa pessoal forte |
+| 9 | `metodo-degrau-a-degrau` | 11 | 90 | O arco dev vira founder, que é o posicionamento dele |
+| 10 | `o-que-a-roca-me-ensinou-sobre-saas` | 12 | 85 | A origem no sítio, o que amarra o site inteiro |
+
+As aberturas dos itens 9 e 10 são baixas porque a lista ainda era pequena em ago/2024. Entraram
+por conteúdo, não por número.
 
 ---
 
