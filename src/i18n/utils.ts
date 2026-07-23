@@ -1,31 +1,22 @@
-import type { Language } from './types';
-import { translations } from './translations';
+import type { Language } from "./types";
+import { translations } from "./translations";
 
 export function getTranslations(lang: Language) {
-  return translations[lang] || translations['pt-BR'];
+  return translations[lang] || translations.en;
 }
 
 export function getAlternateLanguage(lang: Language): Language {
-  return lang === 'pt-BR' ? 'en' : 'pt-BR';
+  return lang === "en" ? "pt-BR" : "en";
 }
 
 export function getLanguagePath(lang: Language): string {
-  if (lang === 'pt-BR') return '/';
-  if (lang === 'en') return '/en';
-  return '/es';
+  return lang === "en" ? "/" : "/pt";
 }
 
-export function detectBrowserLanguage(): Language {
-  if (typeof window === 'undefined') return 'pt-BR';
+export function getHtmlLang(lang: Language): string {
+  return lang === "en" ? "en" : "pt-BR";
+}
 
-  const browserLang = navigator.language || (navigator as any).userLanguage;
-
-  // Check for English
-  if (browserLang.startsWith('en')) return 'en';
-
-  // Check for Spanish
-  if (browserLang.startsWith('es')) return 'es';
-
-  // Default to Portuguese
-  return 'pt-BR';
+export function getOgLocale(lang: Language): string {
+  return lang === "en" ? "en_US" : "pt_BR";
 }

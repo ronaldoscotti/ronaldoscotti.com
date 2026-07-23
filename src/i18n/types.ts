@@ -1,116 +1,106 @@
-export type Language = 'pt-BR' | 'en' | 'es';
+export type Language = "pt-BR" | "en";
 
 export interface NavLink {
   href: string;
   label: string;
 }
 
-export interface TimelineItem {
+export interface Job {
+  role: string;
+  org: string;
   period: string;
-  title: string;
-  description: string;
-  icon: string;
+  summary: string;
+  bullets: string[];
 }
 
 export interface Project {
   name: string;
-  url: string;
   description: string;
-  image: string;
-}
-
-export interface Service {
-  number: string;
-  title: string;
-  description: string;
+  links: { label: string; url: string }[];
+  image?: string;
 }
 
 export interface Translations {
-  // SEO metadata
   seo: {
     title: string;
     description: string;
-    keywords: string;
     ogTitle: string;
     ogDescription: string;
-    twitterTitle: string;
-    twitterDescription: string;
   };
 
-  // Navigation
   nav: {
     links: NavLink[];
-    contactButton: string;
-    contactHref: string;
+    resume: string;
+    skipToContent: string;
+    switchLabel: string;
+    theme: { toDark: string; toLight: string };
   };
 
-  // Hero section
   hero: {
-    heading: string;
-    subheading: string;
+    role: string;
+    name: string;
+    tagline: string;
+    intro: string;
+    photoAlt: string;
   };
 
-  // Problems section
-  problems: {
+  about: {
     heading: string;
-    description: string;
-    closingStatement: string;
-    scenarios: string[];
+    body: string;
   };
 
-  // Journey section
-  journey: {
+  activity: {
     heading: string;
-    timeline: TimelineItem[];
+    /** Template with {total} and {days} placeholders. */
+    contributions: string;
+    languagesHeading: string;
+    otherLanguages: string;
+    stackHeading: string;
+    stack: string[];
+    updated: string;
   };
 
-  // Clients section
-  clients: {
+  experience: {
     heading: string;
+    /** Usa {years}, calculado a partir de CAREER_START. */
+    intro: string;
+    resumeCta: string;
+    jobs: Job[];
+    educationHeading: string;
+    education: string[];
   };
 
-  // Projects section
   projects: {
     heading: string;
-    subtitle: string;
     intro: string;
     items: Project[];
   };
 
-  // Services section
-  services: {
+  writing: {
     heading: string;
     intro: string;
-    items: Service[];
+    more: string;
+    archive: string;
+    badge: string;
+    /** Shown only on the EN page: the archive is in Portuguese. */
+    languageNote?: string;
+    languageTag?: string;
   };
 
-  // Contact section
   contact: {
     heading: string;
-    description: string;
-    whatsappButton: string;
-    contactInfo: string;
+    email: string;
+    links: { label: string; url: string }[];
+    location: string;
+  };
+
+  footer: {
     motto: string;
   };
 
-  // Schema markup
   schema: {
-    person: {
-      jobTitle: string;
-      description: string;
-    };
-    website: {
-      name: string;
-      description: string;
-    };
-    professionalService: {
-      name: string;
-      description: string;
-      catalogName: string;
-      offers: Array<{
-        name: string;
-        description: string;
-      }>;
-    };
+    jobTitle: string;
+    description: string;
+    knowsAbout: string[];
   };
 }

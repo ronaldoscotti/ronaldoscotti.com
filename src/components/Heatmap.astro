@@ -1,0 +1,105 @@
+---
+interface Props {
+  weeks: number[][];
+  label: string;
+}
+
+const { weeks, label } = Astro.props;
+
+const CELL = 11;
+const GAP = 3;
+const STEP = CELL + GAP;
+
+/** Quantile scale, not linear: a single 200-commit day would flatten the year. */
+const counts = weeks
+  .flat()
+  .filter((n) => n > 0)
+  .sort((a, b) => a - b);
+const quantile = (q: number) => counts[Math.floor((counts.length - 1) * q)] || 1;
+const breaks = [quantile(0.25), quantile(0.5), quantile(0.75)];
+
+const level = (n: number) => {
+  if (n <= 0) return 0;
+  if (n <= breaks[0]) return 1;
+  if (n <= breaks[1]) return 2;
+  if (n <= breaks[2]) return 3;
+  return 4;
+};
+
+const width = weeks.length * STEP - GAP;
+const height = 7 * STEP - GAP;
+---
+
+<div class="scroller">
+  <svg
+    class="heatmap"
+    viewBox={`0 0 ${width} ${height}`}
+    width={width}
+    height={height}
+    role="img"
+    aria-label={label}
+  >
+    {
+      weeks.map((week, x) =>
+        week.map((count, y) => (
+          <rect
+            x={x * STEP}
+            y={y * STEP}
+            width={CELL}
+            height={CELL}
+            rx="2"
+            data-level={level(count)}
+          />
+        )),
+      )
+    }
+  </svg>
+</div>
+
+<style>
+  .scroller {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+    padding-bottom: 0.5rem;
+    margin-inline: -1.5rem;
+    padding-inline: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .scroller {
+      margin-inline: 0;
+      padding-inline: 0;
+    }
+  }
+
+  .heatmap {
+    display: block;
+    max-width: none;
+    height: auto;
+  }
+
+  rect[data-level="0"] { fill: var(--heat-0); }
+  rect[data-level="1"] { fill: var(--heat-1); }
+  rect[data-level="2"] { fill: var(--heat-2); }
+  rect[data-level="3"] { fill: var(--heat-3); }
+  rect[data-level="4"] { fill: var(--heat-4); }
+
+  @media print {
+    rect[data-level="0"] {
+      fill: #eee;
+    }
+    rect[data-level="1"] {
+      fill: #ccc;
+    }
+    rect[data-level="2"] {
+      fill: #999;
+    }
+    rect[data-level="3"] {
+      fill: #666;
+    }
+    rect[data-level="4"] {
+      fill: #222;
+    }
+  }
+</style>

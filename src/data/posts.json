@@ -1,0 +1,159 @@
+{
+  "source": {
+    "name": "Jornada SaaS",
+    "url": "https://jornadasaas.substack.com",
+    "archiveUrl": "https://jornadasaas.substack.com/archive"
+  },
+  "posts": [
+    {
+      "slug": "primeira-venda",
+      "edition": 44,
+      "date": "2025-03-18",
+      "url": "https://jornadasaas.substack.com/p/primeira-venda",
+      "image": "/posts/primeira-venda.webp",
+      "pt": {
+        "title": "8 meses para fazer a primeira venda",
+        "subtitle": "O que aprendi enquanto esperava, e quase desistia, do meu primeiro cliente pagante."
+      },
+      "en": {
+        "title": "Eight months to the first sale",
+        "subtitle": "What I learned while waiting on my first paying customer, and nearly giving up on him."
+      }
+    },
+    {
+      "slug": "burnout",
+      "edition": 43,
+      "date": "2025-03-11",
+      "url": "https://jornadasaas.substack.com/p/burnout",
+      "image": "/posts/burnout.webp",
+      "pt": {
+        "title": "O dia em que joguei meu celular na parede",
+        "subtitle": "Como o burnout quase destruiu meu SaaS, e como eu me reconstruí depois."
+      },
+      "en": {
+        "title": "The day I threw my phone at the wall",
+        "subtitle": "How burnout nearly took my SaaS down with it, and how I rebuilt afterwards."
+      }
+    },
+    {
+      "slug": "desapego",
+      "edition": 49,
+      "date": "2025-04-22",
+      "url": "https://jornadasaas.substack.com/p/desapego",
+      "image": "/posts/desapego.webp",
+      "pt": {
+        "title": "A arte do desapego: abandonar ideias pode ser seu maior progresso",
+        "subtitle": "Descobrindo quando a persistência vira teimosia."
+      },
+      "en": {
+        "title": "Letting go: dropping an idea can be your biggest step forward",
+        "subtitle": "Working out the line where persistence turns into stubbornness."
+      }
+    },
+    {
+      "slug": "fim",
+      "edition": 50,
+      "date": "2025-04-29",
+      "url": "https://jornadasaas.substack.com/p/fim",
+      "image": "/posts/fim.webp",
+      "pt": {
+        "title": "A Jornada SaaS chega ao fim (por enquanto)",
+        "subtitle": "50 edições depois, o que ficou de tudo isso."
+      },
+      "en": {
+        "title": "Jornada SaaS ends here, for now",
+        "subtitle": "Fifty issues in, what actually stuck."
+      }
+    },
+    {
+      "slug": "5-licoes-2025",
+      "edition": 34,
+      "date": "2025-01-07",
+      "url": "https://jornadasaas.substack.com/p/5-licoes-2025",
+      "image": "/posts/5-licoes-2025.webp",
+      "pt": {
+        "title": "5 lições essenciais para quem empreende com SaaS",
+        "subtitle": "Da ideia ao exit, os aprendizados que realmente importam."
+      },
+      "en": {
+        "title": "Five lessons for anyone building a SaaS",
+        "subtitle": "From the idea to the exit, the parts that actually mattered."
+      }
+    },
+    {
+      "slug": "risco-de-plataforma",
+      "edition": 48,
+      "date": "2025-04-15",
+      "url": "https://jornadasaas.substack.com/p/risco-de-plataforma",
+      "image": "/posts/risco-de-plataforma.webp",
+      "pt": {
+        "title": "Os 8 níveis de risco de plataforma",
+        "subtitle": "Em qual nível você está, e por que o nível 5 pegou milhares de gente de surpresa."
+      },
+      "en": {
+        "title": "The eight levels of platform risk",
+        "subtitle": "Which level you're on, and why level five caught thousands of founders off guard."
+      }
+    },
+    {
+      "slug": "equity",
+      "edition": 24,
+      "date": "2024-10-29",
+      "url": "https://jornadasaas.substack.com/p/equity",
+      "image": "/posts/equity.webp",
+      "pt": {
+        "title": "Equity: construindo liberdade financeira com SaaS",
+        "subtitle": "Como transformar um SaaS em patrimônio no longo prazo."
+      },
+      "en": {
+        "title": "Equity: building financial freedom out of a SaaS",
+        "subtitle": "How a SaaS turns into long-term wealth instead of a job."
+      }
+    },
+    {
+      "slug": "pontos-cegos",
+      "edition": 21,
+      "date": "2024-10-08",
+      "url": "https://jornadasaas.substack.com/p/pontos-cegos",
+      "image": "/posts/pontos-cegos.webp",
+      "pt": {
+        "title": "Pontos cegos: o perigo oculto que pode derrubar seu SaaS",
+        "subtitle": "Como achar o que você não sabe que não sabe."
+      },
+      "en": {
+        "title": "Blind spots: the quiet thing that takes a SaaS down",
+        "subtitle": "How to find what you don't know you don't know."
+      }
+    },
+    {
+      "slug": "metodo-degrau-a-degrau",
+      "edition": 11,
+      "date": "2024-07-30",
+      "url": "https://jornadasaas.substack.com/p/metodo-degrau-a-degrau",
+      "image": "/posts/metodo-degrau-a-degrau.webp",
+      "pt": {
+        "title": "De desenvolvedor a empreendedor: os 3 degraus",
+        "subtitle": "Como diminuir o risco e aprender mais no caminho, sem largar o emprego."
+      },
+      "en": {
+        "title": "Developer to founder, in three steps",
+        "subtitle": "How to cut the risk and learn faster without quitting your job first."
+      }
+    },
+    {
+      "slug": "o-que-a-roca-me-ensinou-sobre-saas",
+      "edition": 12,
+      "date": "2024-08-06",
+      "url": "https://jornadasaas.substack.com/p/o-que-a-roca-me-ensinou-sobre-saas",
+      "image": "/posts/o-que-a-roca-me-ensinou-sobre-saas.webp",
+      "pt": {
+        "title": "O que a roça me ensinou sobre SaaS",
+        "subtitle": "5 lições que a vida no sítio ensina sobre construir um negócio."
+      },
+      "en": {
+        "title": "What the farm taught me about building software",
+        "subtitle": "Five things growing up in the countryside taught me about running a business."
+      }
+    }
+  ]
+}

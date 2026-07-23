@@ -1,0 +1,206 @@
+---
+import type { Language } from "../i18n/types";
+import { getTranslations, getAlternateLanguage, getLanguagePath } from "../i18n/utils";
+import ThemeToggle from "./ThemeToggle.astro";
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = getTranslations(lang);
+const alternate = getAlternateLanguage(lang);
+---
+
+<header class="site-header no-print">
+  <div class="wrap bar">
+    <a href={getLanguagePath(lang)} class="brand" aria-label="Ronaldo Scotti">
+      <span aria-hidden="true">RS</span>
+    </a>
+
+    <nav class="nav" aria-label={lang === "en" ? "Sections" : "Seções"}>
+      {t.nav.links.map((link) => <a href={link.href}>{link.label}</a>)}
+    </nav>
+
+    <div class="right">
+      <a href={getLanguagePath(alternate)} class="lang" hreflang={alternate === "en" ? "en" : "pt-BR"}>
+        {alternate === "en" ? "EN" : "PT"}
+        <span class="sr-only">{t.nav.switchLabel}</span>
+      </a>
+      <ThemeToggle lang={lang} />
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: color-mix(in srgb, var(--color-paper) 88%, transparent);
+    backdrop-filter: saturate(1.4) blur(10px);
+    -webkit-backdrop-filter: saturate(1.4) blur(10px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+  }
+
+  /* The rule only appears once the page has scrolled under the bar, so the
+     header sits flush against the hero at rest. */
+  .site-header[data-stuck="true"] {
+    border-bottom-color: var(--color-rule);
+    box-shadow: 0 1px 12px rgb(26 20 16 / 0.05);
+  }
+
+  @supports not (backdrop-filter: blur(1px)) {
+    .site-header {
+      background: var(--color-paper);
+    }
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding-block: 1rem;
+  }
+
+  /* Monogram, not a wordmark: the hero already carries the name at display size. */
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    border: 1px solid var(--color-ink);
+    border-radius: 2px;
+    transition: background 160ms ease, color 160ms ease;
+  }
+
+  .brand:hover {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  .nav {
+    display: flex;
+    gap: 1.375rem;
+    margin-inline-start: auto;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav a {
+    font-size: 0.875rem;
+    color: var(--color-ink-soft);
+    text-decoration: none;
+    white-space: nowrap;
+    padding-block: 0.25rem;
+    border-bottom: 1px solid transparent;
+  }
+
+  .nav a:hover,
+  .nav a[aria-current="true"] {
+    color: var(--color-ink);
+    border-bottom-color: var(--color-accent);
+  }
+
+  .right {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    margin-inline-start: auto;
+  }
+
+  .lang {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    color: var(--color-ink-mute);
+    text-decoration: none;
+  }
+
+  .lang:hover {
+    color: var(--color-accent-deep);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @media (max-width: 900px) {
+    .bar {
+      flex-wrap: wrap;
+      gap: 0.75rem 1rem;
+      padding-block: 0.875rem;
+    }
+
+    .nav {
+      order: 3;
+      width: 100%;
+      margin-inline-start: 0;
+      gap: 1.125rem;
+      padding-bottom: 0.125rem;
+      margin-inline: -1.5rem;
+      padding-inline: 1.5rem;
+    }
+
+    .right {
+      gap: 0.75rem;
+    }
+  }
+</style>
+
+<script>
+  const header = document.querySelector<HTMLElement>(".site-header");
+
+  if (header) {
+    const sentinel = document.createElement("div");
+    sentinel.setAttribute("aria-hidden", "true");
+    header.before(sentinel);
+
+    new IntersectionObserver(
+      ([entry]) => header.setAttribute("data-stuck", String(!entry.isIntersecting)),
+      { threshold: 0 },
+    ).observe(sentinel);
+  }
+
+  const links = [...document.querySelectorAll<HTMLAnchorElement>(".nav a")];
+  const sections = links
+    .map((a) => document.querySelector(a.getAttribute("href") || ""))
+    .filter((el): el is HTMLElement => el instanceof HTMLElement);
+
+  if (sections.length && "IntersectionObserver" in window) {
+    const spy = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          const id = `#${entry.target.id}`;
+          links.forEach((a) => {
+            if (a.getAttribute("href") === id) a.setAttribute("aria-current", "true");
+            else a.removeAttribute("aria-current");
+          });
+        }
+      },
+      { rootMargin: "-25% 0px -65% 0px" },
+    );
+    sections.forEach((section) => spy.observe(section));
+  }
+</script>

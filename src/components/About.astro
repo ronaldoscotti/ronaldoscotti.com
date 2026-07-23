@@ -1,0 +1,27 @@
+---
+import type { Language } from "../i18n/types";
+import { getTranslations } from "../i18n/utils";
+import Section from "./Section.astro";
+
+interface Props {
+  lang: Language;
+  index: string;
+  id: string;
+}
+
+const { lang, index, id } = Astro.props;
+const t = getTranslations(lang);
+---
+
+<Section id={id} index={index} heading={t.about.heading}>
+  <p class="body reveal">{t.about.body}</p>
+</Section>
+
+<style>
+  .body {
+    max-width: 40rem;
+    font-size: 1.1875rem;
+    line-height: 1.7;
+    color: var(--color-ink-soft);
+  }
+</style>
