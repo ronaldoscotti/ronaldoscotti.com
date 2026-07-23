@@ -1,60 +1,53 @@
 ---
-import type { Language } from '../i18n/types';
-import { getTranslations } from '../i18n/utils';
+import type { Language } from "../i18n/types";
+import { getTranslations } from "../i18n/utils";
+import Section from "./Section.astro";
 
 interface Props {
   lang: Language;
+  index: string;
+  id: string;
 }
 
-const { lang } = Astro.props;
+const { lang, index, id } = Astro.props;
 const t = getTranslations(lang);
 ---
 
-<section id="contato" class="py-10 sm:py-16 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-40">
-  <div class="max-w-[960px] mx-auto">
-    <!-- CTA Box -->
-    <div class="bg-zinc-900 text-white rounded-xl p-8 sm:p-10 text-center flex flex-col items-center gap-6">
-      <div class="flex flex-col gap-2">
-        <h3 class="text-white text-2xl sm:text-3xl font-bold leading-tight tracking-[-0.015em]">
-          {t.contact.heading}
-        </h3>
-        <p class="text-zinc-300 text-lg">
-          {t.contact.description}
-        </p>
-      </div>
-      <a
-        class="inline-flex items-center justify-center rounded-lg h-10 px-6 bg-white text-zinc-900 text-base font-bold leading-normal transition-colors hover:bg-zinc-200"
-        href="https://wa.me/5548991164957"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span>{t.contact.whatsappButton}</span>
-      </a>
-    </div>
-  </div>
-</section>
+<Section id={id} index={index} heading={t.contact.heading}>
+  <div class="reveal">
+    <a class="email" href={`mailto:${t.contact.email}`}>{t.contact.email}</a>
 
-<!-- Footer -->
-<footer class="px-4 sm:px-8 md:px-16 lg:px-24 xl:px-40 py-10 sm:pt-16 sm:pb-10 text-center">
-  <div class="max-w-[960px] mx-auto">
-    <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center text-sm">
-      <a
-        class="text-zinc-600 hover:text-zinc-900 transition-colors"
-        href="https://wa.me/5548991164957"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        WhatsApp: (48) 99116-4957
-      </a>
-      <a
-        class="text-zinc-600 hover:text-zinc-900 transition-colors"
-        href="https://www.linkedin.com/in/ronaldoscottis/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        LinkedIn
-      </a>
-    </div>
-    <p class="text-zinc-500 text-sm mt-8 italic">{t.contact.motto}</p>
+    <p class="links">
+      {t.contact.links.map((link) => <a href={link.url} rel="noopener">{link.label}</a>)}
+      <a href="/cv.pdf" download>{t.nav.resume}</a>
+    </p>
+
+    <p class="mono location">{t.contact.location}</p>
   </div>
-</footer>
+</Section>
+
+<style>
+  .email {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3.5vw, 2.125rem);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    text-decoration-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
+    text-underline-offset: 0.14em;
+    word-break: break-word;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+    font-size: 0.9375rem;
+  }
+
+  .location {
+    margin-top: 1.75rem;
+    line-height: 1.7;
+  }
+</style>

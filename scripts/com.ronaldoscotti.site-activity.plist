@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Refreshes the language bar from local git repos and commits when it changes.
+
+  The GitHub heatmap is handled by GitHub Actions. This one cannot run there:
+  it reads local repositories, which is exactly what makes it better than the
+  API (it measures effort over the last year and reaches work code).
+
+  Install:
+    cp scripts/com.ronaldoscotti.site-activity.plist ~/Library/LaunchAgents/
+    launchctl load ~/Library/LaunchAgents/com.ronaldoscotti.site-activity.plist
+
+  Check:  launchctl list | grep ronaldoscotti
+  Run:    launchctl start com.ronaldoscotti.site-activity
+  Remove: launchctl unload ~/Library/LaunchAgents/com.ronaldoscotti.site-activity.plist
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.ronaldoscotti.site-activity</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/zsh</string>
+    <string>-lc</string>
+    <string>cd /Users/scotti/work/personal/ronaldoscotti.com &amp;&amp; ./scripts/update-activity.sh</string>
+  </array>
+
+  <!--
+    Three firing times, because one is not enough:
+
+    Asleep at 04:00 -> launchd fires on wake and coalesces missed intervals
+    into a single run (launchd.plist(5)), so a closed lid costs nothing.
+
+    Powered off at 04:00 -> the calendar event is lost. RunAtLoad covers it:
+    the agent loads at login, so the first login after a shutdown runs the job.
+
+    13:00 is a plain backstop for a day that started badly. The script exits
+    early when nothing changed, so extra runs cost about a second.
+  -->
+  <key>StartCalendarInterval</key>
+  <array>
+    <dict>
+      <key>Hour</key><integer>4</integer>
+      <key>Minute</key><integer>0</integer>
+    </dict>
+    <dict>
+      <key>Hour</key><integer>13</integer>
+      <key>Minute</key><integer>0</integer>
+    </dict>
+  </array>
+
+  <key>RunAtLoad</key>
+  <true/>
+
+  <!-- No KeepAlive on purpose: its keys are OR'd, so NetworkState would
+       relaunch the job whenever the network is up. A cold boot with no network
+       is already safe, the script falls back to the committed JSON. -->
+
+  <key>ThrottleInterval</key>
+  <integer>3600</integer>
+
+  <key>Nice</key>
+  <integer>5</integer>
+
+  <key>StandardOutPath</key>
+  <string>/tmp/ronaldoscotti-activity.log</string>
+  <key>StandardErrorPath</key>
+  <string>/tmp/ronaldoscotti-activity.log</string>
+</dict>
+</plist>

@@ -1,0 +1,37 @@
+---
+interface Props {
+  id: string;
+  index: string;
+  heading: string;
+  intro?: string;
+}
+
+const { id, index, heading, intro } = Astro.props;
+---
+
+<section id={id} class="section">
+  <div class="wrap">
+    <header class="head reveal">
+      <p class="eyebrow num">{index}</p>
+      <h2>{heading}</h2>
+      {intro && <p class="lede measure intro">{intro}</p>}
+      <slot name="head-extra" />
+    </header>
+
+    <slot />
+  </div>
+</section>
+
+<style>
+  .head {
+    margin-bottom: 2.5rem;
+  }
+
+  .num {
+    margin-bottom: 0.625rem;
+  }
+
+  .intro {
+    margin-top: 0.875rem;
+  }
+</style>

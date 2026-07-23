@@ -1,117 +1,74 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Guidance for Claude Code when working in this repository.
 
-## Project Overview
+## What this is
 
-This is Ronaldo Scotti's personal portfolio website built with Astro 5.0 and Tailwind CSS 4.0. The site is a single-page application in Portuguese (pt-BR) showcasing professional services, projects, and client work.
+Ronaldo Scotti's personal site: a CV rendered as a one-page site, in English at `/` and Portuguese
+at `/pt`. Astro 5 static output, Tailwind 4 via the Vite plugin, no runtime JavaScript beyond three
+small inline blocks.
 
-**Site URL:** https://ronaldoscotti.com
+**Site:** https://ronaldoscotti.com
 
-## Development Commands
+## Companion documents
+
+| File | What it holds |
+|---|---|
+| `COPY-SITE.md` | Portuguese copy, section by section |
+| `COPY-SITE-EN.md` | English copy. Not a translation: both derive from the CV |
+| `DIRECAO-VISUAL-SITE.md` | Art direction: type scale, palette, layout rules |
+| `SPEC.md` | Implementation spec: routes, data contracts, components |
+| `OPERACAO.md` | How the automation works, where each job runs, recovery steps |
+| `DIRECAO-SITE.md` | The original brief and the diagnosis of the old site |
+
+Copy lives in `src/i18n/translations.ts`, mirrored in the two copy documents. Edit both together.
+
+## Commands
 
 ```bash
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build locally
-npm run preview
+npm run dev        # dev server
+npm run build      # prebuild refreshes the heatmap, then builds
+npm run activity   # refresh the GitHub heatmap only
+npm run languages  # refresh the language bar from local git repos
+npm run shots      # recapture project screenshots via agent-browser
 ```
 
 ## Architecture
 
-### Tech Stack
-- **Framework:** Astro 5.0 (SSG - Static Site Generation)
-- **Styling:** Tailwind CSS 4.0 (via @tailwindcss/vite)
-- **TypeScript:** Strict mode enabled (extends astro/tsconfigs/strict)
-- **Language:** Portuguese (pt-BR)
+### Routes
 
-### Project Structure
+`/` (EN, default) · `/pt` · `/404` · `/en` and `/es` redirect to `/`.
 
-```
-src/
-├── components/     # Astro components for each page section
-│   ├── Navbar.astro      # Navigation header
-│   ├── Hero.astro        # Hero section
-│   ├── Problems.astro    # Problem statement section
-│   ├── Journey.astro     # Professional journey timeline
-│   ├── Clients.astro     # Client logos
-│   ├── Projects.astro    # Project showcase
-│   ├── Services.astro    # Service offerings
-│   └── Contact.astro     # Contact section
-├── layouts/
-│   └── Layout.astro      # Base layout with SEO, meta tags, and schema markup
-├── pages/
-│   └── index.astro       # Main landing page (assembles all components)
-├── styles/
-│   └── global.css        # Global styles, Tailwind imports, theme variables, animations
-└── env.d.ts              # Astro type definitions
+Both language pages render `src/components/Page.astro`, which composes the sections. Section ids
+differ per language and must match the `nav.links` hrefs in `translations.ts`.
 
-public/
-├── clients/              # Client logo images
-├── products/             # Product screenshots
-├── og-image.png          # Open Graph preview image
-├── ronaldo-scotti.jpeg   # Profile photo (also used as favicon)
-├── robots.txt
-└── sitemap.xml
-```
+### Data
 
-### Key Architecture Patterns
+- `src/data/posts.json` — the ten Substack articles, with per-language title and subtitle. Covers
+  are local WebP in `public/posts/`. Links point at `jornadasaas.substack.com`; the custom domain
+  returns 404.
+- `src/data/activity.json` — GitHub heatmap plus language breakdown. Generated, committed, never
+  fetched at runtime. See `OPERACAO.md`.
+- `src/data/site.ts` — `CAREER_START`, from which years of experience is computed. No calendar
+  number is ever hardcoded in copy.
 
-**Component Organization:**
-- Each major section of the single-page site is a separate Astro component
-- Components are imported and assembled in `src/pages/index.astro`
-- All components are self-contained with their markup and styles
+`scripts/fetch-activity.mjs` runs on `prebuild` and rewrites the whole file, so it deliberately
+preserves the `languages` key written by `scripts/fetch-languages.mjs`.
 
-**Styling Architecture:**
-- Tailwind CSS 4.0 configured via Vite plugin (not PostCSS)
-- Custom theme variables defined in `src/styles/global.css` using `@theme` directive
-- Primary color: `--color-primary: #135bec`
-- Font family: Inter (loaded from Google Fonts)
-- Material Symbols Outlined icons used throughout
+### Conventions
 
-**SEO & Schema Markup:**
-- Comprehensive SEO meta tags in `Layout.astro`
-- Three schema.org JSON-LD scripts:
-  - Person schema (professional profile)
-  - WebSite schema (site metadata)
-  - ProfessionalService schema (service catalog)
-- Open Graph and Twitter Card meta tags configured
-- Canonical URL set to https://ronaldoscotti.com
+- **No new dependencies.** Static Astro with Tailwind covers everything here.
+- **No external resource requests.** Fonts are self-hosted, images are local. Only `<a href>` may
+  point off-site.
+- Every `<img>` declares `width` and `height`. CLS must stay at 0.
+- Colors come from the `@theme` tokens in `src/styles/global.css`. The accent appears at most once
+  per viewport height.
+- The heatmap uses GitHub's green, not the site accent: amber reads as a warning.
+- `Person` schema carries no `worksFor`, and no copy states a current employer. The site must stay
+  true after a job change.
 
-**Scroll Animations:**
-- Client-side intersection observer implemented in `Layout.astro`
-- Elements with `.animate-on-scroll` class fade up when scrolled into view
-- CSS keyframes defined in `global.css`
+### Content language
 
-### Content Language
-
-All content is in **Portuguese (pt-BR)**. When adding or modifying content:
-- Use Portuguese for all user-facing text
-- Follow existing tone: professional but conversational
-- Schema markup uses both Portuguese descriptions and English property names
-
-### Build Output
-
-- Production build outputs to `dist/` directory
-- Astro cache stored in `.astro/` directory
-- Both are gitignored
-
-### Image Assets
-
-Images are stored in `public/` and referenced with root-relative paths:
-- `/ronaldo-scotti.jpeg` - Profile photo
-- `/og-image.png` - Social media preview
-- `/clients/*` - Client logos
-- `/products/*` - Product screenshots
-
-## Important Notes
-
-- This is a **static site** (SSG) - no server-side rendering or API routes
-- The site is designed as a single scrollable page with section anchors
-- Scroll margin is applied to sections to account for fixed navbar: `scroll-margin-top: 5rem`
-- Google Fonts (Inter) and Material Symbols are loaded from CDN
-- The site preloads critical images for performance
+The English page is the default because the audience is US hiring managers. The Portuguese page is
+written in Portuguese, not translated from English, and vice versa. When editing one, check whether
+the other needs the same fact, not the same sentence.

@@ -1,0 +1,40 @@
+---
+import type { Language } from "../i18n/types";
+import Layout from "../layouts/Layout.astro";
+import Header from "./Header.astro";
+import Hero from "./Hero.astro";
+import About from "./About.astro";
+import Activity from "./Activity.astro";
+import Experience from "./Experience.astro";
+import Projects from "./Projects.astro";
+import Writing from "./Writing.astro";
+import Contact from "./Contact.astro";
+import Footer from "./Footer.astro";
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+
+const ids =
+  lang === "en"
+    ? { about: "about", activity: "activity", experience: "experience", projects: "projects", writing: "writing", contact: "contact" }
+    : { about: "sobre", activity: "atividade", experience: "experiencia", projects: "projetos", writing: "escrita", contact: "contato" };
+---
+
+<Layout lang={lang}>
+  <Header lang={lang} />
+
+  <main id="main">
+    <Hero lang={lang} />
+    <About lang={lang} id={ids.about} index="01" />
+    <Activity lang={lang} id={ids.activity} index="02" />
+    <Experience lang={lang} id={ids.experience} index="03" />
+    <Projects lang={lang} id={ids.projects} index="04" />
+    <Writing lang={lang} id={ids.writing} index="05" />
+    <Contact lang={lang} id={ids.contact} index="06" />
+  </main>
+
+  <Footer lang={lang} />
+</Layout>

@@ -1,0 +1,114 @@
+---
+import type { Language } from "../i18n/types";
+import { getTranslations } from "../i18n/utils";
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = getTranslations(lang);
+---
+
+<button type="button" class="toggle" id="theme-toggle" aria-live="polite">
+  <span class="sr-only" data-label>{t.nav.theme.toDark}</span>
+  <svg class="icon sun" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+    <circle cx="10" cy="10" r="3.6" />
+    <g stroke-linecap="round">
+      <path d="M10 1.6v2M10 16.4v2M18.4 10h-2M3.6 10h-2M15.94 4.06l-1.41 1.41M5.47 14.53l-1.41 1.41M15.94 15.94l-1.41-1.41M5.47 5.47L4.06 4.06" />
+    </g>
+  </svg>
+  <svg class="icon moon" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+    <path d="M16.5 12.4A7 7 0 0 1 7.6 3.5a7 7 0 1 0 8.9 8.9Z" />
+  </svg>
+</button>
+
+<style>
+  .toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.875rem;
+    height: 1.875rem;
+    padding: 0;
+    border: 0;
+    border-radius: 2px;
+    background: none;
+    color: var(--color-ink-mute);
+    cursor: pointer;
+    transition: color 160ms ease;
+  }
+
+  .toggle:hover {
+    color: var(--color-ink);
+  }
+
+  .icon {
+    width: 1.0625rem;
+    height: 1.0625rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+  }
+
+  .moon {
+    display: none;
+  }
+
+  /* Shows the destination, not the current state: the moon means "go dark".
+     The :not() branch only ever applies without JS. */
+  :root[data-theme="light"] .moon,
+  :root:not([data-theme]) .moon {
+    display: block;
+  }
+
+  :root[data-theme="light"] .sun,
+  :root:not([data-theme]) .sun {
+    display: none;
+  }
+
+  :root[data-theme="dark"] .sun {
+    display: block;
+  }
+
+  :root[data-theme="dark"] .moon {
+    display: none;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>
+
+<script is:inline define:vars={{ labels: { toDark: t.nav.theme.toDark, toLight: t.nav.theme.toLight } }}>
+  (() => {
+    const root = document.documentElement;
+    const button = document.getElementById("theme-toggle");
+    const label = button?.querySelector("[data-label]");
+
+    const sync = () => {
+      if (label) label.textContent = root.dataset.theme === "dark" ? labels.toLight : labels.toDark;
+    };
+
+    sync();
+
+    button?.addEventListener("click", () => {
+      const current =
+        root.dataset.theme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      const next = current === "dark" ? "light" : "dark";
+      root.dataset.theme = next;
+      try {
+        localStorage.setItem("theme", next);
+      } catch {}
+      sync();
+    });
+  })();
+</script>

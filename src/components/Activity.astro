@@ -1,0 +1,169 @@
+---
+import type { Language } from "../i18n/types";
+import { getTranslations } from "../i18n/utils";
+import Section from "./Section.astro";
+import Heatmap from "./Heatmap.astro";
+import activity from "../data/activity.json";
+
+interface Props {
+  lang: Language;
+  index: string;
+  id: string;
+}
+
+const { lang, index, id } = Astro.props;
+const t = getTranslations(lang);
+
+const gh = (activity as any).github;
+/** Source-agnostic: any provider that yields { name, percent }. */
+const languages = ((activity as any).languages?.items ?? []).map((l: any) => ({
+  ...l,
+  name: l.name === "__other__" ? t.activity.otherLanguages : l.name,
+}));
+
+const summary = gh
+  ? t.activity.contributions
+      .replace("{total}", gh.total.toLocaleString(lang === "en" ? "en-US" : "pt-BR"))
+      .replace("{days}", String(gh.activeDays))
+  : "";
+
+const fmtDate = (iso: string) =>
+  new Date(`${iso}T00:00:00`).toLocaleDateString(lang === "en" ? "en-US" : "pt-BR", {
+    month: "short",
+    year: "numeric",
+  });
+---
+
+<Section id={id} index={index} heading={t.activity.heading}>
+  {
+    gh && (
+      <div class="block reveal">
+        <p class="summary">
+          <strong>{summary}.</strong>
+        </p>
+        <Heatmap weeks={gh.weeks} label={`${summary}.`} />
+        <p class="mono range">
+          {fmtDate(gh.from)} — {fmtDate(gh.to)}
+        </p>
+      </div>
+    )
+  }
+
+  {
+    languages.length > 0 && (
+      <div class="block reveal">
+        <h3 class="sub">{t.activity.languagesHeading}</h3>
+        <div
+          class="bar"
+          role="img"
+          aria-label={languages.map((l: any) => `${l.name} ${l.percent}%`).join(", ")}
+        >
+          {languages.map((l: any, i: number) => (
+            <span
+              class="slice"
+              style={`width:${l.percent}%;--tone:${0.5 + (i / Math.max(languages.length - 1, 1)) * 0.5}`}
+            />
+          ))}
+        </div>
+        <ul class="legend">
+          {languages.map((l: any, i: number) => (
+            <li>
+              <span
+                class="swatch"
+                style={`--tone:${0.5 + (i / Math.max(languages.length - 1, 1)) * 0.5}`}
+              />
+              <span class="mono">
+                {l.name} {l.percent}%
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
+
+  <div class="block reveal">
+    <h3 class="sub">{t.activity.stackHeading}</h3>
+    <div class="stack">
+      {t.activity.stack.map((line) => <p>{line}</p>)}
+    </div>
+  </div>
+</Section>
+
+<style>
+  .block + .block {
+    margin-top: 2.75rem;
+  }
+
+  .summary {
+    max-width: var(--measure);
+    margin-bottom: 1.125rem;
+  }
+
+  .summary strong {
+    font-weight: 600;
+  }
+
+  .range {
+    margin-top: 0.625rem;
+  }
+
+  .sub {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-ink-mute);
+    margin-bottom: 1rem;
+  }
+
+  .bar {
+    display: flex;
+    height: 10px;
+    max-width: 44rem;
+    border-radius: 5px;
+    overflow: hidden;
+    background: color-mix(in srgb, var(--color-rule) 60%, transparent);
+  }
+
+  .slice {
+    background: color-mix(in srgb, var(--color-accent-deep) calc(var(--tone) * 100%), var(--color-paper-deep));
+  }
+
+  .slice + .slice {
+    box-shadow: inset 1px 0 0 var(--color-paper);
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    list-style: none;
+    padding: 0;
+    margin: 0.875rem 0 0;
+  }
+
+  .legend li {
+    display: flex;
+    align-items: center;
+    gap: 0.4375rem;
+  }
+
+  .swatch {
+    width: 9px;
+    height: 9px;
+    border-radius: 2px;
+    background: color-mix(in srgb, var(--color-accent-deep) calc(var(--tone) * 100%), var(--color-paper-deep));
+  }
+
+  .stack {
+    max-width: 48rem;
+    color: var(--color-ink-soft);
+  }
+
+  .stack p {
+    font-size: 0.9375rem;
+    line-height: 1.9;
+  }
+</style>

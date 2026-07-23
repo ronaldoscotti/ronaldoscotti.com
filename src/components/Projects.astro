@@ -1,56 +1,143 @@
 ---
-import type { Language } from '../i18n/types';
-import { getTranslations } from '../i18n/utils';
+import type { Language } from "../i18n/types";
+import { getTranslations } from "../i18n/utils";
+import Section from "./Section.astro";
 
 interface Props {
   lang: Language;
+  index: string;
+  id: string;
 }
 
-const { lang } = Astro.props;
+const { lang, index, id } = Astro.props;
 const t = getTranslations(lang);
+
+const [lead, ...rest] = t.projects.items;
 ---
 
-<section id="projetos" class="py-10 sm:py-16 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-40">
-  <div class="max-w-[960px] mx-auto">
-    <div class="flex flex-col gap-4 text-center mb-10">
-      <h2 class="text-zinc-900 text-[32px] md:text-4xl font-bold leading-tight tracking-[-0.033em] max-w-[720px] mx-auto">
-        {t.projects.heading}
-        <br />
-        <small class="text-zinc-600 font-normal">{t.projects.subtitle}</small>
-      </h2>
-      <p class="text-zinc-600 text-lg font-normal leading-normal max-w-[720px] mx-auto">
-        {t.projects.intro}
+<Section id={id} index={index} heading={t.projects.heading} intro={t.projects.intro}>
+  <article class="lead reveal">
+    <div class="lead-text">
+      <h3>{lead.name}</h3>
+      <p class="desc">{lead.description}</p>
+      <p class="links">
+        {lead.links.map((link) => <a href={link.url} rel="noopener">{link.label}</a>)}
       </p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-      {t.projects.items.map((project) => (
-        <a
-          class="flex flex-row gap-4 items-center rounded-xl border border-zinc-200 bg-white p-4 transition-all duration-300 group hover:shadow-lg hover:shadow-zinc-200/50 hover:border-zinc-300 hover:-translate-y-1"
-          href={project.url}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <!-- Image Column -->
-          <div class="w-32 h-32 flex-shrink-0 overflow-hidden flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
-            <img
-              alt={`Mockup do ${project.name}`}
-              class="w-full h-full object-cover"
-              src={project.image}
-            />
-          </div>
+    {
+      lead.image && (
+        <figure class="shot">
+          <img src={lead.image} alt={lead.name} width="640" height="420" loading="lazy" decoding="async" />
+        </figure>
+      )
+    }
+  </article>
 
-          <!-- Text Column -->
-          <div class="flex flex-col gap-1 flex-1 justify-center">
-            <h3 class="text-zinc-900 text-lg font-bold leading-tight transition-colors duration-300 group-hover:text-zinc-700">
-              {project.name}
-            </h3>
-            <p class="text-zinc-600 text-base font-normal leading-normal transition-colors duration-300 group-hover:text-zinc-700">
-              {project.description}
+  <div class="rest">
+    {
+      rest.map((project) => (
+        <article class="item reveal">
+          {project.image && (
+            <img
+              class="thumb"
+              src={project.image}
+              alt=""
+              width="320"
+              height="200"
+              loading="lazy"
+              decoding="async"
+            />
+          )}
+          <div>
+            <h3>{project.name}</h3>
+            <p class="desc">{project.description}</p>
+            <p class="links">
+              {project.links.map((link) => (
+                <a href={link.url} rel="noopener">
+                  {link.label}
+                </a>
+              ))}
             </p>
           </div>
-        </a>
-      ))}
-    </div>
+        </article>
+      ))
+    }
   </div>
-</section>
+</Section>
+
+<style>
+  .lead {
+    display: grid;
+    gap: 2rem;
+    align-items: start;
+    padding-bottom: 2.25rem;
+  }
+
+  @media (min-width: 860px) {
+    .lead {
+      grid-template-columns: minmax(0, 1fr) 20rem;
+    }
+  }
+
+  .shot {
+    margin: 0;
+  }
+
+  .shot img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--color-rule);
+    border-radius: 2px;
+  }
+
+  h3 {
+    margin-bottom: 0.625rem;
+  }
+
+  .desc {
+    max-width: var(--measure);
+    color: var(--color-ink-soft);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin-top: 0.875rem;
+    font-size: 0.875rem;
+  }
+
+  .item {
+    display: grid;
+    gap: 1.5rem;
+    align-items: start;
+    padding-block: 1.75rem;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  @media (min-width: 700px) {
+    .item {
+      grid-template-columns: 10rem minmax(0, 1fr);
+    }
+  }
+
+  .thumb {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 320 / 200;
+    object-fit: cover;
+    object-position: top center;
+    border: 1px solid var(--color-rule);
+    border-radius: 2px;
+    filter: saturate(0.85);
+  }
+
+  @media (max-width: 699px) {
+    .thumb {
+      max-width: 10rem;
+    }
+  }
+</style>
