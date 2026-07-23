@@ -5,8 +5,7 @@ Guidance for Claude Code when working in this repository.
 ## What this is
 
 Ronaldo Scotti's personal site: a CV rendered as a one-page site, in English at `/` and Portuguese
-at `/pt`. Astro 5 static output, Tailwind 4 via the Vite plugin, no runtime JavaScript beyond three
-small inline blocks.
+at `/pt`. Astro 5 static output, Tailwind 4 via the Vite plugin, no bundled JavaScript.
 
 **Site:** https://ronaldoscotti.com
 
@@ -14,14 +13,14 @@ small inline blocks.
 
 | File | What it holds |
 |---|---|
-| `COPY-SITE.md` | Portuguese copy, section by section |
-| `COPY-SITE-EN.md` | English copy. Not a translation: both derive from the CV |
-| `DIRECAO-VISUAL-SITE.md` | Art direction: type scale, palette, layout rules |
-| `SPEC.md` | Implementation spec: routes, data contracts, components |
-| `OPERACAO.md` | How the automation works, where each job runs, recovery steps |
-| `DIRECAO-SITE.md` | The original brief and the diagnosis of the old site |
+| `README.md` | Front door: commands and what the site does |
+| `docs/operacao.md` | How the automation runs, where, and how to recover it |
+| `docs/direcao-visual.md` | Art direction: type scale, palette, layout rules |
+| `docs/copy-pt.md` | Portuguese copy, plus why those ten articles were picked |
+| `docs/copy-en.md` | English copy. Not a translation: both derive from the CV |
 
-Copy lives in `src/i18n/translations.ts`, mirrored in the two copy documents. Edit both together.
+Published copy lives in `src/i18n/translations.ts`, mirrored in the two copy documents. Edit both
+together.
 
 ## Commands
 
@@ -48,12 +47,20 @@ differ per language and must match the `nav.links` hrefs in `translations.ts`.
   are local WebP in `public/posts/`. Links point at `jornadasaas.substack.com`; the custom domain
   returns 404.
 - `src/data/activity.json` — GitHub heatmap plus language breakdown. Generated, committed, never
-  fetched at runtime. See `OPERACAO.md`.
+  fetched at runtime. See `docs/operacao.md`.
 - `src/data/site.ts` — `CAREER_START`, from which years of experience is computed. No calendar
   number is ever hardcoded in copy.
 
 `scripts/fetch-activity.mjs` runs on `prebuild` and rewrites the whole file, so it deliberately
 preserves the `languages` key written by `scripts/fetch-languages.mjs`.
+
+### Theming
+
+Light and dark are two calibrated palettes, not an inversion. Both are declared twice in
+`global.css`: once under `prefers-color-scheme` for the system preference and no-JS, once under
+`[data-theme]` so an explicit choice wins. An inline script in `<head>` always resolves
+`data-theme` to a concrete value before first paint, which is what keeps the first toggle click
+from being a no-op.
 
 ### Conventions
 
@@ -66,9 +73,12 @@ preserves the `languages` key written by `scripts/fetch-languages.mjs`.
 - The heatmap uses GitHub's green, not the site accent: amber reads as a warning.
 - `Person` schema carries no `worksFor`, and no copy states a current employer. The site must stay
   true after a job change.
+- Comments are sparse and in English, even though the content is Portuguese.
 
 ### Content language
 
 The English page is the default because the audience is US hiring managers. The Portuguese page is
-written in Portuguese, not translated from English, and vice versa. When editing one, check whether
-the other needs the same fact, not the same sentence.
+written in Portuguese, not translated from English, and vice versa. Audience-specific lines belong
+to one side only: the US time-zone overlap is English-only, and explaining what TDC or Eduzz is
+would be over-explaining in Portuguese. When editing one page, check whether the other needs the
+same fact, not the same sentence.

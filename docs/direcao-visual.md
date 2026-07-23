@@ -1,6 +1,6 @@
-# DIREÇÃO-VISUAL-SITE.md
+# Direção visual
 
-Direção de arte do `ronaldoscotti.com`. A copy está em `COPY-SITE.md`.
+Direção de arte do `ronaldoscotti.com`. A copy está em `copy-pt.md` e `copy-en.md`.
 
 **Referência de estrutura:** `yuriytkach.com`. Página única, curta, seções separadas por título,
 sem card, sem ilustração, sem hero de tela cheia. Ele acerta a estrutura e erra a estética: é
