@@ -14,13 +14,10 @@ at `/pt`. Astro 5 static output, Tailwind 4 via the Vite plugin, no bundled Java
 | File | What it holds |
 |---|---|
 | `README.md` | Front door: commands and what the site does |
-| `docs/operacao.md` | How the automation runs, where, and how to recover it |
-| `docs/direcao-visual.md` | Art direction: type scale, palette, layout rules |
-| `docs/copy-pt.md` | Portuguese copy, plus why those ten articles were picked |
-| `docs/copy-en.md` | English copy. Not a translation: both derive from the CV |
+| `docs/operations.md` | How the automation runs, where, and how to recover it |
 
-Published copy lives in `src/i18n/translations.ts`, mirrored in the two copy documents. Edit both
-together.
+Published copy lives only in `src/i18n/translations.ts`. There is no separate copy document to keep
+in sync.
 
 ## Commands
 
@@ -47,7 +44,7 @@ differ per language and must match the `nav.links` hrefs in `translations.ts`.
   are local WebP in `public/posts/`. Links point at `jornadasaas.substack.com`; the custom domain
   returns 404.
 - `src/data/activity.json` — GitHub heatmap plus language breakdown. Generated, committed, never
-  fetched at runtime. See `docs/operacao.md`.
+  fetched at runtime. See `docs/operations.md`.
 - `src/data/site.ts` — `CAREER_START`, from which years of experience is computed. No calendar
   number is ever hardcoded in copy.
 

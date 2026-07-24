@@ -1,54 +1,52 @@
 # ronaldoscotti.com
 
-Currículo em forma de site. Uma página, inglês em `/` e português em `/pt`, estático, sem
-JavaScript de bundle.
+A CV rendered as a site. One page, English at `/` and Portuguese at `/pt`, static, with no bundled
+JavaScript.
 
-**No ar:** [ronaldoscotti.com](https://ronaldoscotti.com)
+**Live:** [ronaldoscotti.com](https://ronaldoscotti.com)
 
-## Rodando
+## Running it
 
 ```bash
 npm install
 npm run dev
 ```
 
-| Comando | O que faz |
+| Command | What it does |
 |---|---|
-| `npm run dev` | servidor de desenvolvimento |
-| `npm run build` | build (o `prebuild` atualiza o heatmap antes) |
-| `npm run preview` | serve o build local |
-| `npm run activity` | atualiza o heatmap do GitHub |
-| `npm run languages` | recalcula a barra de linguagens pelos repositórios locais |
-| `npm run shots` | recaptura os screenshots dos projetos |
+| `npm run dev` | development server |
+| `npm run build` | build (`prebuild` refreshes the heatmap first) |
+| `npm run preview` | serve the build locally |
+| `npm run activity` | refresh the GitHub heatmap |
+| `npm run languages` | recalculate the language bar from local repositories |
+| `npm run shots` | recapture the project screenshots |
 
-## O que tem dentro
+## What's inside
 
-Astro 5 estático com Tailwind 4. Três blocos de JavaScript inline (revelar no scroll, seção ativa
-na navegação, botão de ver mais) e nada além disso: zero bundle, zero requisição a domínio externo,
-fontes auto-hospedadas.
+Static Astro 5 with Tailwind 4. Three inline blocks of JavaScript (reveal on scroll, active section
+in the nav, show-more button) and nothing else: no bundle, no request to any external domain,
+self-hosted fonts.
 
-Tema claro e escuro são paletas calibradas separadamente, não inversão uma da outra, com switcher e
-sem flash no carregamento.
+Light and dark are two separately calibrated palettes rather than an inversion of each other, with
+a switcher and no flash on load.
 
-Duas coisas na página se atualizam sozinhas e viram commit automático:
+Two things on the page refresh themselves and turn into automatic commits:
 
-- **Heatmap de contribuições**, do endpoint público do GitHub, sem token. Roda no `prebuild` e num
-  cron diário do GitHub Actions.
-- **Barra de linguagens**, calculada a partir do `git log` dos repositórios locais. Substitui o
-  WakaTime, que é pago, e alcança código que não vive no GitHub pessoal. Como lê o disco, roda no
-  launchd da máquina e não em CI.
+- **Contribution heatmap**, from GitHub's public endpoint, no token. Runs on `prebuild` and on a
+  daily GitHub Actions cron.
+- **Language bar**, computed from `git log` across local repositories. It replaces WakaTime, which
+  is paid, and it reaches code that never lands on the personal GitHub account. Since it reads the
+  disk, it runs from launchd on the machine, not in CI.
 
-Os artigos vêm de `src/data/posts.json` e apontam para o Substack. Não há blog neste repositório.
+Articles come from `src/data/posts.json` and point at Substack. There is no blog in this
+repository.
 
-## Documentação
+## Documentation
 
-| Arquivo | Para quê |
+| File | For what |
 |---|---|
-| [`CLAUDE.md`](CLAUDE.md) | Convenções e arquitetura, para agentes e para humanos |
-| [`docs/operacao.md`](docs/operacao.md) | Como a automação roda, onde, e o que fazer quando parar |
-| [`docs/direcao-visual.md`](docs/direcao-visual.md) | Direção de arte: tipografia, paleta, regras de layout |
-| [`docs/copy-pt.md`](docs/copy-pt.md) | Copy em português, com o critério de escolha dos artigos |
-| [`docs/copy-en.md`](docs/copy-en.md) | Copy em inglês, escrita a partir do CV e não traduzida da PT |
+| [`CLAUDE.md`](CLAUDE.md) | Conventions and architecture, for agents and for humans |
+| [`docs/operations.md`](docs/operations.md) | How the automation runs, where, and what to do when it stops |
 
-A copy publicada mora em `src/i18n/translations.ts`. Os dois documentos de copy são a fonte
-editorial: ao editar um, edite o outro.
+Published copy lives in `src/i18n/translations.ts`. The English page is not a translation of the
+Portuguese one: both are written from the CV, and audience-specific lines belong to one side only.
