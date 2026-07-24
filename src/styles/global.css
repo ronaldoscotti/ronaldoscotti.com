@@ -158,6 +158,15 @@ body {
   animation: grainShift 3s steps(3) infinite alternate;
 }
 
+/* A fixed mix-blend-mode overlay makes iOS re-composite the whole page backdrop
+   on every scroll frame, which flickers content. On a phone the 1px tooth is
+   imperceptible anyway, so it is dropped there — it stays a desktop nicety. */
+@media (hover: none) and (pointer: coarse) {
+  .grain {
+    display: none;
+  }
+}
+
 @keyframes grainShift {
   from {
     transform: translate(0, 0);

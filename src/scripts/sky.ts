@@ -291,21 +291,19 @@ export function renderSky(
     host.appendChild(glow);
   }
 
-  const portrait = host.parentElement?.querySelector<HTMLImageElement>(".sky-portrait");
-  if (portrait) {
-    portrait.style.filter =
-      `brightness(${(0.66 + 0.42 * dayness).toFixed(2)}) contrast(${(0.98 + 0.08 * dayness).toFixed(2)})` +
-      ` saturate(${(0.72 + 0.32 * dayness).toFixed(2)})` +
-      ` drop-shadow(0 0 3px rgba(255,226,178,${(0.12 + 0.2 * dayness).toFixed(2)}))`;
-  }
-
-  // The light landing on him is the sky's own horizon colour.
+  // The portrait itself carries no CSS filter and the overlay no blend mode: on
+  // iOS each of those forced a separate compositing layer on the cutout that got
+  // recycled on scroll, and the photo flashed. All the day/night grading now
+  // lives in one plain overlay, masked to the portrait's own alpha — the light
+  // it takes on is the sky's horizon colour by day, a cool darkening by night.
   if (spill) {
-    const c = `rgba(${pal.horizon.map((v) => Math.round(v)).join(",")},`;
+    const dark: RGB = [8, 12, 22];
+    const tone = lerp(pal.horizon, dark, night);
+    const a = 0.1 + 0.42 * night;
+    const wash = (alpha: number) =>
+      `rgba(${tone.map((v) => Math.round(v)).join(",")},${alpha.toFixed(2)})`;
     spill.style.background =
-      `linear-gradient(172deg,${c}${(0.16 + 0.3 * dayness).toFixed(2)}) 0%,` +
-      `${c}${(0.06 + 0.12 * dayness).toFixed(2)}) 48%,transparent 78%)`;
-    spill.style.mixBlendMode = night > 0.5 ? "multiply" : "soft-light";
+      `linear-gradient(180deg,${wash(a * 0.75)} 0%,${wash(a)} 55%,${wash(a * 1.15)} 100%)`;
   }
 
   if (caption) {
