@@ -56,6 +56,7 @@ export interface Translations {
     heading: string;
     intro: string;
     featuredLabel: string;
+    screenshotAlt: string;
     items: Project[];
   };
 

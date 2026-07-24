@@ -23,7 +23,7 @@ const [lead, ...rest] = t.projects.items;
           <img
             class="fade-img"
             src={lead.image}
-            alt=""
+            alt={t.projects.screenshotAlt.replace("{name}", lead.name)}
             width="1280"
             height="800"
             loading="lazy"
@@ -59,7 +59,7 @@ const [lead, ...rest] = t.projects.items;
               <img
                 class="thumb fade-img"
                 src={project.image}
-                alt=""
+                alt={t.projects.screenshotAlt.replace("{name}", project.name)}
                 width="1280"
                 height="800"
                 loading="lazy"
