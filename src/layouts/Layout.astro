@@ -19,7 +19,7 @@ const t = getTranslations(lang);
 const siteUrl = "https://ronaldoscotti.com";
 const path = getLanguagePath(lang);
 const currentUrl = path === "/" ? siteUrl : `${siteUrl}${path}`;
-const ogImage = `${siteUrl}/og-image.png`;
+const ogImage = `${siteUrl}/${lang === "pt-BR" ? "og-image-pt.png" : "og-image.png"}`;
 
 /** No worksFor: it goes stale on a job change. */
 const personSchema = {
