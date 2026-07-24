@@ -488,31 +488,31 @@
     "items": [
       {
         "name": "TypeScript",
-        "percent": 33.9
+        "percent": 32.9
       },
       {
         "name": "PHP",
-        "percent": 32.4
+        "percent": 30.4
       },
       {
         "name": "Vue",
-        "percent": 19.9
+        "percent": 18.7
       },
       {
-        "name": "Python",
+        "name": "Astro",
+        "percent": 5
+      },
+      {
+        "name": "CSS",
         "percent": 3.9
       },
       {
         "name": "JavaScript",
-        "percent": 3.6
-      },
-      {
-        "name": "CSS",
-        "percent": 3.3
+        "percent": 3.8
       },
       {
         "name": "__other__",
-        "percent": 2.5
+        "percent": 5
       }
     ],
     "source": "local-git",
