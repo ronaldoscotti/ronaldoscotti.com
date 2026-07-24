@@ -69,7 +69,9 @@ const t = getTranslations(lang);
     font-family: var(--font-display);
     font-weight: 500;
     font-size: clamp(1.5rem, 4vw, 2.25rem);
-    line-height: 1.2;
+    /* Trim the line box to the glyphs so aligning centres in .head lands the
+       text optically level with the avatar, not sitting low in its own leading. */
+    line-height: 1;
     letter-spacing: -0.015em;
     text-decoration-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
     text-underline-offset: 0.14em;
