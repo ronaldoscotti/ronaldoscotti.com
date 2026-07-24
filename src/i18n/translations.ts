@@ -229,6 +229,7 @@ export const translations: Record<Language, Translations> = {
       intro:
         "I design architecture, solve whatever comes up, and get AI coding agents to ship code a senior would sign off on. PHP/Laravel, TypeScript/React, LLM systems in production.",
       photoAlt: "Ronaldo Scotti",
+      skyCaption: "Florianópolis, Brazil {time} (UTC-3)",
     },
 
     about: {

@@ -1,0 +1,268 @@
+---
+/**
+ * The sky behind the portrait: what it actually looks like in Florianópolis
+ * right now. Nothing is fetched — sun and moon positions are computed from the
+ * visitor's clock, so the whole thing is arithmetic and stays inside the
+ * no-external-requests rule.
+ *
+ * Weather is not wired in yet; the sky always renders clear. That is also the
+ * degradation path for when the forecast data does land and goes stale.
+ */
+interface Props {
+  /** Template with a {time} placeholder. Omitted on the Portuguese page. */
+  caption?: string;
+}
+
+const { caption } = Astro.props;
+---
+
+<figure class="sky-figure">
+  <span class="sky-glow" aria-hidden="true"></span>
+
+  <span class="sky-arch">
+    <span class="sky-scene" data-sky aria-hidden="true"></span>
+    <img
+      class="sky-portrait"
+      src="/ronaldo-scotti-print.webp"
+      alt=""
+      width="1100"
+      height="1100"
+      fetchpriority="high"
+      decoding="async"
+    />
+    <span class="sky-spill" data-spill aria-hidden="true"></span>
+    <span class="sky-vignette" aria-hidden="true"></span>
+  </span>
+
+  {caption && <figcaption class="sky-caption mono" data-caption data-template={caption} />}
+</figure>
+
+<svg width="0" height="0" class="sky-defs" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- Noise cuts the cloud shape out of a lit-to-shadow gradient, so clouds
+         have gaps and take the light of the hour instead of painting over it. -->
+    <filter id="sky-cirrus" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.013 0.055" numOctaves="4" seed="41" result="t" />
+      <feColorMatrix in="t" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3.7 3.7 3.7 0 -5.36" result="m" />
+      <feComposite in="SourceGraphic" in2="m" operator="in" />
+      <feGaussianBlur stdDeviation="0.45" />
+    </filter>
+    <filter id="sky-alto" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.010 0.028" numOctaves="5" seed="23" result="t" />
+      <feColorMatrix in="t" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3.0 3.0 3.0 0 -4.05" result="m" />
+      <feComposite in="SourceGraphic" in2="m" operator="in" />
+      <feGaussianBlur stdDeviation="0.6" />
+    </filter>
+    <filter id="sky-cumulus" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.0045 0.016" numOctaves="6" seed="7" result="t" />
+      <feColorMatrix in="t" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3.4 3.4 3.4 0 -4.5" result="m" />
+      <feComposite in="SourceGraphic" in2="m" operator="in" />
+      <feGaussianBlur stdDeviation="0.95" />
+    </filter>
+    <filter id="sky-soft"><feGaussianBlur stdDeviation="1.1" /></filter>
+  </defs>
+</svg>
+
+<style>
+  /* Explicit width: as a shrink-to-fit column flex this collapsed to nothing on
+     the Portuguese page, where there is no caption to give it a size. */
+  .sky-figure {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 1s 300ms both;
+  }
+
+  /* The one place the accent gets to be a light source rather than a line. */
+  .sky-glow {
+    position: absolute;
+    top: 0;
+    width: 150%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--color-accent) 30%, transparent),
+      transparent 64%
+    );
+    filter: blur(16px);
+    animation: glowPulse 6s ease-in-out infinite;
+  }
+
+  @keyframes glowPulse {
+    0%,
+    100% {
+      opacity: 0.5;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.85;
+      transform: scale(1.06);
+    }
+  }
+
+  /* Arched top, squared base: a window set into the page, not a floating avatar. */
+  .sky-arch {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    isolation: isolate;
+    border-radius: 999px 999px 18px 18px;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 26%, transparent);
+    /* Without JS this stays a plain warm panel and the portrait still reads. */
+    background: var(--color-surface);
+    box-shadow: 0 30px 80px -30px rgb(0 0 0 / 0.6);
+  }
+
+  .sky-scene,
+  .sky-spill,
+  .sky-vignette {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: 999px 999px 18px 18px;
+  }
+
+  .sky-portrait {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: bottom center;
+    z-index: 2;
+  }
+
+  .sky-spill {
+    z-index: 3;
+    -webkit-mask-image: url("/ronaldo-scotti-print.webp");
+    mask-image: url("/ronaldo-scotti-print.webp");
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-position: bottom center;
+    mask-position: bottom center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+  }
+
+  .sky-vignette {
+    z-index: 4;
+    background: radial-gradient(120% 90% at 50% 34%, transparent 42%, rgb(6 6 10 / 0.32) 100%);
+  }
+
+  .sky-caption {
+    margin-top: 0.875rem;
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+    color: var(--color-ink-faint);
+    text-align: center;
+  }
+
+  .sky-caption :global(b) {
+    color: var(--color-accent);
+    font-weight: 500;
+  }
+
+  .sky-defs {
+    position: absolute;
+    width: 0;
+    height: 0;
+  }
+</style>
+
+<style is:global>
+  /* Layer primitives the runtime builds. Global because the script creates
+     these nodes, so Astro's scoping attribute never lands on them. */
+  .sky-layer {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    border-radius: 999px 999px 18px 18px;
+  }
+
+  .sky-pan {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 300%;
+    height: 100%;
+  }
+
+  .sky-star {
+    position: absolute;
+    border-radius: 50%;
+    background: #fff;
+  }
+
+  .sky-sun {
+    position: absolute;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .sky-moon {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    overflow: visible;
+  }
+
+  @keyframes skyTwinkle {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.28;
+    }
+  }
+
+  @keyframes skyPan {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(33.333%);
+    }
+  }
+
+  @keyframes skyPanReverse {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-33.333%);
+    }
+  }
+
+  /* The sky still reads the correct hour; only the drift and twinkle stop. */
+  @media (prefers-reduced-motion: reduce) {
+    .sky-pan {
+      animation: none !important;
+    }
+    .sky-star {
+      animation: none !important;
+    }
+  }
+</style>
+
+<script>
+  import { renderSky } from "../scripts/sky";
+
+  const host = document.querySelector<HTMLElement>("[data-sky]");
+  const spill = document.querySelector<HTMLElement>("[data-spill]");
+  const caption = document.querySelector<HTMLElement>("[data-caption]");
+
+  if (host) {
+    const paint = () => renderSky(host, spill, caption, new Date());
+    paint();
+    // A minute is the finest granularity the caption shows, and the sky moves
+    // slowly enough that anything shorter would be repainting for nothing.
+    setInterval(paint, 60_000);
+  }
+</script>

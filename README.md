@@ -23,9 +23,14 @@ npm run dev
 
 ## What's inside
 
-Static Astro 5 with Tailwind 4. Four inline blocks of JavaScript (reveal on scroll, active section
-in the nav, counting figures, show-more button) and nothing else: no bundle, no request to any
-external domain, self-hosted fonts.
+Static Astro 5 with Tailwind 4. Four inline blocks of JavaScript (reveal on scroll, active section in
+the nav, counting figures, show-more button) plus one 9 KB module that draws the sky. No request to
+any external domain, self-hosted fonts.
+
+The portrait sits in a window onto the real sky over Florianópolis: sun and moon positions are
+computed from the clock, so the hero changes through the day and the moon carries its actual phase.
+Nothing is fetched — it is arithmetic. See `CLAUDE.md` for how it works and what it deliberately
+leaves out.
 
 Editorial Noir: Playfair Display, warm near-black paper, gold accent, a drifting dot grain over the
 whole page. Dark is the default and does not ask the operating system what it thinks; light is a

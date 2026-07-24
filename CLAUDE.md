@@ -65,6 +65,29 @@ first paint, so a stored choice never flashes. That script also sets `html.js`, 
 everything that starts hidden and is revealed by script, so the page is never invisible without JS
 — and without JS the base palette is already dark, so nothing is needed for it to look right.
 
+### The sky
+
+The hero portrait sits in an arched window showing what the sky actually looks like in Florianópolis
+right now. `src/scripts/sky.ts` computes sun and moon positions from the visitor's clock using the
+low-precision Meeus/NOAA formulations — pure arithmetic, nothing fetched, so the no-external-requests
+rule holds. Verified against known values: solar noon altitude 39.0° at the June solstice, 85.8° at
+the December one.
+
+There are no time-of-day presets. The palette is a continuous function of **solar altitude**, so
+dawn is simply what −3° looks like. The aperture is a north-facing window with a 270° field, because
+in the southern hemisphere the sun crosses the north — and 270° is the narrowest field that keeps the
+sun on screen for every daylight minute of the year (at 210° it fell out of frame around the December
+solstice). The moon carries its real phase, drawn as two elliptical arcs over a full dark disc so a
+gibbous reads as a sphere with a shadow rather than a floating lune.
+
+Weather is **not** wired in yet: the sky always renders clear. That is deliberately also the
+degradation path for when forecast data lands and goes stale.
+
+The portrait is the screen-print illustration, not the photograph — a photographic subject in front
+of a synthetic sky always reads as a bad composite, and matching the medium is what fixes it. The
+real photo stays in `public/ronaldo-scotti.webp` for `Person` schema and OG. The light falling on the
+portrait is the sky's own horizon colour, masked through the PNG's alpha channel.
+
 ### Art direction
 
 Editorial Noir: Playfair Display at 900 for the name and 800 for section headings, Inter for body
