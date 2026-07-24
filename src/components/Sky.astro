@@ -117,13 +117,12 @@ const { caption } = Astro.props;
     /* Without JS this stays a plain warm panel and the portrait still reads.
        With JS the script overwrites it with the live sky's zenith colour, so if
        a mobile browser evicts the layer offscreen and repaints on scroll-back,
-       the gap frame matches the sky instead of flashing this warm panel. */
+       the gap frame matches the sky instead of flashing this warm panel — which
+       is the whole mitigation. An earlier attempt also forced this onto its own
+       GPU layer with translateZ, but on real iOS that made the hero and the
+       section below it flash on every scroll, so it is deliberately gone. */
     background: var(--color-surface);
     box-shadow: 0 30px 80px -30px rgb(0 0 0 / 0.6);
-    /* Hold the arch on its own compositing layer so the filtered clouds and the
-       sun/moon glow are not discarded and re-rasterised when scrolled past. */
-    transform: translateZ(0);
-    backface-visibility: hidden;
   }
 
   .sky-scene,
