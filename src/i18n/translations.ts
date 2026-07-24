@@ -46,7 +46,7 @@ export const translations: Record<Language, Translations> = {
       heading: "Atividade",
       contributions: "{total} contribuições no último ano, em {days} dias",
       githubCta: "Ver no GitHub",
-      languagesHeading: "Linguagens",
+      languagesHeading: "Linguagens que usei esse ano",
       otherLanguages: "Outras",
       stackHeading: "Stack",
       stack: [
@@ -241,7 +241,7 @@ export const translations: Record<Language, Translations> = {
       heading: "Activity",
       contributions: "{total} contributions in the last year, across {days} days",
       githubCta: "See it on GitHub",
-      languagesHeading: "Languages",
+      languagesHeading: "Languages I used this year",
       otherLanguages: "Other",
       stackHeading: "Stack",
       stack: [

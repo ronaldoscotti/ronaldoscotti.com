@@ -135,6 +135,15 @@ const websiteSchema = {
         );
         targets.forEach((el) => io.observe(el));
       }
+
+      // Lazy images popped in at full opacity the moment they decoded, which
+      // read as a flash on scroll. Fade them in over their well background
+      // instead. Any already-complete (cached) image is marked at once.
+      const fadeIn = (img: HTMLImageElement) => img.classList.add("is-loaded");
+      document.querySelectorAll<HTMLImageElement>("img.fade-img").forEach((img) => {
+        if (img.complete) fadeIn(img);
+        else img.addEventListener("load", () => fadeIn(img), { once: true });
+      });
     </script>
 
     <style>

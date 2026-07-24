@@ -206,6 +206,12 @@ export function renderSky(
 
   host.replaceChildren();
 
+  // Paint the arch itself the sky's zenith colour. If a mobile browser evicts
+  // the layer offscreen and repaints on scroll-back, the gap frame is this
+  // colour rather than the warm no-JS fallback panel — so nothing flashes.
+  const arch = host.closest<HTMLElement>(".sky-arch");
+  if (arch) arch.style.background = rgba(pal.zenith);
+
   const sky = document.createElement("div");
   sky.className = "sky-layer";
   sky.style.background = `linear-gradient(180deg,${rgba(pal.zenith)} 0%,${rgba(pal.mid)} 52%,${rgba(pal.horizon)} 100%)`;

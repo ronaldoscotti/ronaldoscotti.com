@@ -114,9 +114,16 @@ const { caption } = Astro.props;
     isolation: isolate;
     border-radius: 999px 999px 18px 18px;
     border: 1px solid color-mix(in srgb, var(--color-accent) 26%, transparent);
-    /* Without JS this stays a plain warm panel and the portrait still reads. */
+    /* Without JS this stays a plain warm panel and the portrait still reads.
+       With JS the script overwrites it with the live sky's zenith colour, so if
+       a mobile browser evicts the layer offscreen and repaints on scroll-back,
+       the gap frame matches the sky instead of flashing this warm panel. */
     background: var(--color-surface);
     box-shadow: 0 30px 80px -30px rgb(0 0 0 / 0.6);
+    /* Hold the arch on its own compositing layer so the filtered clouds and the
+       sun/moon glow are not discarded and re-rasterised when scrolled past. */
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
 
   .sky-scene,

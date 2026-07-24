@@ -20,7 +20,15 @@ const [lead, ...rest] = t.projects.items;
     {
       lead.image && (
         <figure class="shot">
-          <img src={lead.image} alt="" width="1280" height="800" loading="lazy" decoding="async" />
+          <img
+            class="fade-img"
+            src={lead.image}
+            alt=""
+            width="1280"
+            height="800"
+            loading="lazy"
+            decoding="async"
+          />
         </figure>
       )
     }
@@ -49,7 +57,7 @@ const [lead, ...rest] = t.projects.items;
           {project.image && (
             <div class="well">
               <img
-                class="thumb"
+                class="thumb fade-img"
                 src={project.image}
                 alt=""
                 width="1280"
