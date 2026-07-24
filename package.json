@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
+    "test": "node --test",
     "prebuild": "node scripts/fetch-activity.mjs",
     "build": "astro build",
     "preview": "astro preview",

@@ -5,8 +5,8 @@ name: Refresh activity
 # repositories, which do not exist here. That one runs on his machine via
 # scripts/com.ronaldoscotti.site-activity.plist.
 #
-# The commit only happens when the data actually changed, so an idle day adds
-# no noise to the history.
+# The change lands through a pull request that auto-merges once tests pass —
+# never a direct push to main — and only when the data actually changed.
 
 on:
   schedule:
@@ -15,6 +15,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   refresh:
@@ -28,14 +29,31 @@ jobs:
 
       - run: node scripts/fetch-activity.mjs
 
-      - name: Commit if changed
+      - name: Open an auto-merging PR if the data changed
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           if [ -z "$(git status --porcelain src/data/activity.json)" ]; then
             echo "no change"
             exit 0
           fi
+
+          # Guardrail before committing: a malformed activity.json fails here and
+          # no PR is opened.
+          node --test
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          work="activity/$(date '+%Y%m%d-%H%M%S')"
+          git switch -c "$work"
           git add src/data/activity.json
           git commit -m "chore: refresh activity"
-          git push
+          git push -u origin "$work"
+
+          gh pr create --base main --head "$work" \
+            --title "chore: refresh activity" \
+            --body "Automated heatmap refresh. Auto-merges once CI is green."
+
+          gh pr merge "$work" --squash --auto --delete-branch \
+            || gh pr merge "$work" --squash --delete-branch

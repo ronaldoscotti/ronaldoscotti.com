@@ -38,7 +38,7 @@ const IGNORE = /(^|\/)(node_modules|vendor|dist|build|\.next|\.astro|coverage|pu
 const LOCKS = /(package-lock\.json|yarn\.lock|composer\.lock|pnpm-lock\.yaml)$/;
 
 /** Collapses raw totals into at most MAX_SLICES slices, with a grouped remainder. */
-function toSlices(totals) {
+export function toSlices(totals) {
   const sum = Object.values(totals).reduce((a, b) => a + b, 0);
   if (!sum) return [];
 
@@ -153,31 +153,36 @@ function fromLocal(dirs) {
   return { items: toSlices(totals), source: "local-git", repos: scanned };
 }
 
-const current = existsSync(OUT) ? JSON.parse(readFileSync(OUT, "utf8")) : {};
-const local = process.env.LOCAL_REPOS;
-const token = process.env.GITHUB_TOKEN;
+async function main() {
+  const current = existsSync(OUT) ? JSON.parse(readFileSync(OUT, "utf8")) : {};
+  const local = process.env.LOCAL_REPOS;
+  const token = process.env.GITHUB_TOKEN;
 
-let languages;
-try {
-  if (local) languages = fromLocal(local.split(","));
-  else if (token) languages = await fromGitHub(token);
-  else {
-    console.warn("! neither LOCAL_REPOS nor GITHUB_TOKEN set");
+  let languages;
+  try {
+    if (local) languages = fromLocal(local.split(","));
+    else if (token) languages = await fromGitHub(token);
+    else {
+      console.warn("! neither LOCAL_REPOS nor GITHUB_TOKEN set");
+      process.exit(0);
+    }
+  } catch (err) {
+    console.warn(`! failed: ${err.message}`);
     process.exit(0);
   }
-} catch (err) {
-  console.warn(`! failed: ${err.message}`);
-  process.exit(0);
+
+  if (!languages.items.length) {
+    console.warn("! nothing above threshold, keeping previous data");
+    process.exit(0);
+  }
+
+  current.languages = languages;
+  writeFileSync(OUT, JSON.stringify(current, null, 2) + "\n");
+  console.log(
+    `✓ languages (${languages.source}, ${languages.repos} repos): ` +
+      languages.items.map((l) => `${l.name} ${l.percent}%`).join(", "),
+  );
 }
 
-if (!languages.items.length) {
-  console.warn("! nothing above threshold, keeping previous data");
-  process.exit(0);
-}
-
-current.languages = languages;
-writeFileSync(OUT, JSON.stringify(current, null, 2) + "\n");
-console.log(
-  `✓ languages (${languages.source}, ${languages.repos} repos): ` +
-    languages.items.map((l) => `${l.name} ${l.percent}%`).join(", "),
-);
+// Only fetch when run directly; importing (for tests) must have no side effects.
+if (process.argv[1] === fileURLToPath(import.meta.url)) await main();
