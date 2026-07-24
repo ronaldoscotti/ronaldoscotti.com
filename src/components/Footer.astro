@@ -26,7 +26,9 @@ const year = new Date().getFullYear();
       <a href={`mailto:${t.contact.email}`}>{lang === "en" ? "Email" : "E-mail"}</a>
       <a href="https://linkedin.com/in/ronaldoscottis" rel="noopener">LinkedIn</a>
       <a href="https://github.com/ronaldoscotti" rel="noopener">GitHub</a>
-      <a href={getLanguagePath(alternate)}>{alternate === "en" ? "English" : "Português"}</a>
+      <a href={getLanguagePath(alternate)} data-lang-choice={alternate === "en" ? "en" : "pt"}>
+        {alternate === "en" ? "English" : "Português"}
+      </a>
     </p>
 
     <p class="motto">{t.footer.motto}</p>

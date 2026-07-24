@@ -23,7 +23,12 @@ const alternate = getAlternateLanguage(lang);
     </nav>
 
     <div class="right">
-      <a href={getLanguagePath(alternate)} class="lang" hreflang={alternate === "en" ? "en" : "pt-BR"}>
+      <a
+        href={getLanguagePath(alternate)}
+        class="lang"
+        hreflang={alternate === "en" ? "en" : "pt-BR"}
+        data-lang-choice={alternate === "en" ? "en" : "pt"}
+      >
         {alternate === "en" ? "EN" : "PT"}
         <span class="sr-only">{t.nav.switchLabel}</span>
       </a>

@@ -1,6 +1,7 @@
-# Netlify / Cloudflare Pages. Redirect de verdade (301) em vez do meta refresh,
-# quando a plataforma suportar.
-/en      /    301
-/en/*    /    301
-/es      /    301
-/es/*    /    301
+# Netlify / Cloudflare Pages. Real 301s instead of the meta refresh where the
+# platform supports it. The ?lang=en carries the explicit English choice, which
+# the head script reads, persists, and strips from the URL.
+/en      /?lang=en    301
+/en/*    /?lang=en    301
+/es      /?lang=en    301
+/es/*    /?lang=en    301

@@ -33,10 +33,20 @@ npm run shots      # recapture project screenshots via agent-browser
 
 ### Routes
 
-`/` (EN, default) · `/pt` · `/404` · `/en` and `/es` redirect to `/`.
+`/` (EN, default) · `/pt` · `/404` · `/en` and `/es` redirect to `/?lang=en`.
 
 Both language pages render `src/components/Page.astro`, which composes the sections. Section ids
 differ per language and must match the `nav.links` hrefs in `translations.ts`.
+
+**Language routing** is decided client-side in an inline `<head>` script, before first paint. Only
+`/` is ambiguous, and only there does the browser preference get a vote: with no stored choice, a
+`pt-*` browser is sent to `/pt`, everything else stays. `/pt` is an explicit page and is never
+redirected away from — a URL the visitor chose always wins over their browser. The language toggle
+writes the chosen language to `localStorage` (`data-lang-choice` on the link), and that stored
+choice then beats browser detection on `/` forever after — otherwise a manual switch to EN on a
+Portuguese browser would bounce straight back to `/pt`. The `/en` and `/es` aliases carry
+`?lang=en`, which the script persists and then strips from the URL, so an explicit English link is
+honoured even against a Portuguese browser.
 
 ### Data
 
