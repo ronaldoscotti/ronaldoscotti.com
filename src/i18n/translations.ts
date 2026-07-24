@@ -8,7 +8,7 @@ export const translations: Record<Language, Translations> = {
     seo: {
       title: "Ronaldo Scotti · Staff Software Engineer e arquiteto de software",
       description:
-        "Fundei um SaaS, escalei e vendi. Nunca parei de programar. Arquitetura, sistemas de pagamento e automação em produção, com agente de IA entregando código que passa em revisão de sênior.",
+        "Fundei um SaaS, escalei e vendi. Nunca parei de programar. Pagamentos, escala e agentes de IA entregando código que passa em revisão de sênior.",
       ogTitle: "Ronaldo Scotti · Fundei um SaaS, escalei e vendi. Nunca parei de programar.",
       ogDescription: "Staff Software Engineer e arquiteto de software. Florianópolis, remoto.",
     },
@@ -122,6 +122,7 @@ export const translations: Record<Language, Translations> = {
       heading: "Projetos",
       intro: "Feitos e mantidos sozinho, do banco de dados até a loja de aplicativos.",
       featuredLabel: "Em destaque",
+      screenshotAlt: "Tela do {name}",
       items: [
         {
           name: "Meu Feed Católico",
@@ -201,7 +202,7 @@ export const translations: Record<Language, Translations> = {
     seo: {
       title: "Ronaldo Scotti · Staff Software Engineer & Software Architect",
       description:
-        "Exited SaaS founder who never stopped writing code. Payments, scale and automation in production. I get AI coding agents to ship code a senior would sign off on. Laravel, TypeScript, LLM systems. Remote, UTC-3.",
+        "Exited SaaS founder who never stopped coding. Payments, scale and AI agents shipping code a senior would sign off on. Remote, UTC-3.",
       ogTitle:
         "Ronaldo Scotti · I founded a SaaS, scaled it, and sold it. I never stopped writing code.",
       ogDescription: "Staff Software Engineer and software architect. Florianópolis, remote.",
@@ -317,6 +318,7 @@ export const translations: Record<Language, Translations> = {
       heading: "Projects",
       intro: "Built and run solo, from the database to the app store.",
       featuredLabel: "Featured",
+      screenshotAlt: "Screenshot of {name}",
       items: [
         {
           name: "Meu Feed Católico",
