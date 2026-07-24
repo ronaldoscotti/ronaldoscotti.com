@@ -84,6 +84,8 @@ what keeps the flat backgrounds from reading as flat.
 - `Person` schema carries no `worksFor`, and no copy states a current employer. The site must stay
   true after a job change.
 - Comments are sparse and in English, even though the content is Portuguese.
+- Commit messages, PR titles and PR descriptions are in English. The published copy is bilingual;
+  the git history is not.
 
 ### Content language
 
