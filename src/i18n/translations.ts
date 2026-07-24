@@ -1,7 +1,7 @@
 import type { Language, Translations } from "./types";
 
-// Copy source: docs/copy-pt.md and docs/copy-en.md.
-// EN is not a translation of PT; both derive from the CV.
+// EN is not a translation of PT: both derive from the CV, and audience-specific
+// lines belong to one side only.
 
 export const translations: Record<Language, Translations> = {
   "pt-BR": {
