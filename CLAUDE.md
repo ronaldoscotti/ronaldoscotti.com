@@ -63,17 +63,18 @@ preserves the `languages` key written by `scripts/fetch-languages.mjs`.
 
 ### Theming
 
-Light and dark are two calibrated palettes, not an inversion. **Dark is the default** — it is the
-palette the direction was drawn in, so it ships as the base `@theme`, and light is an override
-under `:root[data-theme="light"]`. Light was derived from dark by flipping luminance while keeping
-the same warmth and the same role for every token.
+Light and dark are two calibrated palettes, not an inversion. Dark is the base `@theme` (the palette
+the direction was drawn in) and light is an override under `:root[data-theme="light"]`, derived from
+dark by flipping luminance while keeping the same warmth and the same role for every token.
 
-The system preference deliberately gets no vote: `prefers-color-scheme` is not consulted anywhere.
-A visitor on a light OS still lands on the dark site, and the toggle — one click, persisted in
-`localStorage` — is how they opt out. An inline script in `<head>` resolves `data-theme` before
-first paint, so a stored choice never flashes. That script also sets `html.js`, which gates
-everything that starts hidden and is revealed by script, so the page is never invisible without JS
-— and without JS the base palette is already dark, so nothing is needed for it to look right.
+**The default follows the visitor's clock, not their OS.** An inline `<head>` script resolves
+`data-theme` before first paint: a stored manual choice always wins; otherwise the local hour
+decides — light through the day (07:00–19:00, a coordinate-free daylight heuristic), dark at night.
+`prefers-color-scheme` still gets no vote — we read the hour, never the system setting. The toggle
+is one click, persisted in `localStorage`, and once set it beats the clock forever after. The script
+also updates the `theme-color` meta so mobile browser chrome matches, and sets `html.js`, which
+gates everything that starts hidden and is revealed by script. Without JS the base palette (dark)
+stands, so the page is never invisible and never wrong-looking.
 
 ### The sky
 
