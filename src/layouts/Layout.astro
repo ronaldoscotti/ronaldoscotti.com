@@ -92,6 +92,58 @@ const websiteSchema = {
     <link rel="preload" href="/ronaldo-scotti-print.webp" as="image" fetchpriority="high" />
 
     <script is:inline>
+      // Language routing, before anything paints. The default homepage "/" is
+      // the only ambiguous URL: "/pt" is an explicit page and is left alone, and
+      // the browser preference never overrides a path the visitor chose.
+      (() => {
+        const VALID = new Set(["en", "pt"]);
+        const read = () => {
+          try {
+            return localStorage.getItem("lang");
+          } catch {
+            return null;
+          }
+        };
+        const write = (v) => {
+          try {
+            localStorage.setItem("lang", v);
+          } catch {}
+        };
+
+        const params = new URLSearchParams(location.search);
+        const urlLang = params.get("lang");
+        // ?lang= carries the explicit choice from the /en and /es aliases (and
+        // any shared link). Persist it, then strip it so the address bar is clean.
+        if (VALID.has(urlLang)) {
+          write(urlLang);
+          params.delete("lang");
+          const query = params.toString();
+          history.replaceState(null, "", location.pathname + (query ? `?${query}` : "") + location.hash);
+        }
+
+        if (location.pathname === "/") {
+          const stored = read();
+          const prefersPt = (navigator.languages || [navigator.language]).some(
+            (l) => l && l.toLowerCase().startsWith("pt"),
+          );
+          const desired = VALID.has(stored) ? stored : prefersPt ? "pt" : "en";
+          if (desired === "pt") {
+            location.replace("/pt");
+            return;
+          }
+        }
+
+        // Persist the choice when the visitor flips the language, so auto-detect
+        // does not send them back on the next visit.
+        document.addEventListener("click", (e) => {
+          const t = e.target;
+          const link = t instanceof Element ? t.closest("[data-lang-choice]") : null;
+          if (link) write(link.getAttribute("data-lang-choice"));
+        });
+      })();
+    </script>
+
+    <script is:inline>
       // Runs before first paint so a stored choice never flashes the wrong theme.
       // Dark is the default, so only an explicit stored "light" turns it off —
       // the system preference deliberately does not get a vote.
