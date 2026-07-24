@@ -18,7 +18,13 @@ const t = getTranslations(lang);
     <a class="email" href={`mailto:${t.contact.email}`}>{t.contact.email}</a>
 
     <p class="links">
-      {t.contact.links.map((link) => <a href={link.url} rel="noopener">{link.label}</a>)}
+      {
+        t.contact.links.map((link) => (
+          <a href={link.url} rel="noopener">
+            {link.label}
+          </a>
+        ))
+      }
       <a href="/cv.pdf" download>{t.nav.resume}</a>
     </p>
 
@@ -30,7 +36,8 @@ const t = getTranslations(lang);
   .email {
     display: inline-block;
     font-family: var(--font-display);
-    font-size: clamp(1.5rem, 3.5vw, 2.125rem);
+    font-weight: 500;
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
     line-height: 1.2;
     letter-spacing: -0.015em;
     text-decoration-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
@@ -43,11 +50,22 @@ const t = getTranslations(lang);
     flex-wrap: wrap;
     gap: 1.25rem;
     margin-top: 1.5rem;
-    font-size: 0.9375rem;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+  }
+
+  .links a {
+    color: var(--color-ink-mute);
+    text-decoration: none;
+  }
+
+  .links a:hover {
+    color: var(--color-accent-deep);
   }
 
   .location {
-    margin-top: 1.75rem;
+    margin-top: 1.5rem;
+    font-size: 0.75rem;
     line-height: 1.7;
   }
 </style>

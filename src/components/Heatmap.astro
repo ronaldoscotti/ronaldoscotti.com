@@ -49,6 +49,7 @@ const height = 7 * STEP - GAP;
             height={CELL}
             rx="2"
             data-level={level(count)}
+            style={`--c:${x}`}
           />
         )),
       )
@@ -77,6 +78,28 @@ const height = 7 * STEP - GAP;
     display: block;
     max-width: none;
     height: auto;
+  }
+
+  /* The year fills in as a wave, week by week, once the block lands in view.
+     Staggering by column keeps 371 cells to a single keyframe rule. */
+  :global(html.js) .heatmap rect {
+    opacity: 0;
+  }
+
+  :global(html.js .is-in) .heatmap rect {
+    animation: heatIn 420ms ease-out both;
+    animation-delay: calc(var(--c) * 11ms);
+  }
+
+  @keyframes heatIn {
+    from {
+      opacity: 0;
+      transform: scale(0.2);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 
   rect[data-level="0"] { fill: var(--heat-0); }

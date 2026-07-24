@@ -8,112 +8,180 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = getTranslations(lang);
+
+/** Split so the two lines of the name rise in one after the other. */
+const nameLines = t.hero.name.split(" ");
 ---
 
 <section class="hero">
   <div class="wrap inner">
     <div class="text">
-      <p class="eyebrow">{t.hero.role}</p>
-      <h1>{t.hero.name}</h1>
+      <p class="eyebrow role">{t.hero.role}</p>
+      <h1>
+        {nameLines.map((line, i) => <span class="line" style={`--i:${i}`}>{line}</span>)}
+      </h1>
       <p class="tagline">{t.hero.tagline}</p>
       <p class="intro">{t.hero.intro}</p>
     </div>
 
     <figure class="portrait">
-      <img
-        src="/ronaldo-scotti.webp"
-        alt={t.hero.photoAlt}
-        width="1000"
-        height="1000"
-        fetchpriority="high"
-        decoding="async"
-      />
+      <span class="glow" aria-hidden="true"></span>
+      <span class="frame">
+        <img
+          src="/ronaldo-scotti.webp"
+          alt={t.hero.photoAlt}
+          width="1000"
+          height="1000"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </span>
     </figure>
   </div>
 </section>
 
 <style>
   .hero {
+    position: relative;
     background: var(--color-paper-deep);
-    border-bottom: 1px solid var(--color-rule);
     overflow: hidden;
   }
 
   .inner {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    align-items: end;
+    align-items: center;
     gap: 0;
   }
 
   .text {
-    padding-block: clamp(3rem, 8vh, 5.5rem);
+    padding-block: clamp(3rem, 8vh, 5rem);
   }
 
-  .eyebrow {
-    margin-bottom: 1rem;
+  .role {
+    letter-spacing: 0.2em;
+    color: var(--color-accent);
+    margin-bottom: 1.375rem;
+    animation: riseIn 700ms 50ms both;
   }
 
   h1 {
-    margin-bottom: 1.125rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .line {
+    display: block;
+    animation: riseIn 800ms both;
+    animation-delay: calc(120ms + var(--i) * 100ms);
   }
 
   .tagline {
     font-family: var(--font-display);
-    font-size: clamp(1.25rem, 2.4vw, 1.5rem);
-    line-height: 1.35;
+    font-weight: 500;
+    font-size: clamp(1.25rem, 2.6vw, 1.625rem);
+    line-height: 1.28;
     color: var(--color-ink-soft);
-    max-width: 32ch;
-    margin-bottom: 1.125rem;
+    max-width: 28ch;
+    margin-bottom: 1.375rem;
+    animation: riseIn 800ms 320ms both;
   }
 
   .intro {
     max-width: var(--measure);
-    color: var(--color-ink-soft);
+    font-size: 1rem;
+    line-height: 1.62;
+    color: var(--color-ink-mute);
+    animation: riseIn 800ms 420ms both;
   }
 
   .portrait {
+    position: relative;
     margin: 0;
-    align-self: end;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 1s 300ms both;
+  }
+
+  /* Gold bloom behind the portrait — the one place the accent gets to be a
+     light source rather than a line. */
+  .glow {
+    position: absolute;
+    width: 152%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--color-accent) 42%, transparent),
+      transparent 64%
+    );
+    filter: blur(14px);
+    animation: glowPulse 6s ease-in-out infinite;
+  }
+
+  @keyframes glowPulse {
+    0%,
+    100% {
+      opacity: 0.5;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.85;
+      transform: scale(1.07);
+    }
+  }
+
+  /* Arched top, squared base: a plate set on the page, not a floating avatar. */
+  .frame {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: 999px 999px 18px 18px;
+    border: 1px solid color-mix(in srgb, var(--color-accent) 24%, transparent);
+    background: var(--color-surface);
+    box-shadow: 0 30px 80px -30px rgb(0 0 0 / 0.55);
+  }
+
+  .frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 58%, var(--color-paper-deep));
+    opacity: 0.55;
   }
 
   .portrait img {
-    display: block;
     width: 100%;
-    height: auto;
-    filter: saturate(0.94) contrast(1.03);
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    filter: contrast(1.03) brightness(0.99) sepia(0.1) saturate(1.04);
   }
 
   @media (min-width: 860px) {
     .inner {
-      grid-template-columns: minmax(0, 1fr) 19rem;
-      gap: 2rem;
+      grid-template-columns: 1.35fr minmax(0, 1fr);
+      gap: 3rem;
     }
 
     .text {
-      padding-block: clamp(3rem, 7vh, 4.5rem);
+      padding-block: clamp(3.5rem, 9vh, 5.5rem);
     }
 
-    /* Bleeds past the container so the portrait reads large without stealing
-       width from the name. */
-    .portrait img {
-      width: calc(100% + 4.5rem);
-      max-width: none;
-      margin-inline-end: -4.5rem;
-    }
-
-    /* Stands on the section rule instead of floating in a box, so it never
-       reads as a photo cropped at the chest. */
     .portrait {
-      margin-bottom: -1px;
+      max-width: 20rem;
+      justify-self: center;
     }
   }
 
   @media (max-width: 859px) {
     .inner {
-      grid-template-columns: minmax(0, 1fr) 12rem;
+      grid-template-columns: minmax(0, 1fr) 11rem;
       align-items: end;
-      column-gap: 1rem;
+      column-gap: 1.25rem;
+      padding-bottom: 2rem;
     }
 
     .text {
@@ -123,14 +191,20 @@ const t = getTranslations(lang);
 
     .portrait {
       grid-column: 2;
-      margin-bottom: -1px;
-      margin-inline-end: -1.5rem;
     }
   }
 
+  /* Below this the two-column split leaves an L-shaped void beside the
+     portrait, so it becomes a single centred column instead. */
   @media (max-width: 560px) {
     .inner {
-      grid-template-columns: minmax(0, 1fr) 10rem;
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .portrait {
+      grid-column: 1;
+      width: 13rem;
+      justify-self: center;
     }
   }
 </style>

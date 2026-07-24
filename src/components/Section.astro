@@ -12,8 +12,10 @@ const { id, index, heading, intro } = Astro.props;
 <section id={id} class="section">
   <div class="wrap">
     <header class="head reveal">
-      <p class="eyebrow num">{index}</p>
-      <h2>{heading}</h2>
+      <div class="title">
+        <span class="num" aria-hidden="true">{index}</span>
+        <h2>{heading}</h2>
+      </div>
       {intro && <p class="lede measure intro">{intro}</p>}
       <slot name="head-extra" />
     </header>
@@ -27,8 +29,19 @@ const { id, index, heading, intro } = Astro.props;
     margin-bottom: 2.5rem;
   }
 
+  /* Baseline-aligned so the mono numeral sits on the serif heading's line
+     instead of floating above it. */
+  .title {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+  }
+
   .num {
-    margin-bottom: 0.625rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-accent);
+    font-variant-numeric: tabular-nums;
   }
 
   .intro {

@@ -1,11 +1,36 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: "Newsreader";
-  src: url("/fonts/newsreader.woff2") format("woff2-variations");
-  font-weight: 200 800;
+  font-family: "Playfair Display";
+  src: url("/fonts/playfair.woff2") format("woff2-variations");
+  font-weight: 400 900;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304,
+    U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/fonts/playfair-ext.woff2") format("woff2-variations");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308,
+    U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113,
+    U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* Latin only. A faux-oblique high-contrast serif looks broken, and the italic
+   is used on a handful of short strings below the fold. */
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/fonts/playfair-italic.woff2") format("woff2-variations");
+  font-weight: 400 900;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304,
+    U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
@@ -24,22 +49,32 @@
   font-display: swap;
 }
 
+/* Editorial Noir. Dark is the designed palette; light is its equivalent,
+   inferred by flipping luminance while keeping the same warmth and the same
+   role for every token — not by inverting the colours. */
 @theme {
-  --color-paper: #efe6d6;
-  --color-paper-deep: #e8ddca;
-  --color-ink: #1a1410;
-  --color-ink-soft: #3e2b23;
-  --color-ink-mute: #6d5949;
-  --color-rule: #d8cbb6;
-  --color-accent: #b5793a;
-  --color-accent-deep: #8d5a26;
+  --color-paper: #f4efe6;
+  --color-paper-deep: #ece4d5;
+  --color-surface: #fbf8f1;
+  --color-well: #e4dbc9;
+  --color-ink: #17140f;
+  --color-ink-soft: #443b2e;
+  --color-ink-mute: #756853;
+  --color-ink-faint: #93856d;
+  --color-rule: #ddd3c0;
+  --color-accent: #9a7020;
+  --color-accent-deep: #7a5410;
 
-  --font-display: "Newsreader", Georgia, "Times New Roman", serif;
+  --grain-blend: multiply;
+  --grain-dot: #000;
+  --grain-opacity: 0.045;
+
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
   --font-body: "Inter", system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
 
   --measure: 36rem;
-  --measure-wide: 60rem;
+  --measure-wide: 66rem;
 
   --heat-0: color-mix(in srgb, var(--color-rule) 78%, var(--color-paper));
   --heat-1: #9be9a8;
@@ -48,19 +83,25 @@
   --heat-4: #216e39;
 }
 
-/* Dark is a calibrated warm palette, not an inversion of the light one.
-   Declared twice: the media query serves the system preference (and no-JS),
+/* Declared twice: the media query serves the system preference (and no-JS),
    the attribute serves an explicit choice and has to win over it. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --color-paper: #131110;
-    --color-paper-deep: #0d0c0b;
-    --color-ink: #ede3d3;
-    --color-ink-soft: #c6b8a4;
-    --color-ink-mute: #91816c;
-    --color-rule: #322824;
-    --color-accent: #d99b56;
-    --color-accent-deep: #eab777;
+    --color-paper: #17140f;
+    --color-paper-deep: #141109;
+    --color-surface: #1b1712;
+    --color-well: #0f0c08;
+    --color-ink: #f4efe6;
+    --color-ink-soft: #cfc6b4;
+    --color-ink-mute: #a99f8e;
+    --color-ink-faint: #8a8171;
+    --color-rule: #2b2620;
+    --color-accent: #c99b45;
+    --color-accent-deep: #e9c987;
+
+    --grain-blend: screen;
+    --grain-dot: #fff;
+    --grain-opacity: 0.05;
 
     --heat-0: #1f1a17;
     --heat-1: #0e4429;
@@ -71,14 +112,21 @@
 }
 
 :root[data-theme="dark"] {
-  --color-paper: #131110;
-  --color-paper-deep: #0d0c0b;
-  --color-ink: #ede3d3;
-  --color-ink-soft: #c6b8a4;
-  --color-ink-mute: #91816c;
-  --color-rule: #322824;
-  --color-accent: #d99b56;
-  --color-accent-deep: #eab777;
+  --color-paper: #17140f;
+  --color-paper-deep: #141109;
+  --color-surface: #1b1712;
+  --color-well: #0f0c08;
+  --color-ink: #f4efe6;
+  --color-ink-soft: #cfc6b4;
+  --color-ink-mute: #a99f8e;
+  --color-ink-faint: #8a8171;
+  --color-rule: #2b2620;
+  --color-accent: #c99b45;
+  --color-accent-deep: #e9c987;
+
+  --grain-blend: screen;
+  --grain-dot: #fff;
+  --grain-opacity: 0.05;
 
   --heat-0: #1f1a17;
   --heat-1: #0e4429;
@@ -90,19 +138,11 @@
 /* The portrait was lit for a light background, and the article covers are
    light illustrations that glare against a dark page. */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .portrait img {
-    filter: saturate(0.92) contrast(1.04) brightness(1.02);
-  }
-
   :root:not([data-theme="light"]) .cover,
   :root:not([data-theme="light"]) .thumb,
   :root:not([data-theme="light"]) .shot img {
     filter: saturate(0.8) brightness(0.82) contrast(1.02);
   }
-}
-
-:root[data-theme="dark"] .portrait img {
-  filter: saturate(0.92) contrast(1.04) brightness(1.02);
 }
 
 :root[data-theme="dark"] .cover,
@@ -136,31 +176,56 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Fixed dot field over the whole page: the printed-paper tooth that carries
+   the direction. Drifts a few pixels so it never reads as a flat texture. */
+.grain {
+  position: fixed;
+  inset: -20px;
+  z-index: 50;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: var(--grain-blend);
+  background-image: radial-gradient(var(--grain-dot) 1px, transparent 1px);
+  background-size: 4px 4px;
+  animation: grainShift 3s steps(3) infinite alternate;
+}
+
+@keyframes grainShift {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(-6px, -8px);
+  }
+}
+
 h1,
 h2,
 h3 {
   font-family: var(--font-display);
-  font-weight: 500;
   color: var(--color-ink);
   margin: 0;
   text-wrap: balance;
 }
 
 h1 {
-  font-size: clamp(2.5rem, 6.5vw, 4.25rem);
-  line-height: 1.02;
-  letter-spacing: -0.025em;
+  font-weight: 900;
+  font-size: clamp(3rem, 9vw, 5.75rem);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
 }
 
 h2 {
-  font-size: clamp(1.625rem, 3vw, 2.125rem);
-  line-height: 1.15;
-  letter-spacing: -0.015em;
+  font-weight: 800;
+  font-size: clamp(1.875rem, 3.6vw, 2.375rem);
+  line-height: 1.1;
+  letter-spacing: -0.012em;
 }
 
 h3 {
-  font-size: 1.1875rem;
-  line-height: 1.35;
+  font-weight: 700;
+  font-size: 1.3125rem;
+  line-height: 1.3;
 }
 
 p {
@@ -214,9 +279,23 @@ img {
   max-width: var(--measure);
 }
 
+/* The section divider is a gold hairline that fades out, not a full rule: it
+   reads as a printed flourish rather than a table border. It sits at the very
+   top of the section, so all the breathing room belongs to the section above. */
 .section {
-  padding-block: clamp(3.5rem, 8vh, 6rem);
-  border-top: 1px solid var(--color-rule);
+  padding-block: 0 clamp(3.5rem, 9vh, 5.5rem);
+}
+
+.section::before {
+  content: "";
+  display: block;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--color-accent) 55%, transparent),
+    transparent
+  );
+  margin-bottom: clamp(2rem, 5vh, 2.75rem);
 }
 
 .eyebrow {
@@ -236,40 +315,79 @@ img {
   font-variant-numeric: tabular-nums;
 }
 
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ink-faint);
+}
+
 .lede {
-  font-size: 1.125rem;
+  font-size: 1.0625rem;
   line-height: 1.6;
-  color: var(--color-ink-soft);
+  color: var(--color-ink-mute);
 }
 
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--color-ink);
-  border-radius: 2px;
-  font-size: 0.875rem;
-  font-weight: 500;
+  padding: 0.5625rem 1.125rem;
+  border: 1px solid color-mix(in srgb, var(--color-accent) 45%, transparent);
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
+  color: var(--color-accent-deep);
+  background: transparent;
   text-decoration: none;
   white-space: nowrap;
-  transition: background 160ms ease, color 160ms ease;
+  cursor: pointer;
+  transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
 }
 
 .btn:hover {
-  background: var(--color-ink);
-  color: var(--color-paper);
+  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+  border-color: var(--color-accent);
+  color: var(--color-accent-deep);
+}
+
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(16px);
 }
 
 .reveal {
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 400ms ease-out, transform 400ms ease-out;
+  transition: opacity 620ms cubic-bezier(0.2, 0.7, 0.3, 1),
+    transform 620ms cubic-bezier(0.2, 0.7, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
 }
 
-.reveal.is-in {
+html.js .reveal.is-in {
   opacity: 1;
   transform: none;
+}
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -283,14 +401,18 @@ img {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  .reveal {
+  html.js .reveal {
     opacity: 1;
     transform: none;
+  }
+  .grain {
+    display: none;
   }
 }
 
 @media print {
-  .no-print {
+  .no-print,
+  .grain {
     display: none !important;
   }
   body {
@@ -298,8 +420,11 @@ img {
     color: #000;
   }
   .section {
-    border-color: #999;
     padding-block: 1.25rem;
     break-inside: avoid;
+  }
+  .section::before {
+    background: #999;
+    margin-bottom: 1rem;
   }
 }

@@ -49,10 +49,18 @@ export interface Translations {
     body: string;
   };
 
+  projects: {
+    heading: string;
+    intro: string;
+    featuredLabel: string;
+    items: Project[];
+  };
+
   activity: {
     heading: string;
     /** Template with {total} and {days} placeholders. */
     contributions: string;
+    githubCta: string;
     languagesHeading: string;
     otherLanguages: string;
     stackHeading: string;
@@ -68,12 +76,6 @@ export interface Translations {
     jobs: Job[];
     educationHeading: string;
     education: string[];
-  };
-
-  projects: {
-    heading: string;
-    intro: string;
-    items: Project[];
   };
 
   writing: {

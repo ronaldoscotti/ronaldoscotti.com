@@ -17,6 +17,7 @@ const TARGETS = [
   { slug: "meu-feed-catolico", url: "https://use.meufeedcatolico.com.br", wait: 4000 },
   { slug: "temperamentos-online", url: "https://temperamentos.online", wait: 3000 },
   { slug: "nova-aba-catolica", url: "https://nova-aba-catolica.ronaldoscotti.com", wait: 3000 },
+  { slug: "catholic-new-tab", url: "https://nova-aba-catolica.ronaldoscotti.com/en", wait: 3000 },
   { slug: "orbit-pages", url: "https://www.orbitpages.com", wait: 4000 },
 ];
 
