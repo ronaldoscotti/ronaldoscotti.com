@@ -15,7 +15,18 @@ const t = getTranslations(lang);
 
 <Section id={id} index={index} heading={t.contact.heading}>
   <div class="reveal">
-    <a class="email" href={`mailto:${t.contact.email}`}>{t.contact.email}</a>
+    <div class="head">
+      <img
+        class="avatar"
+        src="/ronaldo-scotti-avatar.webp"
+        alt={t.hero.photoAlt}
+        width="400"
+        height="400"
+        loading="lazy"
+        decoding="async"
+      />
+      <a class="email" href={`mailto:${t.contact.email}`}>{t.contact.email}</a>
+    </div>
 
     <p class="links">
       {
@@ -33,6 +44,27 @@ const t = getTranslations(lang);
 </Section>
 
 <style>
+  /* The hero portrait is an illustration, so this is the one place on the page
+     that shows an actual photograph of him. */
+  .head {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .avatar {
+    flex: none;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top center;
+    background: var(--color-surface);
+    border: 1px solid color-mix(in srgb, var(--color-accent) 34%, transparent);
+    box-shadow: 0 10px 30px -14px rgb(0 0 0 / 0.6);
+  }
+
   .email {
     display: inline-block;
     font-family: var(--font-display);

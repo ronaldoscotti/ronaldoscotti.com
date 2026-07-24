@@ -64,8 +64,11 @@ const { caption } = Astro.props;
 </svg>
 
 <style>
+  /* Explicit width: as a shrink-to-fit column flex this collapsed to nothing on
+     the Portuguese page, where there is no caption to give it a size. */
   .sky-figure {
     position: relative;
+    width: 100%;
     margin: 0;
     display: flex;
     flex-direction: column;

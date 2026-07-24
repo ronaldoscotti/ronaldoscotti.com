@@ -86,8 +86,12 @@ const nameLines = t.hero.name.split(" ");
     animation: riseIn 800ms 420ms both;
   }
 
+  /* width is load-bearing: `justify-self: center` below makes this grid item
+     shrink to its content, which collapsed the whole sky to nothing on the page
+     that has no caption under it. */
   .portrait {
     position: relative;
+    width: 100%;
   }
 
   .sr-only {
