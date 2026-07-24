@@ -1,6 +1,7 @@
 ---
 import type { Language } from "../i18n/types";
 import { getTranslations } from "../i18n/utils";
+import Sky from "./Sky.astro";
 
 interface Props {
   lang: Language;
@@ -24,19 +25,10 @@ const nameLines = t.hero.name.split(" ");
       <p class="intro">{t.hero.intro}</p>
     </div>
 
-    <figure class="portrait">
-      <span class="glow" aria-hidden="true"></span>
-      <span class="frame">
-        <img
-          src="/ronaldo-scotti.webp"
-          alt={t.hero.photoAlt}
-          width="1000"
-          height="1000"
-          fetchpriority="high"
-          decoding="async"
-        />
-      </span>
-    </figure>
+    <div class="portrait">
+      <Sky caption={t.hero.skyCaption} />
+      <span class="sr-only">{t.hero.photoAlt}</span>
+    </div>
   </div>
 </section>
 
@@ -96,68 +88,18 @@ const nameLines = t.hero.name.split(" ");
 
   .portrait {
     position: relative;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: fadeIn 1s 300ms both;
   }
 
-  /* Gold bloom behind the portrait — the one place the accent gets to be a
-     light source rather than a line. */
-  .glow {
+  .sr-only {
     position: absolute;
-    width: 152%;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background: radial-gradient(
-      circle,
-      color-mix(in srgb, var(--color-accent) 42%, transparent),
-      transparent 64%
-    );
-    filter: blur(14px);
-    animation: glowPulse 6s ease-in-out infinite;
-  }
-
-  @keyframes glowPulse {
-    0%,
-    100% {
-      opacity: 0.5;
-      transform: scale(1);
-    }
-    50% {
-      opacity: 0.85;
-      transform: scale(1.07);
-    }
-  }
-
-  /* Arched top, squared base: a plate set on the page, not a floating avatar. */
-  .frame {
-    position: relative;
-    display: block;
-    width: 100%;
-    aspect-ratio: 4 / 5;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
     overflow: hidden;
-    border-radius: 999px 999px 18px 18px;
-    border: 1px solid color-mix(in srgb, var(--color-accent) 24%, transparent);
-    background: var(--color-surface);
-    box-shadow: 0 30px 80px -30px rgb(0 0 0 / 0.55);
-  }
-
-  .frame::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, transparent 58%, var(--color-paper-deep));
-    opacity: 0.55;
-  }
-
-  .portrait img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top center;
-    filter: contrast(1.03) brightness(0.99) sepia(0.1) saturate(1.04);
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 
   @media (min-width: 860px) {

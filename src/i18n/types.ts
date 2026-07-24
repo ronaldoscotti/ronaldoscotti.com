@@ -42,6 +42,9 @@ export interface Translations {
     tagline: string;
     intro: string;
     photoAlt: string;
+    /** Caption under the sky, with a {time} placeholder. English only: a
+        Brazilian reader does not need to be told where Florianópolis is. */
+    skyCaption?: string;
   };
 
   about: {
