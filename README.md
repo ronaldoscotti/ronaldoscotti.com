@@ -28,8 +28,9 @@ in the nav, counting figures, show-more button) and nothing else: no bundle, no 
 external domain, self-hosted fonts.
 
 Editorial Noir: Playfair Display, warm near-black paper, gold accent, a drifting dot grain over the
-whole page. Light and dark are two separately calibrated palettes rather than an inversion of each
-other, with a switcher and no flash on load.
+whole page. Dark is the default and does not ask the operating system what it thinks; light is a
+separately calibrated palette rather than an inversion, one click away and remembered. No flash on
+load either way.
 
 Two things on the page refresh themselves and turn into automatic commits:
 

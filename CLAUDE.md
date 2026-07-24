@@ -53,14 +53,17 @@ preserves the `languages` key written by `scripts/fetch-languages.mjs`.
 
 ### Theming
 
-Light and dark are two calibrated palettes, not an inversion. Dark is the designed one — warm
-near-black paper, cream ink, gold accent — and light was derived from it by flipping luminance
-while keeping the same warmth and the same role for every token. Both are declared twice in
-`global.css`: once under `prefers-color-scheme` for the system preference and no-JS, once under
-`[data-theme]` so an explicit choice wins. An inline script in `<head>` always resolves
-`data-theme` to a concrete value before first paint, which is what keeps the first toggle click
-from being a no-op. The same script sets `html.js`, which gates everything that starts hidden and
-is revealed by script, so the page is never invisible without JS.
+Light and dark are two calibrated palettes, not an inversion. **Dark is the default** — it is the
+palette the direction was drawn in, so it ships as the base `@theme`, and light is an override
+under `:root[data-theme="light"]`. Light was derived from dark by flipping luminance while keeping
+the same warmth and the same role for every token.
+
+The system preference deliberately gets no vote: `prefers-color-scheme` is not consulted anywhere.
+A visitor on a light OS still lands on the dark site, and the toggle — one click, persisted in
+`localStorage` — is how they opt out. An inline script in `<head>` resolves `data-theme` before
+first paint, so a stored choice never flashes. That script also sets `html.js`, which gates
+everything that starts hidden and is revealed by script, so the page is never invisible without JS
+— and without JS the base palette is already dark, so nothing is needed for it to look right.
 
 ### Art direction
 

@@ -85,18 +85,16 @@ const websiteSchema = {
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/ronaldo-scotti-sm.webp" />
-    <meta name="theme-color" content="#f4efe6" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#17140f" media="(prefers-color-scheme: dark)" />
-    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#17140f" />
+    <meta name="color-scheme" content="dark light" />
 
     <link rel="preload" href="/fonts/playfair.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/ronaldo-scotti.webp" as="image" fetchpriority="high" />
 
     <script is:inline>
       // Runs before first paint so a stored choice never flashes the wrong theme.
-      // Always resolves to a concrete value, including on a first visit: leaving
-      // the attribute unset makes the first toggle click a no-op, because it
-      // would write the theme the system was already showing.
+      // Dark is the default, so only an explicit stored "light" turns it off —
+      // the system preference deliberately does not get a vote.
       (() => {
         // Progressive-enhancement flag: everything that starts hidden and is
         // revealed by script stays visible when there is no script.
@@ -105,8 +103,7 @@ const websiteSchema = {
         try {
           stored = localStorage.getItem("theme");
         } catch {}
-        const system = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        document.documentElement.dataset.theme = stored === "dark" || stored === "light" ? stored : system;
+        document.documentElement.dataset.theme = stored === "light" ? "light" : "dark";
       })();
     </script>
 

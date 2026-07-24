@@ -49,69 +49,12 @@
   font-display: swap;
 }
 
-/* Editorial Noir. Dark is the designed palette; light is its equivalent,
-   inferred by flipping luminance while keeping the same warmth and the same
-   role for every token — not by inverting the colours. */
+/* Editorial Noir. Dark is the designed palette and the site's default — it is
+   what the direction was drawn in, so it ships as the base rather than as a
+   variant. Light is its equivalent, inferred by flipping luminance while
+   keeping the same warmth and the same role for every token, and applied only
+   when the visitor asks for it. */
 @theme {
-  --color-paper: #f4efe6;
-  --color-paper-deep: #ece4d5;
-  --color-surface: #fbf8f1;
-  --color-well: #e4dbc9;
-  --color-ink: #17140f;
-  --color-ink-soft: #443b2e;
-  --color-ink-mute: #756853;
-  --color-ink-faint: #93856d;
-  --color-rule: #ddd3c0;
-  --color-accent: #9a7020;
-  --color-accent-deep: #7a5410;
-
-  --grain-blend: multiply;
-  --grain-dot: #000;
-  --grain-opacity: 0.045;
-
-  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
-  --font-body: "Inter", system-ui, -apple-system, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
-
-  --measure: 36rem;
-  --measure-wide: 66rem;
-
-  --heat-0: color-mix(in srgb, var(--color-rule) 78%, var(--color-paper));
-  --heat-1: #9be9a8;
-  --heat-2: #40c463;
-  --heat-3: #30a14e;
-  --heat-4: #216e39;
-}
-
-/* Declared twice: the media query serves the system preference (and no-JS),
-   the attribute serves an explicit choice and has to win over it. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --color-paper: #17140f;
-    --color-paper-deep: #141109;
-    --color-surface: #1b1712;
-    --color-well: #0f0c08;
-    --color-ink: #f4efe6;
-    --color-ink-soft: #cfc6b4;
-    --color-ink-mute: #a99f8e;
-    --color-ink-faint: #8a8171;
-    --color-rule: #2b2620;
-    --color-accent: #c99b45;
-    --color-accent-deep: #e9c987;
-
-    --grain-blend: screen;
-    --grain-dot: #fff;
-    --grain-opacity: 0.05;
-
-    --heat-0: #1f1a17;
-    --heat-1: #0e4429;
-    --heat-2: #006d32;
-    --heat-3: #26a641;
-    --heat-4: #39d353;
-  }
-}
-
-:root[data-theme="dark"] {
   --color-paper: #17140f;
   --color-paper-deep: #141109;
   --color-surface: #1b1712;
@@ -128,6 +71,13 @@
   --grain-dot: #fff;
   --grain-opacity: 0.05;
 
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+
+  --measure: 36rem;
+  --measure-wide: 66rem;
+
   --heat-0: #1f1a17;
   --heat-1: #0e4429;
   --heat-2: #006d32;
@@ -135,19 +85,37 @@
   --heat-4: #39d353;
 }
 
-/* The portrait was lit for a light background, and the article covers are
-   light illustrations that glare against a dark page. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .cover,
-  :root:not([data-theme="light"]) .thumb,
-  :root:not([data-theme="light"]) .shot img {
-    filter: saturate(0.8) brightness(0.82) contrast(1.02);
-  }
+/* Only an explicit choice turns the lights on. The system preference does not
+   override the direction; the toggle is one click away and it persists. */
+:root[data-theme="light"] {
+  --color-paper: #f4efe6;
+  --color-paper-deep: #ece4d5;
+  --color-surface: #fbf8f1;
+  --color-well: #e4dbc9;
+  --color-ink: #17140f;
+  --color-ink-soft: #443b2e;
+  --color-ink-mute: #756853;
+  --color-ink-faint: #93856d;
+  --color-rule: #ddd3c0;
+  --color-accent: #9a7020;
+  --color-accent-deep: #7a5410;
+
+  --grain-blend: multiply;
+  --grain-dot: #000;
+  --grain-opacity: 0.045;
+
+  --heat-0: color-mix(in srgb, var(--color-rule) 78%, var(--color-paper));
+  --heat-1: #9be9a8;
+  --heat-2: #40c463;
+  --heat-3: #30a14e;
+  --heat-4: #216e39;
 }
 
-:root[data-theme="dark"] .cover,
-:root[data-theme="dark"] .thumb,
-:root[data-theme="dark"] .shot img {
+/* The article covers are light illustrations that glare against a dark page.
+   Written as a :not() so it holds without JS, where no attribute is set. */
+:root:not([data-theme="light"]) .cover,
+:root:not([data-theme="light"]) .thumb,
+:root:not([data-theme="light"]) .shot img {
   filter: saturate(0.8) brightness(0.82) contrast(1.02);
 }
 
