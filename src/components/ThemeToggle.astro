@@ -11,7 +11,7 @@ const t = getTranslations(lang);
 ---
 
 <button type="button" class="toggle" id="theme-toggle" aria-live="polite">
-  <span class="sr-only" data-label>{t.nav.theme.toDark}</span>
+  <span class="sr-only" data-label>{t.nav.theme.toLight}</span>
   <svg class="icon sun" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
     <circle cx="10" cy="10" r="3.6" />
     <g stroke-linecap="round">
@@ -51,27 +51,21 @@ const t = getTranslations(lang);
     stroke-width: 1.5;
   }
 
+  /* Shows the destination, not the current state. Dark is the default, so the
+     sun — "go light" — is what shows until the visitor picks light. */
   .moon {
     display: none;
   }
 
-  /* Shows the destination, not the current state: the moon means "go dark".
-     The :not() branch only ever applies without JS. */
-  :root[data-theme="light"] .moon,
-  :root:not([data-theme]) .moon {
+  .sun {
     display: block;
   }
 
-  :root[data-theme="light"] .sun,
-  :root:not([data-theme]) .sun {
-    display: none;
-  }
-
-  :root[data-theme="dark"] .sun {
+  :root[data-theme="light"] .moon {
     display: block;
   }
 
-  :root[data-theme="dark"] .moon {
+  :root[data-theme="light"] .sun {
     display: none;
   }
 
@@ -101,8 +95,7 @@ const t = getTranslations(lang);
     sync();
 
     button?.addEventListener("click", () => {
-      const current =
-        root.dataset.theme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      const current = root.dataset.theme === "light" ? "light" : "dark";
       const next = current === "dark" ? "light" : "dark";
       root.dataset.theme = next;
       try {

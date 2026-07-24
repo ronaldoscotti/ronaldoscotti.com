@@ -45,6 +45,7 @@ export const translations: Record<Language, Translations> = {
     activity: {
       heading: "Atividade",
       contributions: "{total} contribuições no último ano, em {days} dias",
+      githubCta: "Ver no GitHub",
       languagesHeading: "Linguagens",
       otherLanguages: "Outras",
       stackHeading: "Stack",
@@ -120,6 +121,7 @@ export const translations: Record<Language, Translations> = {
     projects: {
       heading: "Projetos",
       intro: "Feitos e mantidos sozinho, do banco de dados até a loja de aplicativos.",
+      featuredLabel: "Em destaque",
       items: [
         {
           name: "Meu Feed Católico",
@@ -237,6 +239,7 @@ export const translations: Record<Language, Translations> = {
     activity: {
       heading: "Activity",
       contributions: "{total} contributions in the last year, across {days} days",
+      githubCta: "See it on GitHub",
       languagesHeading: "Languages",
       otherLanguages: "Other",
       stackHeading: "Stack",
@@ -312,6 +315,7 @@ export const translations: Record<Language, Translations> = {
     projects: {
       heading: "Projects",
       intro: "Built and run solo, from the database to the app store.",
+      featuredLabel: "Featured",
       items: [
         {
           name: "Meu Feed Católico",
@@ -328,11 +332,11 @@ export const translations: Record<Language, Translations> = {
           image: "/products/temperamentos-online.webp",
         },
         {
-          name: "Nova Aba Católica",
+          name: "Catholic New Tab",
           description:
-            "A Chrome extension (Manifest V3) that turns every new tab into a moment of prayer. Serverless backend on Vercel, PT/EN.",
-          links: [{ label: "Open", url: "https://nova-aba-catolica.ronaldoscotti.com" }],
-          image: "/products/nova-aba-catolica.webp",
+            "A Chrome extension (Manifest V3) that turns every new tab into a moment of prayer. Serverless backend on Vercel, shipped in English and Portuguese.",
+          links: [{ label: "Open", url: "https://nova-aba-catolica.ronaldoscotti.com/en" }],
+          image: "/products/catholic-new-tab.webp",
         },
         {
           name: "Orbit Pages",

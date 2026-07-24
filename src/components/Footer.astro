@@ -34,9 +34,12 @@ const year = new Date().getFullYear();
 </footer>
 
 <style>
+  /* Deeper than the page, so the document closes on a darker note instead of
+     just running out. */
   .site-footer {
+    background: var(--color-paper-deep);
     border-top: 1px solid var(--color-rule);
-    padding-block: 2.5rem 3.5rem;
+    padding-block: 2.75rem 3.5rem;
   }
 
   .inner {
@@ -49,12 +52,14 @@ const year = new Date().getFullYear();
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem 1rem;
-    font-size: 0.8125rem;
-    color: var(--color-ink-mute);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.03em;
+    color: var(--color-ink-faint);
   }
 
   .line a {
-    color: var(--color-ink-mute);
+    color: var(--color-ink-faint);
     text-decoration: none;
   }
 
@@ -69,7 +74,9 @@ const year = new Date().getFullYear();
 
   .motto {
     margin-top: 0.75rem;
-    font-size: 0.8125rem;
-    color: var(--color-ink-mute);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.9375rem;
+    color: var(--color-accent);
   }
 </style>

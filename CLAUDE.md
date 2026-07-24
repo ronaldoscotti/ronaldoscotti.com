@@ -53,11 +53,25 @@ preserves the `languages` key written by `scripts/fetch-languages.mjs`.
 
 ### Theming
 
-Light and dark are two calibrated palettes, not an inversion. Both are declared twice in
-`global.css`: once under `prefers-color-scheme` for the system preference and no-JS, once under
-`[data-theme]` so an explicit choice wins. An inline script in `<head>` always resolves
-`data-theme` to a concrete value before first paint, which is what keeps the first toggle click
-from being a no-op.
+Light and dark are two calibrated palettes, not an inversion. **Dark is the default** — it is the
+palette the direction was drawn in, so it ships as the base `@theme`, and light is an override
+under `:root[data-theme="light"]`. Light was derived from dark by flipping luminance while keeping
+the same warmth and the same role for every token.
+
+The system preference deliberately gets no vote: `prefers-color-scheme` is not consulted anywhere.
+A visitor on a light OS still lands on the dark site, and the toggle — one click, persisted in
+`localStorage` — is how they opt out. An inline script in `<head>` resolves `data-theme` before
+first paint, so a stored choice never flashes. That script also sets `html.js`, which gates
+everything that starts hidden and is revealed by script, so the page is never invisible without JS
+— and without JS the base palette is already dark, so nothing is needed for it to look right.
+
+### Art direction
+
+Editorial Noir: Playfair Display at 900 for the name and 800 for section headings, Inter for body
+copy, JetBrains Mono for eyebrows, numerals and metadata. Gold is structural here, not a rare
+highlight — section numerals, the fading hairline that opens each section, links, and the bloom
+behind the portrait. A fixed dot field (`.grain`) sits over the page at ~5% and drifts, which is
+what keeps the flat backgrounds from reading as flat.
 
 ### Conventions
 
@@ -65,9 +79,8 @@ from being a no-op.
 - **No external resource requests.** Fonts are self-hosted, images are local. Only `<a href>` may
   point off-site.
 - Every `<img>` declares `width` and `height`. CLS must stay at 0.
-- Colors come from the `@theme` tokens in `src/styles/global.css`. The accent appears at most once
-  per viewport height.
-- The heatmap uses GitHub's green, not the site accent: amber reads as a warning.
+- Colors come from the `@theme` tokens in `src/styles/global.css`. Never a raw hex in a component.
+- The heatmap uses GitHub's green, not the site accent: gold reads as a warning.
 - `Person` schema carries no `worksFor`, and no copy states a current employer. The site must stay
   true after a job change.
 - Comments are sparse and in English, even though the content is Portuguese.

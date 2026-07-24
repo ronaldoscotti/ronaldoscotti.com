@@ -23,12 +23,14 @@ npm run dev
 
 ## What's inside
 
-Static Astro 5 with Tailwind 4. Three inline blocks of JavaScript (reveal on scroll, active section
-in the nav, show-more button) and nothing else: no bundle, no request to any external domain,
-self-hosted fonts.
+Static Astro 5 with Tailwind 4. Four inline blocks of JavaScript (reveal on scroll, active section
+in the nav, counting figures, show-more button) and nothing else: no bundle, no request to any
+external domain, self-hosted fonts.
 
-Light and dark are two separately calibrated palettes rather than an inversion of each other, with
-a switcher and no flash on load.
+Editorial Noir: Playfair Display, warm near-black paper, gold accent, a drifting dot grain over the
+whole page. Dark is the default and does not ask the operating system what it thinks; light is a
+separately calibrated palette rather than an inversion, one click away and remembered. No flash on
+load either way.
 
 Two things on the page refresh themselves and turn into automatic commits:
 
