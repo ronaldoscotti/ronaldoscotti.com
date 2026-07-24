@@ -1,0 +1,19 @@
+name: CI
+
+# Runs the pipeline guardrails on every pull request to main, so the auto-merge
+# of a refresh (or any manual PR) only goes green when the data is well-formed.
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node --test

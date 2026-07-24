@@ -38,15 +38,30 @@ any push.
 
 - You write code at 3pm on a Tuesday. The graph on the site **does not move** at that moment.
 - At 04:00 on Wednesday launchd runs on this Mac, recalculates the languages, and if anything
-  changed it commits and pushes. The push triggers the deploy and the new data goes live. If the
+  changed it opens an auto-merging PR. Once CI is green the PR merges and the deploy goes out. If the
   Mac was asleep at 04:00, it runs when you open the lid.
-- At 06:00 UTC (03:00 local) GitHub Actions runs, refreshes the heatmap, and commits and pushes on
-  the same terms.
+- At 06:00 UTC (03:00 local) GitHub Actions runs, refreshes the heatmap, and opens an auto-merging PR
+  on the same terms.
 - A manual deploy at any hour brings a fresh heatmap with it through `prebuild`.
 
-**Is the commit really automatic?**
-Yes. Both jobs commit and push to `main` on their own, and only when the data actually changed. A
-day without coding produces no commit. The message is always `chore: refresh activity`.
+**Does it commit straight to `main`?**
+No, not anymore. Neither job pushes to `main`. Each one runs the test suite (`node --test`) over the
+freshly written `activity.json`, and only if that passes does it open a pull request from a throwaway
+`activity/<timestamp>` branch and mark it auto-merge. The same tests run again as a required-ish check
+on the PR (`ci.yml`), and the PR merges itself once green. A malformed file fails the tests, so no PR
+is ever opened and `main` never sees it. Still only when the data changed, still `chore: refresh
+activity`, still no commit on an idle day.
+
+The auto-merge uses `gh pr merge --auto`, which needs **Allow auto-merge** enabled in the repository
+settings (Settings → General → Pull Requests). If it is off, the jobs fall back to merging the PR
+immediately — safe, because the tests already passed in the job before the PR was opened. To make the
+CI check a hard gate rather than a belt-and-suspenders, add a branch protection rule on `main`
+requiring the `test` check; the jobs need no change for that.
+
+**Why the local job often skips.** It runs in the live working repo, so it refuses to touch anything
+unless you are on a clean, fast-forwardable `main`. On a feature branch, or with `main` diverged, it
+logs and exits — the language bar just updates on the next run that finds a clean tree. The 13:00
+backstop and the login run cover it.
 
 **Are the GitHub stats genuinely automatic?**
 Yes, and without a token. The script reads `github.com/users/ronaldoscotti/contributions`, which is
