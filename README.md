@@ -34,9 +34,9 @@ Nothing is fetched — it is arithmetic. See `CLAUDE.md` for how it works and wh
 leaves out.
 
 Editorial Noir: Playfair Display, warm near-black paper, gold accent, a drifting dot grain over the
-whole page. Dark is the default and does not ask the operating system what it thinks; light is a
-separately calibrated palette rather than an inversion, one click away and remembered. No flash on
-load either way.
+whole page. Light and dark are two separately calibrated palettes rather than an inversion. The
+default follows the visitor's own clock — light through the day, dark at night — never the operating
+system; a manual choice is one click away and remembered. No flash on load either way.
 
 Two things on the page refresh themselves and land through an auto-merging pull request (tests must
 pass first — never a direct push to `main`):
