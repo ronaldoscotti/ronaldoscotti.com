@@ -226,6 +226,24 @@ img {
   display: block;
 }
 
+/* Lazy thumbnails fade in over their container background rather than snapping
+   in on decode. Gated on html.js so no-JS still shows them immediately. */
+html.js img.fade-img {
+  opacity: 0;
+  transition: opacity 500ms ease;
+}
+
+html.js img.fade-img.is-loaded {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js img.fade-img {
+    opacity: 1;
+    transition: none;
+  }
+}
+
 ::selection {
   background: color-mix(in srgb, var(--color-accent) 26%, transparent);
 }

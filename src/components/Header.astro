@@ -212,6 +212,17 @@ const alternate = getAlternateLanguage(lang);
     .map((a) => document.querySelector(a.getAttribute("href") || ""))
     .filter((el): el is HTMLElement => el instanceof HTMLElement);
 
+  const nav = document.querySelector<HTMLElement>(".nav");
+
+  /** Keep the current link visible in the nav's own horizontal scroll on mobile,
+      where the six items don't fit. Scrolls the nav, never the page — using
+      scrollIntoView here would yank the whole document. */
+  const revealInNav = (link: HTMLAnchorElement) => {
+    if (!nav || nav.scrollWidth <= nav.clientWidth) return;
+    const target = link.offsetLeft - (nav.clientWidth - link.offsetWidth) / 2;
+    nav.scrollTo({ left: Math.max(0, target), behavior: "smooth" });
+  };
+
   if (sections.length && "IntersectionObserver" in window) {
     const spy = new IntersectionObserver(
       (entries) => {
@@ -219,8 +230,12 @@ const alternate = getAlternateLanguage(lang);
           if (!entry.isIntersecting) continue;
           const id = `#${entry.target.id}`;
           links.forEach((a) => {
-            if (a.getAttribute("href") === id) a.setAttribute("aria-current", "true");
-            else a.removeAttribute("aria-current");
+            if (a.getAttribute("href") === id) {
+              a.setAttribute("aria-current", "true");
+              revealInNav(a);
+            } else {
+              a.removeAttribute("aria-current");
+            }
           });
         }
       },
