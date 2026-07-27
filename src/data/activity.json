@@ -1,7 +1,7 @@
 {
   "fetchedAt": "2026-07-27",
   "github": {
-    "total": 4567,
+    "total": 4573,
     "activeDays": 240,
     "from": "2025-07-27",
     "to": "2026-07-27",
@@ -476,7 +476,7 @@
       ],
       [
         6,
-        3
+        9
       ]
     ]
   },
@@ -488,11 +488,11 @@
       },
       {
         "name": "PHP",
-        "percent": 30.1
+        "percent": 30
       },
       {
         "name": "Vue",
-        "percent": 18.5
+        "percent": 18.4
       },
       {
         "name": "Astro",
@@ -508,7 +508,7 @@
       },
       {
         "name": "__other__",
-        "percent": 5.3
+        "percent": 5.4
       }
     ],
     "source": "local-git",
