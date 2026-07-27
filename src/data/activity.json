@@ -1,10 +1,10 @@
 {
-  "fetchedAt": "2026-07-26",
+  "fetchedAt": "2026-07-27",
   "github": {
-    "total": 4558,
-    "activeDays": 238,
+    "total": 4565,
+    "activeDays": 240,
     "from": "2025-07-27",
-    "to": "2026-07-26",
+    "to": "2026-07-27",
     "weeks": [
       [
         0,
@@ -475,7 +475,8 @@
         6
       ],
       [
-        0
+        6,
+        1
       ]
     ]
   },
@@ -483,7 +484,7 @@
     "items": [
       {
         "name": "TypeScript",
-        "percent": 33
+        "percent": 32.9
       },
       {
         "name": "PHP",
@@ -507,10 +508,10 @@
       },
       {
         "name": "__other__",
-        "percent": 5.2
+        "percent": 5.3
       }
     ],
     "source": "local-git",
-    "repos": 18
+    "repos": 19
   }
 }
