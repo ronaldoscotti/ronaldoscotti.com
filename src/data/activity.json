@@ -1,7 +1,7 @@
 {
   "fetchedAt": "2026-07-28",
   "github": {
-    "total": 4591,
+    "total": 4599,
     "activeDays": 241,
     "from": "2025-07-27",
     "to": "2026-07-28",
@@ -477,7 +477,7 @@
       [
         6,
         25,
-        2
+        10
       ]
     ]
   },
@@ -485,7 +485,7 @@
     "items": [
       {
         "name": "TypeScript",
-        "percent": 32.9
+        "percent": 32.8
       },
       {
         "name": "PHP",
@@ -504,12 +504,12 @@
         "percent": 4
       },
       {
-        "name": "JavaScript",
+        "name": "Python",
         "percent": 3.8
       },
       {
         "name": "__other__",
-        "percent": 5.6
+        "percent": 5.7
       }
     ],
     "source": "local-git",
