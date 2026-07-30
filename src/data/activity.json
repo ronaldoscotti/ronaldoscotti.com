@@ -1,7 +1,7 @@
 {
   "fetchedAt": "2026-07-30",
   "github": {
-    "total": 4661,
+    "total": 4667,
     "activeDays": 243,
     "from": "2025-07-27",
     "to": "2026-07-30",
@@ -479,7 +479,7 @@
         25,
         38,
         32,
-        2
+        8
       ]
     ]
   },
@@ -487,11 +487,11 @@
     "items": [
       {
         "name": "TypeScript",
-        "percent": 32.9
+        "percent": 33
       },
       {
         "name": "PHP",
-        "percent": 29.1
+        "percent": 29
       },
       {
         "name": "Vue",
