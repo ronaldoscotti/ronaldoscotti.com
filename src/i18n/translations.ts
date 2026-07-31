@@ -70,7 +70,7 @@ export const translations: Record<Language, Translations> = {
             "Referência técnica de um time de nove numa plataforma que movimenta perto de R$1,2 bilhão por ano. A camada de automação e dados da operação comercial é minha, de ponta a ponta, e as decisões técnicas também.",
           bullets: [
             "Motor de scoring multiprograma (Strategy Pattern, 40+ regras) que trocou decisão comercial no olho por ranqueamento automático, com ponderação bayesiana pra não julgar vendedor de pouco volume por dado ainda ruidoso.",
-            "Eventos de chargeback e disputa em quatro adquirentes (Stripe, Pagar.me, Mercado Pago, Iugu), idempotente em cima de webhook que ninguém garante que chega.",
+            "A camada de automação e observabilidade de chargeback e disputa em quatro adquirentes (Stripe, Pagar.me, Mercado Pago, Iugu), idempotente em cima de webhook que ninguém garante que chega.",
             "API de pipeline que o comercial usa o dia todo: busca em quatro bancos ao mesmo tempo (SQL Server, MySQL, MongoDB, Postgres) e o cache corta latência em 50% a 70% e carga de banco em cerca de 90%.",
             "Motor de qualificação por configuração, mais de 2 milhões de qualificações processadas, com eventos saindo pro RabbitMQ por um outbox idempotente.",
             "Documentação viva das automações: um pipeline só de leitura transforma as APIs do HubSpot e do Botpress em doc versionada, e a IA preenche a intenção sem inventar estrutura.",
@@ -80,20 +80,20 @@ export const translations: Record<Language, Translations> = {
         {
           role: "Fundador e CEO (até a venda)",
           org: "Orbit, comprada pela Eduzz",
-          period: "set 2019 · ago 2023",
+          period: "set 2019 · mar 2023",
           summary:
-            "Fundei o Orbit Pages, SaaS de landing page pra criador de conteúdo, e toquei por quatro anos até a venda.",
+            "Fundei o Orbit Pages, SaaS de landing page pra criador de conteúdo, e toquei até a venda.",
           bullets: [
             "Construí o produto sozinho. Oito meses até a primeira venda, depois 67 mil usuários no gratuito, 1.500 pagantes e mais de R$100 mil por mês de receita recorrente.",
             "A rodada de investimento caiu na pandemia e levei a empresa ao lucro sem ela: subi o MRR de R$30 mil pra R$100 mil e a receita de plano anual de 20% pra 80% mexendo em preço e cobrança, sem feature nova.",
-            "Fui o arquiteto principal o tempo todo. Reconstruí a V1 pra escalar sem teto (S3 e Vercel nas páginas, integração crítica em Kubernetes) enquanto tocava negócio, investidor e suporte. Ela continua rodando hoje, anos depois da venda.",
+            "Fui o arquiteto principal o tempo todo. Reconstruí a V1 em cima de S3 e Vercel nas páginas, com a integração crítica em Kubernetes, enquanto tocava negócio, investidor e suporte. Ela continua rodando hoje, anos depois da venda.",
             "O time foi de 2 pra 18, e voltou pras 7 que levaram a empresa até o fim.",
           ],
         },
         {
           role: "Desenvolvedor full-stack",
           org: "por conta própria",
-          period: "2015 · 2019",
+          period: "set 2015 · set 2019",
           summary:
             "Centenas de projetos por conta própria. Comecei fazendo site sob encomenda e terminei desenhando os sistemas de pagamento em que o cliente confiava dinheiro de verdade. PHP, JavaScript, WordPress, React, Vue, Node.",
           bullets: [
@@ -127,7 +127,7 @@ export const translations: Record<Language, Translations> = {
         {
           name: "Meu Feed Católico",
           description:
-            "Plataforma devocional católica que eu construo e opero sozinho. API em Laravel, front em Vue 3, e um código só que vira web, PWA e app nativo pelo Capacitor. O que tem de difícil ali é o mapeamento de versificação entre cânones e edições da Bíblia, os pipelines de ingestão idempotentes e a pré-renderização da SPA pros robôs de busca. Mais de 300 testes.",
+            "Plataforma devocional católica que eu construo e opero sozinho. API em Laravel, front em Vue 3, e um código só que vira web, PWA e app nativo pelo Capacitor. O que tem de difícil ali é o mapeamento de versificação entre cânones e edições da Bíblia, os pipelines de ingestão idempotentes e a pré-renderização da SPA pros robôs de busca. A API carrega uma suíte de 770 testes.",
           links: [{ label: "Abrir o app", url: "https://use.meufeedcatolico.com.br" }],
           image: "/products/meu-feed-catolico.webp",
         },
@@ -266,7 +266,7 @@ export const translations: Record<Language, Translations> = {
             "The technical reference for a nine-person team at one of Brazil's largest creator-economy platforms (~R$1.2B annual GMV). I own the commercial operation's automation and data layer end to end, and the technical calls that come with it.",
           bullets: [
             "Multi-program scoring engine (Strategy Pattern core, 40+ rules) that replaced manual commercial decisions with an automated ranking pipeline, with Bayesian confidence-weighting so low-volume sellers aren't judged on noisy data.",
-            "Chargebacks and disputes event layer across four payment providers (Stripe, Pagar.me, Mercado Pago, Iugu), built idempotent on top of unreliable webhooks.",
+            "The automation and observability layer for chargebacks and disputes across four payment providers (Stripe, Pagar.me, Mercado Pago, Iugu), built idempotent on top of unreliable webhooks.",
             "The product-pipeline API the commercial team runs on: parallel fan-out across four databases (SQL Server, MySQL, MongoDB, Postgres), with a cache that cuts latency 50-70% and database load by roughly 90%.",
             "Config-driven qualification engine, 2M+ qualifications processed, publishing completion events to RabbitMQ through an idempotent outbox.",
             "Living documentation for the automations: a read-only pipeline turns the HubSpot and Botpress APIs into versioned docs, and an AI layer fills intent without inventing structure.",
@@ -276,20 +276,20 @@ export const translations: Record<Language, Translations> = {
         {
           role: "Founder & CEO (exit)",
           org: "Orbit, acquired by Eduzz",
-          period: "Sep 2019 · Aug 2023",
+          period: "Sep 2019 · Mar 2023",
           summary:
-            "I founded Orbit Pages, a landing-page SaaS for digital creators, and ran it for four years to the acquisition.",
+            "I founded Orbit Pages, a landing-page SaaS for digital creators, and ran it to the acquisition.",
           bullets: [
             "Built the product solo. Eight months to first sale, then 67,000 free users, 1,500 paying customers, and R$100k+ MRR.",
             "The planned VC round fell through in the pandemic and I took the company to profit without it: MRR from R$30k to R$100k, and annual-plan revenue from 20% to 80% by reworking pricing and defaults, with zero new features.",
-            "Stayed lead architect throughout. Re-platformed the V1 for near-infinite scale (S3 and Vercel for pages, critical integrations on Kubernetes) while running the business, investors, and support. It still runs today, years after the exit.",
+            "Stayed lead architect throughout. Re-platformed the V1 onto S3 and Vercel for pages, with the critical integrations on Kubernetes, while running the business, investors, and support. It still runs today, years after the exit.",
             "Grew the team from 2 to 18 and back to the lean 7 that ran it to the acquisition.",
           ],
         },
         {
           role: "Full-stack engineer",
           org: "on my own",
-          period: "2015 · 2019",
+          period: "Sep 2015 · Sep 2019",
           summary:
             "Hundreds of projects on my own. I started building websites to spec and ended up designing the payment systems clients trusted with real money. PHP, JavaScript, WordPress, React, Vue, Node.",
           bullets: [
@@ -323,7 +323,7 @@ export const translations: Record<Language, Translations> = {
         {
           name: "Meu Feed Católico",
           description:
-            "A Catholic devotional platform I build and run solo. Laravel API, Vue 3 front end, one codebase shipping to web, PWA, and native iOS/Android via Capacitor. The hard parts are multi-canon Bible versification mapping, idempotent ingestion pipelines, and SPA prerendering for crawlers. 300+ tests.",
+            "A Catholic devotional platform I build and run solo. Laravel API, Vue 3 front end, one codebase shipping to web, PWA, and native iOS/Android via Capacitor. The hard parts are multi-canon Bible versification mapping, idempotent ingestion pipelines, and SPA prerendering for crawlers. The API carries a 770-test suite.",
           links: [{ label: "Open the app", url: "https://use.meufeedcatolico.com.br" }],
           image: "/products/meu-feed-catolico.webp",
         },
