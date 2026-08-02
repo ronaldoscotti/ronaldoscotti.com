@@ -1,20 +1,11 @@
 {
-  "fetchedAt": "2026-08-01",
+  "fetchedAt": "2026-08-02",
   "github": {
-    "total": 4777,
-    "activeDays": 245,
-    "from": "2025-07-27",
-    "to": "2026-08-01",
+    "total": 4796,
+    "activeDays": 240,
+    "from": "2025-08-03",
+    "to": "2026-08-02",
     "weeks": [
-      [
-        0,
-        10,
-        8,
-        12,
-        7,
-        11,
-        1
-      ],
       [
         0,
         6,
@@ -481,7 +472,10 @@
         32,
         35,
         77,
-        6
+        18
+      ],
+      [
+        56
       ]
     ]
   },
@@ -489,11 +483,11 @@
     "items": [
       {
         "name": "TypeScript",
-        "percent": 32.9
+        "percent": 32.8
       },
       {
         "name": "PHP",
-        "percent": 28.6
+        "percent": 28.5
       },
       {
         "name": "Vue",
@@ -509,7 +503,7 @@
       },
       {
         "name": "Python",
-        "percent": 3.7
+        "percent": 3.8
       },
       {
         "name": "__other__",
@@ -517,6 +511,6 @@
       }
     ],
     "source": "local-git",
-    "repos": 20
+    "repos": 22
   }
 }
