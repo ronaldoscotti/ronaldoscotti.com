@@ -1,8 +1,8 @@
 {
   "fetchedAt": "2026-08-07",
   "github": {
-    "total": 5044,
-    "activeDays": 244,
+    "total": 5053,
+    "activeDays": 245,
     "from": "2025-08-03",
     "to": "2026-08-07",
     "weeks": [
@@ -480,7 +480,7 @@
         26,
         23,
         30,
-        0
+        9
       ]
     ]
   },
@@ -492,7 +492,7 @@
       },
       {
         "name": "PHP",
-        "percent": 24.4
+        "percent": 24.3
       },
       {
         "name": "Vue",
@@ -512,7 +512,7 @@
       },
       {
         "name": "__other__",
-        "percent": 6.3
+        "percent": 6.4
       }
     ],
     "source": "local-git",
