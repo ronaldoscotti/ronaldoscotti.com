@@ -1,10 +1,10 @@
 {
-  "fetchedAt": "2026-08-09",
+  "fetchedAt": "2026-08-10",
   "github": {
-    "total": 4977,
-    "activeDays": 240,
+    "total": 4980,
+    "activeDays": 241,
     "from": "2025-08-10",
-    "to": "2026-08-09",
+    "to": "2026-08-10",
     "weeks": [
       [
         0,
@@ -475,6 +475,7 @@
         6
       ],
       [
+        3,
         0
       ]
     ]
@@ -483,7 +484,7 @@
     "items": [
       {
         "name": "TypeScript",
-        "percent": 31.9
+        "percent": 32
       },
       {
         "name": "PHP",
@@ -499,7 +500,7 @@
       },
       {
         "name": "Astro",
-        "percent": 5.3
+        "percent": 5.2
       },
       {
         "name": "JavaScript",
