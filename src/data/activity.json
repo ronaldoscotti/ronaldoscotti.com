@@ -1,8 +1,8 @@
 {
   "fetchedAt": "2026-08-22",
   "github": {
-    "total": 5149,
-    "activeDays": 247,
+    "total": 5151,
+    "activeDays": 248,
     "from": "2025-08-17",
     "to": "2026-08-22",
     "weeks": [
@@ -481,7 +481,7 @@
         30,
         23,
         17,
-        0
+        2
       ]
     ]
   },
@@ -489,11 +489,11 @@
     "items": [
       {
         "name": "TypeScript",
-        "percent": 31.8
+        "percent": 31.7
       },
       {
         "name": "PHP",
-        "percent": 24.7
+        "percent": 24.6
       },
       {
         "name": "Vue",
@@ -505,7 +505,7 @@
       },
       {
         "name": "Astro",
-        "percent": 5.3
+        "percent": 5.4
       },
       {
         "name": "JavaScript",
