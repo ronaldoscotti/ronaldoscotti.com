@@ -6,11 +6,11 @@ import type { Language, Translations } from "./types";
 export const translations: Record<Language, Translations> = {
   "pt-BR": {
     seo: {
-      title: "Ronaldo Scotti · Staff Software Engineer e arquiteto de software",
+      title: "Ronaldo Scotti · Senior Software Engineer na Gymdesk",
       description:
         "Fundei um SaaS, escalei e vendi. Nunca parei de programar. Pagamentos, escala e agentes de IA entregando código que passa em revisão de sênior.",
       ogTitle: "Ronaldo Scotti · Fundei um SaaS, escalei e vendi. Nunca parei de programar.",
-      ogDescription: "Staff Software Engineer e arquiteto de software. Florianópolis, remoto.",
+      ogDescription: "Senior Software Engineer na Gymdesk e arquiteto de software. Florianópolis, remoto.",
     },
 
     nav: {
@@ -29,7 +29,7 @@ export const translations: Record<Language, Translations> = {
     },
 
     hero: {
-      role: "Staff Software Engineer · Arquiteto de software",
+      role: "Senior Software Engineer na Gymdesk · Arquiteto de software",
       name: "Ronaldo Scotti",
       tagline: "Engenheiro de software, arquiteto, fundador com exit.",
       intro:
@@ -39,7 +39,7 @@ export const translations: Record<Language, Translations> = {
 
     about: {
       heading: "Sobre",
-      body: "Fundei um SaaS, cheguei a 67 mil usuários e vendi pra Eduzz. Nunca parei de programar. Hoje sou a referência técnica de um time de nove e subo código todo dia, boa parte com agente de IA. Já fui o responsável por pagar os salários e por manter o produto no ar ao mesmo tempo. Católico, casado com a Poli, pai do Bento, morando perto do interior de Santa Catarina onde cresci.",
+      body: "Fundei um SaaS, cheguei a 67 mil usuários e vendi pra Eduzz. Nunca parei de programar. Hoje cuido de billing e pagamentos na Gymdesk e subo código todo dia, boa parte com agente de IA. Já fui o responsável por pagar os salários e por manter o produto no ar ao mesmo tempo. Católico, casado com a Poli, pai do Bento, morando perto do interior de Santa Catarina onde cresci.",
     },
 
     activity: {
@@ -63,18 +63,26 @@ export const translations: Record<Language, Translations> = {
       resumeCta: "Baixar currículo",
       jobs: [
         {
+          role: "Senior Software Engineer",
+          org: "Gymdesk",
+          period: "out 2026 · atual · remoto",
+          summary:
+            "Billing e pagamentos no time das Américas da Gymdesk, plataforma de gestão para academias e escolas de artes marciais.",
+          bullets: [],
+        },
+        {
           role: "Staff Software Engineer",
           org: "Eduzz",
-          period: "mar 2023 · atual · remoto",
+          period: "mar 2023 · out 2026 · remoto",
           summary:
-            "Referência técnica de um time de nove numa plataforma que movimenta perto de R$1,2 bilhão por ano. A camada de automação e dados da operação comercial é minha, de ponta a ponta, e as decisões técnicas também.",
+            "Referência técnica de um time de nove numa plataforma que movimenta perto de R$1,2 bilhão por ano. A camada de automação e dados da operação comercial era minha, de ponta a ponta, e as decisões técnicas também.",
           bullets: [
             "Motor de scoring multiprograma (Strategy Pattern, 40+ regras) que trocou decisão comercial no olho por ranqueamento automático, com ponderação bayesiana pra não julgar vendedor de pouco volume por dado ainda ruidoso.",
             "A camada de automação e observabilidade de chargeback e disputa em quatro adquirentes (Stripe, Pagar.me, Mercado Pago, Iugu), idempotente em cima de webhook que ninguém garante que chega.",
             "API de pipeline que o comercial usa o dia todo: busca em quatro bancos ao mesmo tempo (SQL Server, MySQL, MongoDB, Postgres) e o cache corta latência em 50% a 70% e carga de banco em cerca de 90%.",
             "Motor de qualificação por configuração, mais de 2 milhões de qualificações processadas, com eventos saindo pro RabbitMQ por um outbox idempotente.",
             "Documentação viva das automações: um pipeline só de leitura transforma as APIs do HubSpot e do Botpress em doc versionada, e a IA preenche a intenção sem inventar estrutura.",
-            "Entrego todo dia com agente de IA (Claude Code), cuidando dos prompts, das avaliações e da revisão que seguram isso em produção.",
+            "Entregava todo dia com agente de IA (Claude Code), cuidando dos prompts, das avaliações e da revisão que seguram isso em produção.",
           ],
         },
         {
@@ -180,9 +188,9 @@ export const translations: Record<Language, Translations> = {
     },
 
     schema: {
-      jobTitle: "Staff Software Engineer",
+      jobTitle: "Senior Software Engineer",
       description:
-        "Staff Software Engineer e arquiteto de software. Fundou um SaaS, escalou e vendeu. Arquitetura, sistemas de pagamento, automação e LLM em produção.",
+        "Senior Software Engineer na Gymdesk e arquiteto de software. Fundou um SaaS, escalou e vendeu. Arquitetura, sistemas de pagamento, automação e LLM em produção.",
       knowsAbout: [
         "Software Architecture",
         "System Design",
@@ -200,12 +208,12 @@ export const translations: Record<Language, Translations> = {
 
   en: {
     seo: {
-      title: "Ronaldo Scotti · Staff Software Engineer & Software Architect",
+      title: "Ronaldo Scotti · Senior Software Engineer at Gymdesk",
       description:
         "Exited SaaS founder who never stopped coding. Payments, scale and AI agents shipping code a senior would sign off on. Remote, UTC-3.",
       ogTitle:
         "Ronaldo Scotti · I founded a SaaS, scaled it, and sold it. I never stopped writing code.",
-      ogDescription: "Staff Software Engineer and software architect. Florianópolis, remote.",
+      ogDescription: "Senior Software Engineer at Gymdesk and software architect. Florianópolis, remote.",
     },
 
     nav: {
@@ -224,7 +232,7 @@ export const translations: Record<Language, Translations> = {
     },
 
     hero: {
-      role: "Staff Software Engineer · Software Architect",
+      role: "Senior Software Engineer at Gymdesk · Software Architect",
       name: "Ronaldo Scotti",
       tagline: "Software engineer, architect, founder with an exit.",
       intro:
@@ -235,7 +243,7 @@ export const translations: Record<Language, Translations> = {
 
     about: {
       heading: "About",
-      body: "I founded a SaaS, grew it to 67,000 users, and sold it to Eduzz. I never stopped writing code. Today I'm the technical reference for a team of nine and I ship every day, much of it with AI coding agents. I've been the one who had to make payroll and keep the product up at the same time. Catholic, married to Poli, father to Bento, living near the countryside in southern Brazil where I grew up.",
+      body: "I founded a SaaS, grew it to 67,000 users, and sold it to Eduzz. I never stopped writing code. Today I work on billing and payments at Gymdesk and I ship every day, much of it with AI coding agents. I've been the one who had to make payroll and keep the product up at the same time. Catholic, married to Poli, father to Bento, living near the countryside in southern Brazil where I grew up.",
     },
 
     activity: {
@@ -259,18 +267,26 @@ export const translations: Record<Language, Translations> = {
       resumeCta: "Download résumé",
       jobs: [
         {
+          role: "Senior Software Engineer",
+          org: "Gymdesk",
+          period: "Oct 2026 · present · remote",
+          summary:
+            "Billing and payments on the Americas team of Gymdesk, the all-in-one management platform for gyms and martial arts academies.",
+          bullets: [],
+        },
+        {
           role: "Staff Software Engineer",
           org: "Eduzz",
-          period: "Mar 2023 · present · remote",
+          period: "Mar 2023 · Oct 2026 · remote",
           summary:
-            "The technical reference for a nine-person team at one of Brazil's largest creator-economy platforms (~R$1.2B annual GMV). I own the commercial operation's automation and data layer end to end, and the technical calls that come with it.",
+            "The technical reference for a nine-person team at one of Brazil's largest creator-economy platforms (~R$1.2B annual GMV). I owned the commercial operation's automation and data layer end to end, and the technical calls that came with it.",
           bullets: [
             "Multi-program scoring engine (Strategy Pattern core, 40+ rules) that replaced manual commercial decisions with an automated ranking pipeline, with Bayesian confidence-weighting so low-volume sellers aren't judged on noisy data.",
             "The automation and observability layer for chargebacks and disputes across four payment providers (Stripe, Pagar.me, Mercado Pago, Iugu), built idempotent on top of unreliable webhooks.",
             "The product-pipeline API the commercial team runs on: parallel fan-out across four databases (SQL Server, MySQL, MongoDB, Postgres), with a cache that cuts latency 50-70% and database load by roughly 90%.",
             "Config-driven qualification engine, 2M+ qualifications processed, publishing completion events to RabbitMQ through an idempotent outbox.",
             "Living documentation for the automations: a read-only pipeline turns the HubSpot and Botpress APIs into versioned docs, and an AI layer fills intent without inventing structure.",
-            "I ship daily with AI coding agents (Claude Code) and own the prompts, evals, and review loop that keep that code production-safe.",
+            "Shipped daily with AI coding agents (Claude Code), owning the prompts, evals, and review loop that keep that code production-safe.",
           ],
         },
         {
@@ -377,9 +393,9 @@ export const translations: Record<Language, Translations> = {
     },
 
     schema: {
-      jobTitle: "Staff Software Engineer",
+      jobTitle: "Senior Software Engineer",
       description:
-        "Staff Software Engineer and software architect. Founded a SaaS, scaled it, and sold it. Architecture, payment systems, automation, and LLM systems in production.",
+        "Senior Software Engineer at Gymdesk and software architect. Founded a SaaS, scaled it, and sold it. Architecture, payment systems, automation, and LLM systems in production.",
       knowsAbout: [
         "Software Architecture",
         "System Design",
